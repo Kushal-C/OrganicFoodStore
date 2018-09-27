@@ -1,2 +1,1 @@
-# CS160
-For class @ SJSU
+# Organic Food-Delivery Service Simulator
