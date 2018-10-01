@@ -29,9 +29,8 @@ class App extends Component {
 
   render() {
     return <Router>
-        <div className="App">
+        <div className="container-fluid">
           <Route path="/" component={SignIn} />
-          <p>{this.state.response}</p>
         </div>
       </Router>;
   }

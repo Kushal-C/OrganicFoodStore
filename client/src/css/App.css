@@ -1,28 +1,20 @@
-.App {
-  text-align: center;
+/* COLOR CONSTANTS
+
+BACKGROUND COLOR: #F5F6F8
+HEADER & BUTTON COLOR: #007BFF
+CARD BACKGROUND COLOR: #FFFFFF
+FIELD BACKGROUND COLOR: #F4F4F4
+SECONDARY HEADER COLOR: #3D5170
+FIELD TEXT COLOR: #9B9B9B
+
+*/
+
+body {
+    background-color: #F5F6F8;
+    margin:50px;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.header-primary{
+    color: #007BFF;
+    font-weight: 1000;
 }
