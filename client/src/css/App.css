@@ -7,14 +7,18 @@ FIELD BACKGROUND COLOR: #F4F4F4
 SECONDARY HEADER COLOR: #3D5170
 FIELD TEXT COLOR: #9B9B9B
 
+TWO FONTS USED: POPPINS FOR BIG HEADERS & LATO FOR EVERYTHING ELSE, Poppins is included as a part of Shards
+
+https://fonts.google.com/specimen/Lato
+
 */
 
 body {
     background-color: #F5F6F8;
-    margin:50px;
+    margin: 50px;
 }
 
-.header-primary{
+.header-primary {
     color: #007BFF;
     font-weight: 1000;
 }
