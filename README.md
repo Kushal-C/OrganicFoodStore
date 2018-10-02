@@ -9,4 +9,8 @@ npm install
 
 
 After that:
-To run the application, run yarn dev on the outermost folder
+To run the application, run 
+
+yarn dev 
+
+on the outermost folder
