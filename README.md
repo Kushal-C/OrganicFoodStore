@@ -1,7 +1,10 @@
 # Organic Food-Delivery Service Simulator
 
 **ON FIRST RUN**:
+
 cd client
+
+
 npm install
 
 
