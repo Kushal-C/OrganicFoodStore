@@ -23,7 +23,7 @@ export default class SignIn extends Component {
       response = await sendUserLogin('/api/login', {email, password});
     }
     catch(error) {
-      console.log(error);
+      console.error(error);
     }
     console.log("Response: " + response);
   }
