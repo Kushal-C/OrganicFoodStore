@@ -1,9 +1,31 @@
 import React, { Component } from "react";
-import { getItems } from "../actions/index";
+import axios from "axios";
+import { getItems, sendUserLogin } from "../actions";
 
-class SignIn extends Component {
-  componentWillMount() {
+export default class SignIn extends Component {
+  state = {
+      email : "",
+      password : ""
+    }
+
+  componentDidMount() {
     getItems();
+  }
+
+  handleEmailChange = event => this.setState({email : event.target.value});
+
+  handlePasswordChange = event => this.setState({password : event.target.value});
+
+  handleClick = async (event) => {
+    let response;
+    const {email, password} = this.state;
+    try {
+      response = await sendUserLogin('/api/login', {email, password});
+    }
+    catch(error) {
+      console.error(error);
+    }
+    console.log("Response: " + response);
   }
 
   render() {
@@ -15,12 +37,12 @@ class SignIn extends Component {
             <h4 className="card-title header-primary">LOGIN</h4>
             <div className="card-body">
               <label>User Name:</label>
-              <input type="text" name="name" />
+              <input type="text" name="email" onChange={this.handleEmailChange}/>
               <br />
               <label>Password:</label>
-              <input type="text" name="name" />
+              <input type="text" name="password" onChange={this.handlePasswordChange}/>
               <br />
-              <button className="btn btn-primary">LOGIN</button>
+              <button className="btn btn-primary" onClick={this.handleClick}>LOGIN</button>
             </div>
           </div>
         </div>
@@ -28,4 +50,3 @@ class SignIn extends Component {
     );
   }
 }
-export default SignIn;
