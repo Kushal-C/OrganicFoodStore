@@ -23,6 +23,7 @@ class SignIn extends Component {
 
   sendLoginCredentials(){
     this.props.login({email: this.state.email, password: this.state.password});
+    this.setState({email:"",password:""});
   }
 
   render() {
@@ -33,11 +34,11 @@ class SignIn extends Component {
           <div className="card">
             <h4 className="card-title header-primary">LOGIN</h4>
             <div className="card-body">
-              <label>User Name:</label>
-              <input onChange={this.onEmailChange} type="text" name="name" />
+              <label>Email:</label>
+              <input value={this.state.email} onChange={this.onEmailChange} type="text" name="name" />
               <br />
               <label>Password:</label>
-              <input onChange={this.onPasswordChange}type="text" name="name" />
+              <input value={this.state.password} onChange={this.onPasswordChange}type="text" name="name" />
               <br />
               <button className="btn btn-primary" onClick={this.sendLoginCredentials}>LOGIN</button>
             </div>
