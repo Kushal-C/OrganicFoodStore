@@ -1,32 +1,31 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { getItems } from "../actions/index";
+import { getItems, sendUserLogin } from "../actions";
 
-class SignIn extends Component {
-  constructor() {
-    super();
-    this.state = {
+export default class SignIn extends Component {
+  state = {
       email : "",
       password : ""
     }
-  }
 
-  componentWillMount() {
+  componentDidMount() {
     getItems();
   }
 
-  handleEmailChange = event => this.state.email = event.target.value;
+  handleEmailChange = event => this.setState({email : event.target.value});
 
-  handlePasswordChange = event => this.state.password = event.target.value;
+  handlePasswordChange = event => this.setState({password : event.target.value});
 
-  handleClick = event => {
-    axios.post('/api/login', this.state)
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
+  handleClick = async (event) => {
+    let response;
+    const {email, password} = this.state;
+    try {
+      response = await sendUserLogin('/api/login', {email, password});
+    }
+    catch(error) {
       console.log(error);
-    });
+    }
+    console.log("Response: " + response);
   }
 
   render() {
@@ -51,4 +50,3 @@ class SignIn extends Component {
     );
   }
 }
-export default SignIn;
