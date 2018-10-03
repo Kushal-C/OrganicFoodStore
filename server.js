@@ -7,4 +7,8 @@ app.get('/api/hello', (req, res) => {
     res.send({ express: 'Hello From Express' });
 });
 
+app.post('/api/hello', (req, res) => {
+    console.log(req);
+});
+
 app.listen(port, () => console.log(`Listening on port ${port}`));

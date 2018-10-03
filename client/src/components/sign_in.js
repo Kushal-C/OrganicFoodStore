@@ -1,9 +1,28 @@
 import React, { Component } from "react";
-import { getItems } from "../actions/index";
 
 class SignIn extends Component {
-  componentWillMount() {
-    getItems();
+  constructor(props){
+    super(props);
+    this.state = {
+      email: "",
+      password: ""
+    }
+
+    this.onEmailChange = this.onEmailChange.bind(this);
+    this.onPasswordChange = this.onPasswordChange.bind(this);
+    this.sendLoginCredentials = this.sendLoginCredentials.bind(this);
+  }
+
+  onEmailChange(event){
+    this.setState({email: event.target.value});
+  }
+
+  onPasswordChange(event) {
+    this.setState({ password: event.target.value});
+  }
+
+  sendLoginCredentials(){
+    this.props.login({email: this.state.email, password: this.state.password});
   }
 
   render() {
@@ -15,12 +34,12 @@ class SignIn extends Component {
             <h4 className="card-title header-primary">LOGIN</h4>
             <div className="card-body">
               <label>User Name:</label>
-              <input type="text" name="name" />
+              <input onChange={this.onEmailChange} type="text" name="name" />
               <br />
               <label>Password:</label>
-              <input type="text" name="name" />
+              <input onChange={this.onPasswordChange}type="text" name="name" />
               <br />
-              <button className="btn btn-primary">LOGIN</button>
+              <button className="btn btn-primary" onClick={this.sendLoginCredentials}>LOGIN</button>
             </div>
           </div>
         </div>
