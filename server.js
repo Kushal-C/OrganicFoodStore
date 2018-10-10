@@ -3,16 +3,22 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 5000;
 
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json())
+
 app.get('/', (req, res) => {
     res.send({ express: 'testing' });
 });
 
-app.get('/api/hello', (req, res) => {
+app.get('/api/login', (req, res) => {
     res.send({ express: 'Hello From Express' });
+    console.log(req.param('Email'));
 });
 
 var mysql = require("mysql");
 
+/*
 var connection = mysql.createConnection({
     host     : '',
     user     : 'masterUsername',
@@ -35,17 +41,22 @@ var connection = mysql.createConnection({
     else
       console.log('Error while performing Query.');
   });
-  
 
-/*
+*/
+
+
+
 
 app.post('/api/login', (req, res) => {
-    console.log("Req");
-    console.log(req.param('email'));
+
+
+    console.log("Login button pressed");
+    console.log(req.body.email);
+    console.log(req.body.password);
     res.json({responseCode: '200'});
 });
 
-*/
+
 
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
