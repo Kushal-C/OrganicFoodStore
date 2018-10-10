@@ -3,12 +3,12 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import SignIn from '../components/sign_in';
-import {login} from '../actions/index';
+import {login, register} from '../actions/index';
 
 class SignInContainer extends Component {
     render(){
         return(
-            <SignIn login={login}/>
+            <SignIn login = {login} register = {register}/>
         );
     }
 }
