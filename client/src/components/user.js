@@ -8,8 +8,7 @@ export default class User extends Component{
   render() {
     return(
       <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{this.props.name}
-        <span class="caret"></span></button>
+      <span class="badge badge-primary">{this.props.name}</span>
         <ul class="dropdown-menu">
           <li><a href="#">Profile</a></li>
           <li><a href="#">Settings</a></li>

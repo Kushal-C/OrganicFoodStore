@@ -8,9 +8,7 @@ export default class Topbar extends Component{
   render() {
     return(
       <div>
-        <h1>
-          {this.props.company_name}
-        </h1>
+        <h1 className="header-primary">{this.props.company_name}</h1>
       </div>
     )
   }
