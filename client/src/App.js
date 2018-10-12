@@ -6,6 +6,7 @@ import logger from "redux-logger";
 import promiseMiddleware from "redux-promise";
 import reducers from "./reducers/index";
 import SignInContainer from "./containers/sign_in_container";
+import DashboardContainer from "./containers/dashboard_container";
 
 const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, logger)(
   createStore
@@ -17,7 +18,8 @@ class App extends Component {
       <Provider store={createStoreWithMiddleware(reducers)}>
         <Router>
           <div className="container-fluid">
-            <Route path="/" component={SignInContainer} />
+            <Route exact path="/" component={SignInContainer} />
+            <Route path="/dashboard" component={DashboardContainer} />
           </div>
         </Router>
       </Provider>
