@@ -108,11 +108,9 @@ export default class SignIn extends Component {
                 <label>Email:</label>
                 <br />
                 <FormValidationContainer value={this.state.loginEmail} onChange={this.onLoginEmailChange} type="text" name="name" required_characters = {["@", "."]} error_msg = "Invalid email address"/>
-                <br />
                 <label>Password:</label>
-                <br />
                 <FormValidationContainer value={this.state.loginPassword} onChange={this.onLoginPasswordChange}type="password" name="password" min_input_length = {8} error_msg = "Invalid password"/>
-                <br /><br />
+                <br />
                 <button className="btn btn-primary" onClick={this.sendLoginCredentials}>LOGIN</button>
               </div>
             </div>
@@ -124,31 +122,18 @@ export default class SignIn extends Component {
                   <label>First Name:</label>
                   <br />
                   <FormValidationContainer value={this.state.firstName} onChange={this.onFirstNameChange} type="text" name="first name" />
-                  <br />
                   <label>Last Name:</label>
-                  <br />
                   <FormValidationContainer value={this.state.lastName} onChange={this.onLastNameChange} type="text" name="last name" />
-                  <br />
                   <label>Email:</label>
-                  <br />
                   <FormValidationContainer value={this.state.registrationEmail} onChange={this.onRegistrationEmailChange} type="email" name="email" required_characters = {["@", "."]} error_msg = "Invalid email address" />
-                  <br />
                   <label>Password:</label>
-                  <br />
                   <FormValidationContainer value={this.state.registrationPassword} onChange={this.onRegistrationPasswordChange} type="password" name="registration password" min_input_length = {8} error_msg = "Invalid password" />
-                  <br />
                   <label>Credit Card Number:</label>
-                  <br />
                   <FormValidationContainer value={this.state.creditCardNum} onChange={this.onCreditCardChange} type="text" name="credit card number" />
-                  <br />
                   <label>Security Number:</label>
-                  <br />
                   <FormValidationContainer value={this.state.securityNumber} onChange={this.onSecurityNumberChange} type="text" name="security number" />
-                  <br />
                   <label>Phone Number:</label>
-                  <br />
                   <FormValidationContainer value={this.state.phoneNumber} onChange={this.onPhoneNumberChange} type="tel" name="phone number" />
-                  <br /><br />
                   <button className="btn btn-primary" onClick={this.sendRegistrationInformation}>REGISTER</button>
                 </div>
           </div>
