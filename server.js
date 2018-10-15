@@ -63,8 +63,8 @@ app.post('/api/login', (req, res) => {
             WHERE Email='" + req.body.loginEmail + "' " +
                 "AND Password='" + req.body.loginPassword + "';", function (err, result, fields) {
           if (err) throw err;
-          if(result.length > 0) console.log(result[0]);
-          else console.log("User Not Found");        
+          if(result.length > 0) res.json({responseCode: '200'}); // user found
+          else res.json({responseCode: '404'});        // user not found
         });
       });
 
