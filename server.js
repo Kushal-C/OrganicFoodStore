@@ -72,8 +72,6 @@ app.post('/api/login', (req, res) => {
         loginEmail: this.state.loginEmail,
         loginPassword: this.state.loginPassword
     */
-      
-    res.json({responseCode: '200'});
 });
 
 app.post('/api/register', (req, res) => {
@@ -122,8 +120,6 @@ app.post('/api/register', (req, res) => {
     securityNumber: this.state.securityNumber,
     phoneNumber: this.state.phoneNumber
     */
-
-    res.json({responseCode: '200'});
 });
 
 
