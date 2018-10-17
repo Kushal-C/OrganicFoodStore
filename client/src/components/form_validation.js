@@ -40,10 +40,9 @@ export default class FormValidation extends Component {
   }
 
   render() {
-    this.isValidField();
     if (this.state.fieldIsValid) {
       return (
-        <div class="form-group">
+        <div class="form-control is-valid">
           <input
             value={this.props.value}
             onChange={this.props.onChange}
@@ -62,7 +61,7 @@ export default class FormValidation extends Component {
       );
     } else {
       return (
-        <div class="form-group">
+        <div class="form-control is-invalid">
           <input
             value={this.props.value}
             onChange={this.props.onChange}
