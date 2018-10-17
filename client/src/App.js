@@ -7,6 +7,7 @@ import promiseMiddleware from "redux-promise";
 import reducers from "./reducers/index";
 import SignInContainer from "./containers/sign_in_container";
 import DashboardContainer from "./containers/dashboard_container";
+import Map from './components/map';
 
 const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, logger)(
   createStore
@@ -18,8 +19,10 @@ class App extends Component {
       <Provider store={createStoreWithMiddleware(reducers)}>
         <Router>
           <div className="container-fluid">
-            <Route exact path="/" component={SignInContainer} />
+            <Route path="/checkout/view" component={Map} />>
             <Route path="/dashboard" component={DashboardContainer} />
+            <Route exact path="/" component={SignInContainer} />
+            
           </div>
         </Router>
       </Provider>
