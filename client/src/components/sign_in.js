@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import FormValidationContainer from "../containers/form_validation_container";
+import FormValidation from "./form_validation";
 
 export default class SignIn extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       loginEmail: "",
@@ -15,83 +15,83 @@ export default class SignIn extends Component {
       creditCardNum: "",
       securityNumber: "",
       phoneNumber: ""
-    }
+    };
 
     this.onLoginEmailChange = this.onLoginEmailChange.bind(this);
     this.onLoginPasswordChange = this.onLoginPasswordChange.bind(this);
     this.onFirstNameChange = this.onFirstNameChange.bind(this);
     this.onLastNameChange = this.onLastNameChange.bind(this);
     this.onRegistrationEmailChange = this.onRegistrationEmailChange.bind(this);
-    this.onRegistrationPasswordChange = this.onRegistrationPasswordChange.bind(this);
+    this.onRegistrationPasswordChange = this.onRegistrationPasswordChange.bind(
+      this
+    );
     this.onAddressChange = this.onAddressChange.bind(this);
     this.onCreditCardChange = this.onCreditCardChange.bind(this);
     this.onSecurityNumberChange = this.onSecurityNumberChange.bind(this);
-    this.onPhoneNumberChange = this. onPhoneNumberChange.bind(this);
+    this.onPhoneNumberChange = this.onPhoneNumberChange.bind(this);
     this.sendLoginCredentials = this.sendLoginCredentials.bind(this);
-    this.sendRegistrationInformation = this.sendRegistrationInformation.bind(this);
+    this.sendRegistrationInformation = this.sendRegistrationInformation.bind(
+      this
+    );
   }
 
-  onLoginEmailChange(event){
-    this.setState({loginEmail: event.target.value});
+  onLoginEmailChange(event) {
+    this.setState({ loginEmail: event.target.value });
   }
 
   onLoginPasswordChange(event) {
-    this.setState({loginPassword: event.target.value});
+    this.setState({ loginPassword: event.target.value });
   }
 
-  onFirstNameChange(event){
-    this.setState({firstName: event.target.value});
+  onFirstNameChange(event) {
+    this.setState({ firstName: event.target.value });
   }
 
-  onLastNameChange(event){
-    this.setState({lastName: event.target.value});
+  onLastNameChange(event) {
+    this.setState({ lastName: event.target.value });
   }
 
-  onRegistrationEmailChange(event){
-    this.setState({registrationEmail: event.target.value});
+  onRegistrationEmailChange(event) {
+    this.setState({ registrationEmail: event.target.value });
   }
 
-  onRegistrationPasswordChange(event){
-    this.setState({registrationPassword: event.target.value});
+  onRegistrationPasswordChange(event) {
+    this.setState({ registrationPassword: event.target.value });
   }
 
-  onAddressChange(event){
-    this.setState({address: event.target.value});
+  onAddressChange(event) {
+    this.setState({ address: event.target.value });
   }
 
-  onCreditCardChange(event){
-    this.setState({creditCardNum: event.target.value});
+  onCreditCardChange(event) {
+    this.setState({ creditCardNum: event.target.value });
   }
 
-  onSecurityNumberChange(event){
-    this.setState({securityNumber: event.target.value});
+  onSecurityNumberChange(event) {
+    this.setState({ securityNumber: event.target.value });
   }
 
   onPhoneNumberChange(event) {
-    this.setState({phoneNumber: event.target.value});
+    this.setState({ phoneNumber: event.target.value });
   }
 
-  sendLoginCredentials(){
-    this.props.login(
-      {
-        loginEmail: this.state.loginEmail,
-        loginPassword: this.state.loginPassword
-      }
-    );
+  sendLoginCredentials() {
+    this.props.login({
+      loginEmail: this.state.loginEmail,
+      loginPassword: this.state.loginPassword
+    });
   }
 
   sendRegistrationInformation() {
-    this.props.register(
-      {
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        registrationEmail: this.state.registrationEmail,
-        registrationPassword: this.state.registrationPassword,
-        creditCardNum: this.state.creditCardNum,
-        securityNumber: this.state.securityNumber,
-        phoneNumber: this.state.phoneNumber
-      }
-    );
+    this.props.register({
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      registrationEmail: this.state.registrationEmail,
+      registrationPassword: this.state.registrationPassword,
+      creditCardNum: this.state.creditCardNum,
+      securityNumber: this.state.securityNumber,
+      phoneNumber: this.state.phoneNumber
+    });
   }
 
   render() {
@@ -107,39 +107,102 @@ export default class SignIn extends Component {
               <div className="card-body">
                 <label>Email:</label>
                 <br />
-                <FormValidationContainer value={this.state.loginEmail} onChange={this.onLoginEmailChange} type="text" name="name" required_characters = {["@", "."]} error_msg = "Invalid email address"/>
+                <FormValidation
+                  value={this.state.loginEmail}
+                  onChange={this.onLoginEmailChange}
+                  type="text"
+                  name="name"
+                  required_characters={["@", "."]}
+                  error_msg="Invalid email address"
+                />
                 <label>Password:</label>
-                <FormValidationContainer value={this.state.loginPassword} onChange={this.onLoginPasswordChange}type="password" name="password" min_input_length = {8} error_msg = "Invalid password"/>
+                <FormValidation
+                  value={this.state.loginPassword}
+                  onChange={this.onLoginPasswordChange}
+                  type="password"
+                  name="password"
+                  min_input_length={8}
+                  error_msg="Invalid password"
+                />
                 <br />
-                <button className="btn btn-primary" onClick={this.sendLoginCredentials}>LOGIN</button>
+                <button
+                  className="btn btn-primary"
+                  onClick={this.sendLoginCredentials}
+                >
+                  LOGIN
+                </button>
               </div>
             </div>
           </div>
           <div className="col-md-6">
-            <div className = "card">
+            <div className="card">
               <h4 className="card-title header-primary">REGISTER</h4>
-                <div className="card-body">
-                  <label>First Name:</label>
-                  <br />
-                  <FormValidationContainer value={this.state.firstName} onChange={this.onFirstNameChange} type="text" name="first name" />
-                  <label>Last Name:</label>
-                  <FormValidationContainer value={this.state.lastName} onChange={this.onLastNameChange} type="text" name="last name" />
-                  <label>Email:</label>
-                  <FormValidationContainer value={this.state.registrationEmail} onChange={this.onRegistrationEmailChange} type="email" name="email" required_characters = {["@", "."]} error_msg = "Invalid email address" />
-                  <label>Password:</label>
-                  <FormValidationContainer value={this.state.registrationPassword} onChange={this.onRegistrationPasswordChange} type="password" name="registration password" min_input_length = {8} error_msg = "Invalid password" />
-                  <label>Credit Card Number:</label>
-                  <FormValidationContainer value={this.state.creditCardNum} onChange={this.onCreditCardChange} type="text" name="credit card number" />
-                  <label>Security Number:</label>
-                  <FormValidationContainer value={this.state.securityNumber} onChange={this.onSecurityNumberChange} type="text" name="security number" />
-                  <label>Phone Number:</label>
-                  <FormValidationContainer value={this.state.phoneNumber} onChange={this.onPhoneNumberChange} type="tel" name="phone number" />
-                  <button className="btn btn-primary" onClick={this.sendRegistrationInformation}>REGISTER</button>
-                </div>
+              <div className="card-body">
+                <label>First Name:</label>
+                <br />
+                <FormValidation
+                  value={this.state.firstName}
+                  onChange={this.onFirstNameChange}
+                  type="text"
+                  name="first name"
+                />
+                <label>Last Name:</label>
+                <FormValidation
+                  value={this.state.lastName}
+                  onChange={this.onLastNameChange}
+                  type="text"
+                  name="last name"
+                />
+                <label>Email:</label>
+                <FormValidation
+                  value={this.state.registrationEmail}
+                  onChange={this.onRegistrationEmailChange}
+                  type="email"
+                  name="email"
+                  required_characters={["@", "."]}
+                  error_msg="Invalid email address"
+                />
+                <label>Password:</label>
+                <FormValidation
+                  value={this.state.registrationPassword}
+                  onChange={this.onRegistrationPasswordChange}
+                  type="password"
+                  name="registration password"
+                  min_input_length={8}
+                  error_msg="Invalid password"
+                />
+                <label>Credit Card Number:</label>
+                <FormValidation
+                  value={this.state.creditCardNum}
+                  onChange={this.onCreditCardChange}
+                  type="text"
+                  name="credit card number"
+                />
+                <label>Security Number:</label>
+                <FormValidation
+                  value={this.state.securityNumber}
+                  onChange={this.onSecurityNumberChange}
+                  type="text"
+                  name="security number"
+                />
+                <label>Phone Number:</label>
+                <FormValidation
+                  value={this.state.phoneNumber}
+                  onChange={this.onPhoneNumberChange}
+                  type="tel"
+                  name="phone number"
+                />
+                <button
+                  className="btn btn-primary"
+                  onClick={this.sendRegistrationInformation}
+                >
+                  REGISTER
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     );
   }
 }

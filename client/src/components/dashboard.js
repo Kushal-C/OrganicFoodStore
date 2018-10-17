@@ -1,59 +1,49 @@
 import React, { Component } from "react";
-import TopbarContainer from '../containers/top_bar_container'
-import UserContainer from '../containers/user_container';
-import SidebarContainer from '../containers/side_bar_container';
-import FeaturedItemsContainer from '../containers/featured_items_container';
-import ItemCardContainer from '../containers/item_card_container';
+import Sidebar from "./side_bar";
+import ItemCardContainer from "../containers/item_card_container";
 
 export default class Dashboard extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       firstName: "",
-      lastName : ""
-    }
-  }
-
-  getFeaturedItems() {
-    let items = [
-      <ItemCardContainer
-        name = "Broccoli"
-        description = "Flower of Broccoli"
-        cost = {2}
-        weight = {1}
-        weight_unit = "pound"
-      >
-      </ItemCardContainer>,
-      <ItemCardContainer
-      name = "Mango"
-      description = "A single mango"
-      cost = {3}
-      weight = {1}
-      weight_unit = "pound"
-    >
-    </ItemCardContainer>
-    ];
-    return (items);
+      lastName: ""
+    };
   }
 
   render() {
-    return(
+    return (
       <div>
         <div className="row">
           <div className="col-md-6 text-left">
-            <TopbarContainer company_name = "OFS Delivery"></TopbarContainer>
+            <h1 className="header-primary">OFS DELIVERY</h1>
           </div>
           <div className="col-md-6 text-right">
-            <UserContainer name = "John Smith"></UserContainer>
+            <div class="dropdown">
+              <span class="badge badge-primary">John Smith</span>
+            </div>
           </div>
         </div>
         <div className="row">
-          <SidebarContainer val = "Side bar goes here"></SidebarContainer>
+          <Sidebar val="Side bar goes here" />
           <div className="col-md-6 text-left">
-            <FeaturedItemsContainer items = {this.getFeaturedItems()}></FeaturedItemsContainer>
+            <ItemCardContainer
+              name="Broccoli"
+              description="Flower of Broccoli"
+              cost={2}
+              weight={1}
+              weight_unit="pound"
+            />
+            <ItemCardContainer
+              name="Mango"
+              description="A single mango"
+              cost={3}
+              weight={1}
+              weight_unit="pound"
+            />
           </div>
         </div>
       </div>
-    )
+    );
   }
 }

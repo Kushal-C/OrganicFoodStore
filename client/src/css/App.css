@@ -14,11 +14,11 @@ https://fonts.google.com/specimen/Lato
 */
 
 body {
-    background-color: #F5F6F8;
-    margin: 50px;
+  background-color: #f5f6f8;
+  margin: 50px;
 }
 
 .header-primary {
-    color: #007BFF;
-    font-weight: 1000;
+  color: #007bff;
+  font-weight: 1000;
 }
