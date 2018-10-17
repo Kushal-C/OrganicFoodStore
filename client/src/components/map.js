@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
-export class Map extends Component {
+export class GoogleMap extends Component {
     render() {
         return (
             <Map google={this.props.google} zoom={14}>
@@ -20,5 +20,5 @@ export class Map extends Component {
 }
 
 export default GoogleApiWrapper({
-    apiKey: (YOUR_GOOGLE_API_KEY_GOES_HERE)
+    apiKey: 'Insert_Key_Here'
 })(Map)
