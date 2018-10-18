@@ -1,11 +1,20 @@
 import React, { Component } from "react";
 
 export default class FormValidation extends Component {
+  
   constructor(props) {
     super(props);
     this.state = {
-      fieldIsValid: true
+      fieldIsValid: true,
+      className: "form-control"
     };
+
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(e) {
+    this.isValidField();
+    this.props.onChange(e);
   }
 
   isValidField() {
@@ -13,6 +22,12 @@ export default class FormValidation extends Component {
       return true;
     } else {
       let req = this.isValidLength() && this.hasRequiredCharacters();
+      if(req){
+        this.setState({className:"form-control is-valid"})
+      }
+      else {
+        this.setState({ className: "form-control is-invalid" })
+      }
       this.setState({ fieldIsValid: req });
     }
   }
@@ -40,47 +55,16 @@ export default class FormValidation extends Component {
   }
 
   render() {
-    if (this.state.fieldIsValid) {
-      return (
-        <div class="form-control is-valid">
-          <input
-            value={this.props.value}
-            onChange={this.props.onChange}
-            type={this.props.type}
-            name={this.props.name}
-            required
-          />
-          <d-input
-            id="f2_Email"
-            class="mb-2 mr-sm-2 mb-sm-0"
-            v-model="form.email"
-            placeholder="email@example.com"
-            required
-          />
-        </div>
-      );
-    } else {
-      return (
-        <div class="form-control is-invalid">
-          <input
-            value={this.props.value}
-            onChange={this.props.onChange}
-            type={this.props.type}
-            name={this.props.name}
-            required
-          />
-          <d-input
-            id="f2_Email"
-            class="mb-2 mr-sm-2 mb-sm-0"
-            v-model="form.email"
-            placeholder="email@example.com"
-            required
-          />
-          <d-form-invalid-feedback>
-            {this.props.error_msg}
-          </d-form-invalid-feedback>
-        </div>
-      );
-    }
+    return (
+      <div className={this.state.className}>
+        <input
+          value={this.state.value}
+          onChange={this.onChange}
+          type={this.props.type}
+          name={this.props.name}
+          required
+        />
+      </div>
+    );
   }
 }

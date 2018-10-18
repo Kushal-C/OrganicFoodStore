@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
 import FormValidation from '../form_validation';
 
+/*
+        minLength: this.props.minLength,
+        specialChars: this.props.specialChars,  Should be an array 8 
+        isAlphanumeric: this.props.isAlphanumeric,
+        value: "",
+        isValid: false
+*/
 class LoginCard extends Component {
     constructor(props){
         super(props);
@@ -12,7 +19,7 @@ class LoginCard extends Component {
         this.onLoginEmailChange = this.onLoginEmailChange.bind(this);
         this.onLoginPasswordChange = this.onLoginPasswordChange.bind(this);
         this.sendLoginCredentials = this.sendLoginCredentials.bind(this);
-        
+
     }
 
     sendLoginCredentials() {
