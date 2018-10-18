@@ -19,7 +19,7 @@ class App extends Component {
       <Provider store={createStoreWithMiddleware(reducers)}>
         <Router>
           <div className="container-fluid">
-            <Route path="/checkout/view" component={GoogleMap} />>
+            <Route path="/checkout/view" component={GoogleMap} />
             <Route path="/dashboard" component={DashboardContainer} />
             <Route exact path="/" component={SignInContainer} />
             
