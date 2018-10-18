@@ -9,6 +9,9 @@ node_modules
 # production
 /client/build
 
+#api keys
+/client/src/actions/api_constants.js
+
 # misc
 .DS_Store
 .env.local
