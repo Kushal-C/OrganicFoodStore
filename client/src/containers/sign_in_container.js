@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import SignIn from "../components/sign_in";
+import SignIn from "../components/sign_in/sign_in";
 import { login, register } from "../actions/index";
 
 class SignInContainer extends Component {
@@ -13,7 +13,8 @@ class SignInContainer extends Component {
 
 function mapStateToProps(state) {
   return {
-    login_state: state.login
+    loginState: state.login,
+    registrationState: state.register
   };
 }
 
