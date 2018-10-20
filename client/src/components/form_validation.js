@@ -1,5 +1,18 @@
 import React, { Component } from "react";
 
+/*
+Input Field Component, modified to work with Shards.js
+Takes in the following props from its parent components
+W/ exampe
+
+value={this.state.loginPassword}
+onChange={this.onLoginPasswordChange}
+type="password"
+name="password"
+min_input_length={8}
+error_msg="Invalid password"
+required_characters={["@", "."]}
+*/
 export default class FormValidation extends Component {
   
   constructor(props) {
@@ -8,8 +21,8 @@ export default class FormValidation extends Component {
       fieldIsValid: true,
       className: "form-control"
     };
-
     this.onChange = this.onChange.bind(this);
+    this.isValidField = this.isValidField.bind(this);
   }
 
   onChange(e) {
@@ -19,7 +32,7 @@ export default class FormValidation extends Component {
 
   isValidField() {
     if (this.props.value.length < 1) {
-      return true;
+      this.setState({fieldIsValid: false})
     } else {
       let req = this.isValidLength() && this.hasRequiredCharacters();
       if(req){
@@ -58,7 +71,7 @@ export default class FormValidation extends Component {
     return (
       <div className={this.state.className}>
         <input
-          value={this.state.value}
+          value={this.props.value}
           onChange={this.onChange}
           type={this.props.type}
           name={this.props.name}
