@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
+
 import FormValidation from '../form_validation';
 
 class RegistrationCard extends Component {
@@ -46,52 +48,27 @@ class RegistrationCard extends Component {
     }
 
     render() {
-        return (
-            <div className="col-md-6">
-                <div className="card">
-                    <h4 className="card-title header-primary">REGISTER</h4>
-                    <div className="card-body">
-                        <label>First Name:</label>
-                        <br />
-                        <FormValidation
-                            value={this.state.firstName}
-                            onChange={this.onFirstNameChange}
-                            type="text"
-                            name="first name"
-                        />
-                        <label>Last Name:</label>
-                        <FormValidation
-                            value={this.state.lastName}
-                            onChange={this.onLastNameChange}
-                            type="text"
-                            name="last name"
-                        />
-                        <label>Email:</label>
-                        <FormValidation
-                            value={this.state.registrationEmail}
-                            onChange={this.onRegistrationEmailChange}
-                            type="email"
-                            name="email"
-                            required_characters={["@", "."]}
-                            error_msg="Invalid email address"
-                        />
-                        <label>Phone Number:</label>
-                        <FormValidation
-                            value={this.state.phoneNumber}
-                            onChange={this.onPhoneNumberChange}
-                            type="tel"
-                            name="phone number"
-                        />
-                        <button
-                            className="btn btn-primary"
-                            onClick={this.sendRegistrationInformation}
-                        >
-                            REGISTER
-                       </button>
-                    </div>
-                </div>
+        return <div className="col-md-6">
+            <div className="card">
+              <h4 className="card-title header-primary">REGISTER</h4>
+              <div className="card-body">
+                <label>First Name:</label>
+                <br />
+                <FormValidation value={this.state.firstName} onChange={this.onFirstNameChange} type="text" name="first name" />
+                <label>Last Name:</label>
+                <FormValidation value={this.state.lastName} onChange={this.onLastNameChange} type="text" name="last name" />
+                <label>Email:</label>
+                <FormValidation value={this.state.registrationEmail} onChange={this.onRegistrationEmailChange} type="email" name="email" required_characters={["@", "."]} error_msg="Invalid email address" />
+                <label>Phone Number:</label>
+                <FormValidation value={this.state.phoneNumber} onChange={this.onPhoneNumberChange} type="tel" name="phone number" />
+                <button className="btn btn-primary" onClick={this.sendRegistrationInformation}>
+                  <Link className="text-white" to="/register/profile">
+                    REGISTER
+                  </Link>
+                </button>
+              </div>
             </div>
-        );
+          </div>;
     }
 }
 

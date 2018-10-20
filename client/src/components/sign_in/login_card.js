@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from "react-router-dom";
+
 import FormValidation from '../form_validation';
 
 /*
@@ -27,6 +29,7 @@ class LoginCard extends Component {
             loginEmail: this.state.loginEmail,
             loginPassword: this.state.loginPassword
         });
+        
     }
 
     onLoginEmailChange(event) {
@@ -68,8 +71,8 @@ class LoginCard extends Component {
                             className="btn btn-primary"
                             onClick={this.sendLoginCredentials}
                         >
-                            LOGIN
-                </button>
+                            <Link className="text-white" to="/dashboard">LOGIN</Link>
+                        </button>
                     </div>
                 </div>
             </div>

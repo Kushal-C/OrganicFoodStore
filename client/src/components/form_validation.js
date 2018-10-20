@@ -1,5 +1,18 @@
 import React, { Component } from "react";
 
+/*
+Input Field Component, modified to work with Shards.js
+Takes in the following props from its parent components
+W/ exampe
+
+value={this.state.loginPassword}
+onChange={this.onLoginPasswordChange}
+type="password"
+name="password"
+min_input_length={8}
+error_msg="Invalid password"
+required_characters={["@", "."]}
+*/
 export default class FormValidation extends Component {
   
   constructor(props) {

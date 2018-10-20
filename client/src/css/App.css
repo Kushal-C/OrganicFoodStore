@@ -18,7 +18,12 @@ body {
   margin: 50px;
 }
 
+.text-white {
+  color: #fff;
+}
+
 .header-primary {
   color: #007bff;
   font-weight: 1000;
 }
+
