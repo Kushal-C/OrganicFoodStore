@@ -21,8 +21,8 @@ export default class FormValidation extends Component {
       fieldIsValid: true,
       className: "form-control"
     };
-
     this.onChange = this.onChange.bind(this);
+    this.isValidField = this.isValidField.bind(this);
   }
 
   onChange(e) {
@@ -32,7 +32,7 @@ export default class FormValidation extends Component {
 
   isValidField() {
     if (this.props.value.length < 1) {
-      return true;
+      this.setState({fieldIsValid: false})
     } else {
       let req = this.isValidLength() && this.hasRequiredCharacters();
       if(req){
@@ -71,7 +71,7 @@ export default class FormValidation extends Component {
     return (
       <div className={this.state.className}>
         <input
-          value={this.state.value}
+          value={this.props.value}
           onChange={this.onChange}
           type={this.props.type}
           name={this.props.name}

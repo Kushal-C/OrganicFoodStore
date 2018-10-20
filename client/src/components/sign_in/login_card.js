@@ -18,8 +18,7 @@ class LoginCard extends Component {
             loginPassword: ""
         }
 
-        this.onLoginEmailChange = this.onLoginEmailChange.bind(this);
-        this.onLoginPasswordChange = this.onLoginPasswordChange.bind(this);
+        this.onChange = this.onChange.bind(this);
         this.sendLoginCredentials = this.sendLoginCredentials.bind(this);
 
     }
@@ -32,14 +31,9 @@ class LoginCard extends Component {
         
     }
 
-    onLoginEmailChange(event) {
-        this.setState({ loginEmail: event.target.value });
+    onChange(event){
+        this.setState({[event.target.name]: event.target.value});
     }
-
-    onLoginPasswordChange(event) {
-        this.setState({ loginPassword: event.target.value });
-    }
-
 
     render(){
         return(
@@ -51,18 +45,18 @@ class LoginCard extends Component {
                         <br />
                         <FormValidation
                             value={this.state.loginEmail}
-                            onChange={this.onLoginEmailChange}
+                            onChange={this.onChange}
                             type="text"
-                            name="name"
+                            name="loginEmail"
                             required_characters={["@", "."]}
                             error_msg="Invalid email address"
                         />
                         <label>Password:</label>
                         <FormValidation
                             value={this.state.loginPassword}
-                            onChange={this.onLoginPasswordChange}
+                            onChange={this.onChange}
                             type="password"
-                            name="password"
+                            name="loginPassword"
                             min_input_length={8}
                             error_msg="Invalid password"
                         />

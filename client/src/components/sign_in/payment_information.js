@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Input from '../form_validation';
+
 export default class PaymentInformation extends Component {
     render() {
         return(
@@ -28,13 +29,13 @@ export default class PaymentInformation extends Component {
                     value={this.props.state}
                     type="text"
                 />
-                <label for="zip" class="col-form-label">Zip</label>
+                <label for="zipcode" class="col-form-label">Zip</label>
                 <Input
-                    name="zip"
+                    name="zipcode"
                     onChange={this.props.onChange}
-                    value={this.props.zip}
+                    value={this.props.zipcode}
                     type="number"
-                    id="zip"
+                    id="zipcode"
                     error_msg="Invalid Zip Code"
                     min_input_length={5}
                 />
@@ -48,13 +49,13 @@ export default class PaymentInformation extends Component {
                     min_input_length={16}
                     error_msg="Invalid Credit Card Number"
                 />
-                <label for="exp" class="col-form-label">Expiry</label>
+                <label for="expiryDate" class="col-form-label">Expiry</label>
                 <Input
-                    value={this.props.exp}
+                    value={this.props.expiryDate}
                     onChange={this.props.onChange}
                     type="number"
-                    name="exp"
-                    id="exp"
+                    name="expiryDate"
+                    id="expiryDate"
                     min_input_length={5}
                     error_msg="Invalid Expiry Date"
                 />
