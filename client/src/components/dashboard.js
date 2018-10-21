@@ -25,8 +25,8 @@ export default class Dashboard extends Component {
           </div>
         </div>
         <div className="row">
-          <Sidebar val="Side bar goes here" />
-          <div className="col-md-6 text-left">
+          <Sidebar />
+          <div className="col-md-9 text-left">
             <ItemCardContainer
               name="Broccoli"
               description="Flower of Broccoli"
