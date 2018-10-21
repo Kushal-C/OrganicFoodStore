@@ -7,7 +7,7 @@ export default class Dashboard extends Component {
     super(props);
     this.state = {
       firstName: "",
-      lastName: ""
+      lastName: "",
     };
   }
 
@@ -27,20 +27,18 @@ export default class Dashboard extends Component {
         <div className="row">
           <Sidebar />
           <div className="col-md-9 text-left">
-            <ItemCardContainer
-              name="Broccoli"
-              description="Flower of Broccoli"
-              cost={2}
-              weight={1}
-              weight_unit="pound"
-            />
-            <ItemCardContainer
-              name="Mango"
-              description="A single mango"
-              cost={3}
-              weight={1}
-              weight_unit="pound"
-            />
+            {this.props.item_props.map(function(item){
+              return (
+              <ItemCardContainer
+                addToCart = {item.addToCart}
+                name = {item.name}
+                description = {item.description}
+                image_link = {item.image_link}
+                cost = {item.cost}
+                weight = {item.weight}
+                weight_unit = {item.weight_unit}>
+              </ItemCardContainer>)
+            })}
           </div>
         </div>
       </div>

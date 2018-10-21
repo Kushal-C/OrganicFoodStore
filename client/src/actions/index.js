@@ -2,7 +2,8 @@ import axios from "axios";
 import {
   LOGIN_REQUEST,
   REGISTRATION_REQUEST,
-  FEATURED_ITEMS_REQUEST
+  FEATURED_ITEMS_REQUEST,
+  ADD_TO_CART_REQUEST
 } from "./action_constants";
 
 export function login(info) {
@@ -17,6 +18,14 @@ export function register(info) {
   const request = axios.post("/api/register", info);
   return {
     type: REGISTRATION_REQUEST,
+    payload: request
+  };
+}
+
+export function addToCart(info) {
+  const request = axios.post("/dashboard/featured", info);
+  return {
+    type: ADD_TO_CART_REQUEST,
     payload: request
   };
 }
