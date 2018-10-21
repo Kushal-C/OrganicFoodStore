@@ -1,21 +1,21 @@
 import React, { Component } from "react";
-
+import {Link} from 'react-router-dom';
 export default class Sidebar extends Component {
 
   render() {
-    return (
-      <div class="sidenav">
-        <a href="#">Featured Items</a> <br />
-        <a href="#">Groceries</a> <br />
-        <a href="#">Bakery</a> <br />
-        <a href="#">Drinks</a> <br />
-        <a href="#">Snacks</a> <br />
-        <a href="#">Utensils</a> <br />
-        <a href="#">Medicine</a> <br />
-        <a href="#">Other</a> <br />
-        <a href="#">Past Orders</a> <br />
-        <a href="#">Shopping Cart</a> <br />
-      </div>
-    );
+    return <div className="col-md-3">
+        <ul>
+          <li><Link to="/dashboard/featured">Featured Items</Link></li>
+          <li><Link to="/dashboard/groceries">Groceries</Link></li>
+          <li><Link to="/dashboard/bakery">Bakery</Link></li>
+          <li><Link to="/dashboard/drinks">Drinks</Link></li>
+          <li><Link to="/dashboard/snacks">Snacks</Link></li>
+          <li><Link to="/dashboard/utensils">Utensils</Link></li>
+          <li><Link to="/dashboard/medicine">Medicine</Link></li>
+          <li><Link to="/dashboard/assorted">Other</Link></li>
+          <li><Link to="/pastorders">Past Orders</Link></li>
+          <li><Link to="/cart">Shopping Cart</Link></li>
+        </ul>
+      </div>;
   }
 }
