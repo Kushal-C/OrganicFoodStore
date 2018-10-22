@@ -9,6 +9,8 @@ import SignInContainer from "./containers/sign_in_container";
 import DashboardContainer from "./containers/dashboard_container";
 import RegistrationContainer from "./containers/registration_container";
 import PastOrderContainer from "./containers/past_orders_container";
+import UserProfileContainer from "./containers/user_profile_container";
+
 import GoogleMap from './components/checkout/map';
 
 const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, logger)(
@@ -26,6 +28,7 @@ class App extends Component {
             <Route path="/dashboard/:category" component={DashboardContainer} />
             <Route path="/cart" component={DashboardContainer} />
             <Route path="/pastorders" component={PastOrderContainer} />
+            <Route path="/user" component={UserProfileContainer} />
             <Route exact path="/" component={SignInContainer} />
           </div>
         </Router>
