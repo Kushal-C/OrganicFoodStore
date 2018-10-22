@@ -37,8 +37,8 @@ export function getUserProfile(id){
   }
 } 
 
-export function addToCart(info) {
-  const request = axios.post("/dashboard/featured", info);
+export function addToCart(item) {
+  const request = axios.post("/dashboard/featured", item);
   return {
     type: ADD_TO_CART_REQUEST,
     payload: request
