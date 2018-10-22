@@ -7,7 +7,7 @@ export default class PastOrders extends Component {
     return(
     this.props.orders.map(function(order){
       return (
-      <div>
+      <div className = "col-md-9">
         <Order
           status = {order.status}
           contents = {order.contents}

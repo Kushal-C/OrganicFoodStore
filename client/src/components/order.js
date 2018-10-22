@@ -13,15 +13,11 @@ export default class Order extends Component {
           <h4 class="card-title">Order Status - {this.props.status}</h4>
           {this.props.contents.map(function(item){
             return(
-              <div>
-                <h5>{item.name}</h5>
-                <p>x{item.quantity}</p>
-                <p>Cost: ${item.cost}</p>
-              </div>
+              <div >{item.name} x{item.quantity} Cost: ${item.cost}</div>
             )
           })}
+          <h5>Total Cost: ${this.props.total_cost}</h5>
         </div>
-        <h5>Total Cost: ${this.props.total_cost}</h5>
       </div>
     );
   }
