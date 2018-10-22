@@ -5,7 +5,7 @@ import FormValidation from '../form_validation';
 
 /*
         minLength: this.props.minLength,
-        specialChars: this.props.specialChars,  Should be an array 8 
+        specialChars: this.props.specialChars,  Should be an array 8
         isAlphanumeric: this.props.isAlphanumeric,
         value: "",
         isValid: false
@@ -28,7 +28,7 @@ class LoginCard extends Component {
             loginEmail: this.state.loginEmail,
             loginPassword: this.state.loginPassword
         });
-        
+
     }
 
     onChange(event){
