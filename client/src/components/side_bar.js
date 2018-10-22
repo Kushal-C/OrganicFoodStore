@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 export default class Sidebar extends Component {
 
   render() {
-    return <div className="col-md-3">
+    return <div className="col-md-3" style={{height:'100vh'}}>
         <ul>
           <li><Link to="/dashboard/featured">Featured Items</Link></li>
           <li><Link to="/dashboard/groceries">Groceries</Link></li>

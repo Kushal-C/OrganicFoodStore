@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ItemCard from "../components/item_card";
+import ItemCard from "../components/dashboard/item_card";
 
 export default class ItemCardContainer extends Component {
   render() {

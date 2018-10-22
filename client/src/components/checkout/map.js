@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
-import {GOOGLE_MAPS_API_KEY} from '../actions/api_constants';
+import {GOOGLE_MAPS_API_KEY} from '../../actions/api_constants';
 
 class GoogleMap extends Component {
     render() {

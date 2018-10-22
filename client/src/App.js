@@ -8,7 +8,7 @@ import reducers from "./reducers/index";
 import SignInContainer from "./containers/sign_in_container";
 import DashboardContainer from "./containers/dashboard_container";
 import RegistrationContainer from "./containers/registration_container";
-import GoogleMap from './components/map';
+import GoogleMap from './components/checkout/map';
 
 const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, logger)(
   createStore
@@ -22,7 +22,9 @@ class App extends Component {
           <div className="container-fluid">
             <Route path="/register/profile" component={RegistrationContainer} />
             <Route path="/checkout/view" component={GoogleMap} />
-            <Route path="/dashboard" component={DashboardContainer} />
+            <Route path="/dashboard/:category" component={DashboardContainer} />
+            <Route path="/pastorders" component={DashboardContainer} />
+            <Route path="/cart" component={DashboardContainer} />
             <Route exact path="/" component={SignInContainer} />
           </div>
         </Router>
