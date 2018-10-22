@@ -3,8 +3,8 @@ import {
   LOGIN_REQUEST,
   REGISTRATION_REQUEST,
   GET_ITEMS_REQUEST,
-  GET_USER_PROFILE
-
+  GET_USER_PROFILE,
+  ADD_TO_CART_REQUEST
 } from "./action_constants";
 
 export function login(info) {
@@ -34,5 +34,13 @@ export function getUserProfile(id){
   return {
       type:GET_USER_PROFILE,
       payload:request
+  }
+} 
+
+export function addToCart(info) {
+  const request = axios.post("/dashboard/featured", info);
+  return {
+    type: ADD_TO_CART_REQUEST,
+    payload: request
   };
 }
