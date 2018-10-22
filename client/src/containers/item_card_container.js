@@ -1,11 +1,15 @@
 import React, { Component } from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+
+import {addToCart} from '../actions/index';
 import ItemCard from "../components/dashboard/item_card";
 
-export default class ItemCardContainer extends Component {
+class ItemCardContainer extends Component {
   render() {
     return (
       <ItemCard
-        addToCart = {this.props.addToCart}
+        addToCart={this.props.addToCart}
         name={this.props.name}
         description={this.props.description}
         image_link={this.props.image_link}
@@ -16,3 +20,18 @@ export default class ItemCardContainer extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    cart: state.cart
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ addToCart: addToCart}, dispatch);
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ItemCardContainer);
