@@ -27,7 +27,7 @@ export default class ItemCard extends Component {
     return (
       <div class="col-md-4">
         <div class="card">
-          <img class="card-img-top" src={this.props.image_link} alt="Card image cap"></img>
+          <img class="card-img-top" src={this.props.image_link} alt="Category"></img>
           <div class="card-body">
             <h4 class="card-title">{this.props.name}</h4>
             <p class="card-text">{this.props.description}</p>
