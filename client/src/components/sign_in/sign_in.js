@@ -10,8 +10,8 @@ export default class SignIn extends Component {
           <h1 className="header-primary">OFS DELIVERY</h1>
         </div>
         <div className="row">
-          <LoginCard login={this.props.login}/>
-          <RegistrationCard register={this.props.register} />
+          <LoginCard loginState={this.props.loginState} login={this.props.login}/>
+          <RegistrationCard registerState={this.props.registerState} register={this.props.register} />
         </div>
       </div>
     );

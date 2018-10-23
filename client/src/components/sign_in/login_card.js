@@ -65,7 +65,7 @@ class LoginCard extends Component {
                             className="btn btn-primary"
                             onClick={this.sendLoginCredentials}
                         >
-                            <Link className="text-white" to="/dashboard">LOGIN</Link>
+                            <Link className="text-white" to="/dashboard/featured">LOGIN</Link>
                         </button>
                     </div>
                 </div>

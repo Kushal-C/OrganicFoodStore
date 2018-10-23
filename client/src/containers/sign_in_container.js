@@ -7,7 +7,7 @@ import { login, register } from "../actions/index";
 
 class SignInContainer extends Component {
   render() {
-    return <SignIn login={login} register={register} />;
+    return <SignIn loginState={this.props.loginState} registrationState={this.props.registrationState} login={login} register={register} />;
   }
 }
 
@@ -19,7 +19,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ login: login }, dispatch);
+  return bindActionCreators({ login: login, register:register }, dispatch);
 }
 
 export default connect(
