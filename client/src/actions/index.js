@@ -8,8 +8,9 @@ import {
   UPDATE_USER_PROFILE
 } from "./action_constants";
 
+let route = "http://localhost:5000"
 export function login(info) {
-  const request = axios.post("/api/login", info);
+  const request = axios.post(route + "/api/login", info);
   return {
     type: LOGIN_REQUEST,
     payload: request
@@ -17,21 +18,21 @@ export function login(info) {
 }
 
 export function register(info) {
-  const request = axios.post("/api/register", info);
+  const request = axios.post(route + "/api/register", info);
   return {
     type: REGISTRATION_REQUEST,
     payload: request
   };
 }
 export function getItemsRequest(category){
-  const request = axios.get(`/api/items/${category}`);
+  const request = axios.get(route + `/api/items/${category}`);
   return {
     type: GET_ITEMS_REQUEST,
     payload: request
   }
 }
 export function getUserProfile(id){
-  const request = axios.get(`/api/profile/${id}`);
+  const request = axios.get(route + `/api/profile/${id}`);
   return {
       type:GET_USER_PROFILE,
       payload:request
@@ -39,7 +40,7 @@ export function getUserProfile(id){
 } 
 
 export function updateUserProfile(profile) {
-  const request = axios.post("/api/profile", profile);
+  const request = axios.post(route + "/api/profile", profile);
   return {
     type: UPDATE_USER_PROFILE,
     payload: request
@@ -47,7 +48,7 @@ export function updateUserProfile(profile) {
 }
 
 export function addToCart(item) {
-  const request = axios.post("/dashboard/featured", item);
+  const request = axios.post(route + "/dashboard/featured", item);
   return {
     type: ADD_TO_CART_REQUEST,
     payload: request

@@ -1,41 +1,48 @@
-const express = require('express');
-
+const express = require("express");
+const mysql = require('mysql');
 const app = express();
 const port = process.env.PORT || 5000;
-
-const bodyParser = require('body-parser');
+const connection = require('./server_constants');
+const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+// Add headers
+app.use(function(req, res, next) {
+  // Website you wish to allow to connect
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
 
-app.get('/', (req, res) => {
-    res.send({ express: 'testing' });
+  // Request methods you wish to allow
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+
+  // Request headers you wish to allow
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With,content-type"
+  );
+
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader("Access-Control-Allow-Credentials", true);
+
+  // Pass to next layer of middleware
+  next();
 });
 
-app.get('/api/login', (req, res) => {
-    res.send({ express: 'Hello From Express' });
-    console.log(req.param('Email'));
+app.get("/", (req, res) => {
+  res.send({ express: "testing" });
+});
+
+app.get("/api/login", (req, res) => {
+  mysql.createConnection(connection);
+  res.send({ express: "Hello From Express" });
+  console.log(req.param("Email"));
 });
 
 
-
-var mysql = require("mysql");
-
-var connection = mysql.createConnection({
-    host     : '',
-    user     : '',
-    password : '',
-    database : ''
-  });
- 
-  connection.connect(function(err){
-    if(!err) {
-        console.log("Database is connected ... nn");    
-    } else {
-        console.log(err);    
-    }
-    });
-
-  /*
+/*
   connection.query('SELECT * from User', function(err, rows, fields) {
   connection.end();
     if (!err)
@@ -45,50 +52,44 @@ var connection = mysql.createConnection({
   });
   */
 
-app.post('/api/login', (req, res) => {
+app.post("/api/login", (req, res) => {
+  console.log("Login button pressed");
 
-    console.log("Login button pressed");
-
-    connection = mysql.createConnection({
-        host     : '',
-        user     : '',
-        password : '',
-        database : ''
-      });
-
-    connection.connect(function(err) {
-        if (err) throw err;
-        connection.query("SELECT Email, Password \
+  connection.connect(function(err) {
+    if (err) throw err;
+    connection.query(
+      "SELECT Email, Password \
             FROM `User` \
-            WHERE Email='" + req.body.loginEmail + "' " +
-                "AND Password='" + req.body.loginPassword + "';", function (err, result, fields) {
-          if (err) throw err;
-          if(result.length > 0) res.json({responseCode: '200'}); // user found
-          else res.json({responseCode: '404'});        // user not found
-        });
-      });
+            WHERE Email='" +
+        req.body.loginEmail +
+        "' " +
+        "AND Password='" +
+        req.body.loginPassword +
+        "';",
+      function(err, result, fields) {
+        if (err) throw err;
 
-    /*
+        if (result.length > 0) res.send({ responseCode: "200" });
+        // res.json({responseCode: '200'}); // user found
+        else res.send({ responseCode: "404" }); // user not found
+      }
+    );
+  });
+
+  /*
         loginEmail: this.state.loginEmail,
         loginPassword: this.state.loginPassword
     */
 });
 
-app.post('/api/register', (req, res) => {
+app.post("/api/register", (req, res) => {
+  console.log("Registration button pressed");
 
-    console.log("Registration button pressed");
-
-    connection = mysql.createConnection({
-        host     : '',
-        user     : '',
-        password : '',
-        database : ''
-      });
-
-    connection.connect(function(err) {
-        if (err) throw err;
-        console.log("Connected!");
-        var sql = "INSERT INTO User \
+  connection.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+    var sql =
+      "INSERT INTO User \
             (FirstName, \
             LastName, \
             Email, \
@@ -96,22 +97,29 @@ app.post('/api/register', (req, res) => {
             CreditCardNumber, \
             SecurityNumber, \
             PhoneNumber) \
-            VALUES('" + 
-            req.body.firstName + "', '" +   // 'firstName', '
-            req.body.lastName + "', '" +    // lastName', '
-            req.body.registrationEmail + "', '" +
-            req.body.registrationPassword + "', '" +
-            req.body.creditCardNum + "', '" +
-            req.body.securityNumber + "', '" +
-            req.body.phoneNumber + "')";        // phoneNumber')
-        connection.query(sql, function (err, result) {
-          if (err) throw err;
-          console.log("1 record inserted");
-          connection.end();
-        });
-      });
+            VALUES('" +
+      req.body.firstName +
+      "', '" + // 'firstName', '
+      req.body.lastName +
+      "', '" + // lastName', '
+      req.body.registrationEmail +
+      "', '" +
+      req.body.registrationPassword +
+      "', '" +
+      req.body.creditCardNum +
+      "', '" +
+      req.body.securityNumber +
+      "', '" +
+      req.body.phoneNumber +
+      "')"; // phoneNumber')
+    connection.query(sql, function(err, result) {
+      if (err) throw err;
+      console.log("1 record inserted");
+      connection.end();
+    });
+  });
 
-    /*
+  /*
     firstName: this.state.firstName,
     lastName: this.state.LastName,
     registrationEmail: this.state.registrationEmail,
@@ -121,7 +129,5 @@ app.post('/api/register', (req, res) => {
     phoneNumber: this.state.phoneNumber
     */
 });
-
-
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
