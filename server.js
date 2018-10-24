@@ -2,7 +2,7 @@ const express = require("express");
 const mysql = require('mysql');
 const app = express();
 const port = process.env.PORT || 5000;
-const connection = require('./server_constants');
+const database = require('./server_constants').mysql_pool;
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -55,8 +55,8 @@ app.get("/api/login", (req, res) => {
 app.post("/api/login", (req, res) => {
   console.log("Login button pressed");
 
-  connection.connect(function(err) {
-    if (err) throw err;
+  
+    database.getConnection(function(err, connection){
     connection.query(
       "SELECT Email, Password \
             FROM `User` \
@@ -74,7 +74,7 @@ app.post("/api/login", (req, res) => {
         else res.send({ responseCode: "404" }); // user not found
       }
     );
-  });
+    });
 
   /*
         loginEmail: this.state.loginEmail,
