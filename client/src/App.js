@@ -27,7 +27,7 @@ class App extends Component {
             <Route path="/register/profile" component={RegistrationContainer} />
             <Route path="/checkout/view" component={GoogleMap} />
             <Route path="/dashboard/:category" component={DashboardContainer} />
-            <Route path="/cart" component={DashboardContainer} />
+            {/* <Route path="/cart" component={DashboardContainer} /> */}
             <Route path="/pastorders" component={PastOrderContainer} />
             <Route path="/user" component={UserProfileContainer} />
             <Route exact path="/" component={SignInContainer} />
@@ -39,12 +39,12 @@ class App extends Component {
                 cost : 2,
                 weight : 1,
                 weight_unit : "pound"},
-                {name : "Broccoli",
-                description : "Flower of Broccoli",
-                number : 3,
+                {name : "Mango",
+                description : "A whole mango",
+                number : 2,
                 cost : 2,
-                weight : 1,
-                weight_unit : "pound"}
+                weight : 2,
+                weight_unit : "pounds"}
               ]}/>}
             />
           </div>
