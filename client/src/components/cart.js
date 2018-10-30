@@ -7,15 +7,6 @@ export default class Cart extends Component{
     super(props);
   }
 
-  generateComponents() {
-    let items = [];
-    for(let i = 0; i < this.props.length; i++) {
-      items.push(<CartItemContainer items = {this.props.items}></CartItemContainer>);
-    }
-    return items;
-  }
-
-
   render() {
     return(
       <div>
@@ -24,12 +15,19 @@ export default class Cart extends Component{
         </div>
         <div className="row">
           <div className="col-md-9">
-            <div className="card">
-              {<CartItemContainer items = {this.props.items}></CartItemContainer>}
-            </div>
+            <CartItemContainer
+              items = {this.props.items}
+              cost = {this.props.cost}
+              weight = {this.props.weight}
+              weight_unit = {this.props.weight_unit}
+            ></CartItemContainer>
           </div>
           <div className="col-md-3">
-            <TotalPriceContainer items = {this.props.items}></TotalPriceContainer>
+            <TotalPriceContainer
+              price = {this.props.price}
+              tax = {this.props.tax}
+              total_cost = {this.props.total_cost}
+            ></TotalPriceContainer>
           </div>
         </div>
       </div>

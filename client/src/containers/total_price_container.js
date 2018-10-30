@@ -6,17 +6,13 @@ export default class TotalPriceContainer extends Component {
     super(props);
   }
 
-  calculateCost() {
-    let sum = 0;
-    this.props.items.map(function(item){
-      sum += item.cost;
-    });
-    return sum;
-  }
-
   render(){
     return(
-      <TotalPrice total_cost = {this.calculateCost()}></TotalPrice>
+      <TotalPrice
+        price = {this.props.price}
+        tax = {this.props.tax}
+        total_cost = {this.props.total_cost}
+      ></TotalPrice>
     );
   }
 }

@@ -7,11 +7,10 @@ export default class CartItem extends Component{
 
   render() {
     return(
-      <div>
-        <row>
+      <div className="card">
         {this.props.items.map(function(item){
-            return(
-              <div>
+          return(
+            <div>
               <div className="row">
                 <div className="col-md-6 text-left">
                 {item.number} X {item.name}
@@ -21,15 +20,35 @@ export default class CartItem extends Component{
                 </div>
               </div>
               <row>
-              <div className="col-md-6 text-left">
-                weight = {item.weight} {item.weight_unit}
-              </div>
-            </row>
+                <div className="col-md-6 text-left">
+                  Wt.   {item.weight} {item.weight_unit}
+                </div>
+              </row>
             </div>
-            )
-          })}
-        </row>
-       </div>
+          )
+        })}
+        <br></br>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm">
+              <div class = "row">
+                Total Weight
+              </div>
+              <div class = "row">
+                {this.props.weight} {this.props.weight_unit}
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class = "row">
+                Price Totals
+              </div>
+              <div class = "row">
+                ${this.props.cost}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     )
   }
 }
