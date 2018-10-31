@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import CartItemContainer from "../containers/cart_items_container"
-import TotalPriceContainer from '../containers/total_price_container';
+import CartItemsListContainer from "../containers/cart_items_list_container"
+import TotalPrice from '../components/total_price';
 
 export default class Cart extends Component{
   constructor(props) {
@@ -15,19 +15,20 @@ export default class Cart extends Component{
         </div>
         <div className="row">
           <div className="col-md-9">
-            <CartItemContainer
+            <CartItemsListContainer
               items = {this.props.items}
               cost = {this.props.cost}
               weight = {this.props.weight}
               weight_unit = {this.props.weight_unit}
-            ></CartItemContainer>
+            ></CartItemsListContainer>
           </div>
           <div className="col-md-3">
-            <TotalPriceContainer
+            <TotalPrice
+              getProfile = {this.props.getProfile}
               price = {this.props.price}
               tax = {this.props.tax}
               total_cost = {this.props.total_cost}
-            ></TotalPriceContainer>
+            ></TotalPrice>
           </div>
         </div>
       </div>
