@@ -10,12 +10,12 @@ router.post("/", (req, res, next) => {
   
       database.getConnection(function(err, connection){
       connection.query(
-        "SELECT Email, Password FROM `User` WHERE Email='" + req.body.loginEmail +
-              "' " + "AND Password='" + req.body.loginPassword +
+        "SELECT * FROM `user` WHERE email='" + req.body.loginEmail +
+              "' " + "AND password='" + req.body.loginPassword +
               "';", function(err, result, fields) {
           if (err) throw err;
-          console.log(result);
-          if (result.length > 0) res.send( { responseCode: "200" });
+          console.log((JSON.stringify(result)));
+          if (result.length > 0) res.send( JSON.stringify(result));
           else res.send({ responseCode: "404" }); // user not found
         }
       );
