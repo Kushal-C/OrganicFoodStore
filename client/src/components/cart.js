@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
-import CartItemContainer from "../containers/cart_items_container"
-import TotalPriceContainer from '../containers/total_price_container';
+import CartItem from './cart_item';
+import TotalPrice from './total_price';
 
-export default class Cart extends Component{
-  constructor(props) {
-    super(props);
-  }
+class Cart extends Component{
 
   generateComponents() {
     let items = [];
     for(let i = 0; i < this.props.length; i++) {
-      items.push(<CartItemContainer items = {this.props.items}></CartItemContainer>);
+      items.push(<CartItem items = {this.props.items}></CartItem>);
     }
     return items;
   }
@@ -25,14 +22,16 @@ export default class Cart extends Component{
         <div className="row">
           <div className="col-md-9">
             <div className="card">
-              {<CartItemContainer items = {this.props.items}></CartItemContainer>}
+              {<CartItem items = {this.props.items}></CartItem>}
             </div>
           </div>
           <div className="col-md-3">
-            <TotalPriceContainer items = {this.props.items}></TotalPriceContainer>
+            <TotalPrice items = {this.props.items}></TotalPrice>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
+
+export default Cart;

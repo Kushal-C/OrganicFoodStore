@@ -5,10 +5,12 @@ import {
   GET_ITEMS_REQUEST,
   GET_USER_PROFILE,
   ADD_TO_CART_REQUEST,
-  UPDATE_USER_PROFILE
+  UPDATE_USER_PROFILE,
+  CHECKOUT_ITEMS
 } from "./action_constants";
 
-let route = "http://localhost:5000"
+const route = "http://localhost:5000";
+
 export function login(info) {
   const request = axios.post(route + "/api/login", info);
   return {
@@ -44,7 +46,15 @@ export function updateUserProfile(profile) {
   return {
     type: UPDATE_USER_PROFILE,
     payload: request
-  }
+  };
+}
+
+export function purchase(userId){
+  const request = axios.post(route + "/api/purchase/" + userId);
+  return {
+    type: CHECKOUT_ITEMS,
+    payload: request
+  };
 }
 
 export function addToCart(item) {

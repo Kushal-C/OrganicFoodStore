@@ -1,16 +1,31 @@
-import React, { Component } from 'react'
-import Cart from '../components/cart'
+import React, { Component } from 'react';
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import {purchase} from '../actions/index';
 
-export default class CartContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
+import Cart from '../components/cart';
 
-  render(){
-    return(
-      <div>
-        <Cart items = {this.props.items}></Cart>
-      </div>
-    );
-  }
+class CartContainer extends Component {
+    render() {
+        return (
+            <div>
+                <Cart items={this.props.items}></Cart>
+            </div>
+        );
+    }
 }
+
+function mapStateToProps(state) {
+    return {
+        cart: state.cart
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ purchase:purchase }, dispatch);
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(CartContainer);
