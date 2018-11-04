@@ -10,6 +10,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 var registerRouter = require('./routes/register');
+var pastOrdersRouter = require('./routes/pastOrders');
 
 var app = express();
 const port = process.env.PORT || 5000;
@@ -50,11 +51,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+ 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/register', registerRouter);
+app.use('/pastOrders', pastOrdersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
