@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+var session  = require('express-session');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -13,6 +14,11 @@ var registerRouter = require('./routes/register');
 
 var app = express();
 const port = process.env.PORT || 5000;
+
+var passport = require('passport');
+var flash    = require('connect-flash');
+
+require('./config/passport')(passport); // pass passport for configuration
 
 
 // view engine setup
@@ -50,6 +56,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+app.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+ } )); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
