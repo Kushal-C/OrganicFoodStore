@@ -11,7 +11,7 @@ import CartContainer from "./containers/cart_container";
 import RegistrationContainer from "./containers/registration_container";
 import PastOrderContainer from "./containers/past_orders_container";
 import UserProfileContainer from "./containers/user_profile_container";
-import CheckoutMap from './components/checkout/map';
+import CheckoutContainer from './containers/checkout_container';
 
 const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, logger)(
   createStore
@@ -24,7 +24,7 @@ class App extends Component {
         <Router>
           <div className="container-fluid">
             <Route path="/register/profile" component={RegistrationContainer} />
-            <Route path="/checkout/view" component={CheckoutMap} />
+            <Route path="/checkout/view" component={CheckoutContainer} />
             <Route path="/dashboard/:category" component={DashboardContainer} />
             {/* <Route path="/cart" component={DashboardContainer} /> */}
             <Route path="/pastorders" component={PastOrderContainer} />

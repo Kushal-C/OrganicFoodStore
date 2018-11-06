@@ -6,7 +6,8 @@ import {
   GET_USER_PROFILE,
   ADD_TO_CART_REQUEST,
   UPDATE_USER_PROFILE,
-  CHECKOUT_ITEMS
+  CHECKOUT_ITEMS,
+  GET_CHECKOUT_CONTENTS_REQUEST
 } from "./action_constants";
 
 const route = "http://localhost:5000";
@@ -39,7 +40,7 @@ export function getUserProfile(id){
       type:GET_USER_PROFILE,
       payload:request
   }
-} 
+}
 
 export function updateUserProfile(profile) {
   const request = axios.post(route + "/api/profile", profile);
@@ -61,6 +62,14 @@ export function addToCart(item) {
   const request = axios.post(route + "/dashboard/featured", item);
   return {
     type: ADD_TO_CART_REQUEST,
+    payload: request
+  };
+}
+
+export function getCheckoutContents(item) {
+  const request = axios.post(route + "/checkout/view", item);
+  return {
+    type: GET_CHECKOUT_CONTENTS_REQUEST,
     payload: request
   };
 }
