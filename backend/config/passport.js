@@ -6,12 +6,16 @@ var LocalStrategy   = require('passport-local').Strategy;
 // load up the user model
 var mysql = require('mysql');
 
-const dbconfig = require('../database_constant/dbconfig').mysql_pool;
-var connection = mysql.createConnection(dbconfig.connection);
+const database = require('../database_constant/dbconfig').mysql_pool;
 
-connection.query('USE ' + dbconfig.database);
+
+//connection.query('USE ' + dbconfig.database);
+
+
 // expose this function to our app using module.exports
 module.exports = function(passport) {
+
+    database.getConnection(function(err, connection){
 
     // =========================================================================
     // passport session setup ==================================================
@@ -21,12 +25,12 @@ module.exports = function(passport) {
 
     // used to serialize the user for the session
     passport.serializeUser(function(user, done) {
-        done(null, user.id);
+        done(null, user);
     });
 
     // used to deserialize the user
     passport.deserializeUser(function(id, done) {
-        connection.query("SELECT * FROM users WHERE id = ? ",[id], function(err, rows){
+        connection.query("SELECT * FROM `user` WHERE userId = ? ",[id], function(err, rows){
             done(err, rows[0]);
         });
     });
@@ -48,7 +52,7 @@ module.exports = function(passport) {
         function(req, username, password, done) {
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
-            connection.query("SELECT * FROM users WHERE username = ?",[username], function(err, rows) {
+            connection.query("SELECT * FROM `user` WHERE username = ?",[username], function(err, rows) {
                 if (err)
                     return done(err);
                 if (rows.length) {
@@ -83,12 +87,12 @@ module.exports = function(passport) {
         'local-login',
         new LocalStrategy({
             // by default, local strategy uses username and password, we will override with email
-            usernameField : 'username',
-            passwordField : 'password',
+            usernameField : 'loginEmail',
+            passwordField : 'loginPassword',
             passReqToCallback : true // allows us to pass back the entire request to the callback
         },
         function(req, username, password, done) { // callback with email and password from our form
-            connection.query("SELECT * FROM `user` WHERE username = ?",[username], function(err, rows){
+            connection.query("SELECT * FROM `user` WHERE email = ?",[username], function(err, rows){
                 if (err)
                     return done(err);
                 if (!rows.length) {
@@ -104,4 +108,7 @@ module.exports = function(passport) {
             });
         })
     );
+
+});
 };
+
