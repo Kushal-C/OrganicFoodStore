@@ -11,7 +11,7 @@ router.get("/", (req, res, next) => {
       connection.query(
         "SELECT productName, cost, weight, weightUnit FROM `product` LIMIT 10;", function(err, result, fields) {
           if (err) throw err;
-          console.log((JSON.stringify(result)));
+          //console.log((JSON.stringify(result)));
           if (result.length > 0) res.send( JSON.stringify(result));
           else res.send({ responseCode: "404" }); // user not found
         }
