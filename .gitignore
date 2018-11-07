@@ -12,7 +12,6 @@ node_modules
 #api keys
 /client/src/actions/api_constants.js
 server_constants.js
-/backend/database_constant/*
 /backend/database_constant/dbconfig.js
 
 # misc
