@@ -14,14 +14,13 @@ router.post('/', passport.authenticate('local-login', {
   failureFlash : true // allow flash messages
 }),
 function(req, res) {
-  console.log("login button pressed");
+  console.log("User Authenticated.");
 
   database.getConnection(function(err, connection){
     connection.query(
       "SELECT * FROM `user` WHERE email='" + req.user.email + "';", function(err, result, fields) {
-        if (err) throw err;
-        console.log((JSON.stringify(result)));
-        console.log((JSON.stringify(req.user.email)));
+        if (err) throw err; 
+        //console.log((JSON.stringify(req.user.email)));
         if (result.length > 0) res.send( JSON.stringify(result));
         else res.send({ responseCode: "404" }); // user not found
       }
@@ -34,25 +33,5 @@ function(req, res) {
     req.session.cookie.expires = false;
   }
 });
-
-/*
-router.post("/", (req, res, next) => {
-    console.log("Login button pressed");
-  
-      database.getConnection(function(err, connection){
-      connection.query(
-        "SELECT * FROM `user` WHERE email='" + req.body.loginEmail +
-              "' " + "AND password='" + req.body.loginPassword +
-              "';", function(err, result, fields) {
-          if (err) throw err;
-          console.log((JSON.stringify(result)));
-          if (result.length > 0) res.send( JSON.stringify(result));
-          else res.send({ responseCode: "404" }); // user not found
-        }
-      );
-      });
-  
-  });
-*/
 
 module.exports = router;  
