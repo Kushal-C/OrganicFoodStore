@@ -24,7 +24,7 @@ export default class Dashboard extends Component {
             <Link to="/user">
               <div className="dropdown">
                 <span className="badge badge-primary">
-                  John Smith
+                  {this.props.firstName + " " + this.props.lastName}
                 </span>
               </div>
             </Link>

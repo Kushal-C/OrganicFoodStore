@@ -12,7 +12,7 @@ import {
 const route = "http://localhost:5000";
 
 export function login(info) {
-  const request = axios.post(route + "/api/login", info);
+  let request = axios.post(route + "/api/login", info);
   return {
     type: LOGIN_REQUEST,
     payload: request
