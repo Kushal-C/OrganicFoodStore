@@ -22,8 +22,11 @@ const Map = compose(
 
       DirectionsService.route(
         {
-          origin: this.props.checkoutContents.origin,
-          destination: this.props.checkoutContents.destination,
+          // origin: this.props.checkoutContents.origin,
+          // destination: this.props.checkoutContents.destination,
+          // travelMode: window.google.maps.TravelMode.DRIVING
+          origin: "SJSU",
+          destination: "CSU EB",
           travelMode: window.google.maps.TravelMode.DRIVING
         },
         (result, status) => {
@@ -78,8 +81,8 @@ componentDidMount() {
           </div>
           <div className = "card">
             <div className="row">
-              <div className="col-md-6 text-left">Arrival Time: {this.props.checkoutContents.arrival_time}</div>
-              <div className="col-md-6 text-right">Order Status: {this.props.checkoutContents.order_status}</div>
+              {/* <div className="col-md-6 text-left">Arrival Time: {this.props.checkoutContents.arrival_time}</div>
+              <div className="col-md-6 text-right">Order Status: {this.props.checkoutContents.order_status}</div> */}
             </div>
           </div>
         </div>
@@ -87,7 +90,7 @@ componentDidMount() {
             <div className = "card">
               <p>Order Details</p>
               <div class="dropdown-divider"></div>
-              {
+              {/* {
                 this.props.checkoutContents.items.map(function(item){
                   return(
                   <div className="row">
@@ -98,16 +101,16 @@ componentDidMount() {
                   </div>
                   )
                 })
-              }
+              } */}
               <div class="dropdown-divider"></div>
-              <p>Total Weight: {this.props.checkoutContents.total_weight} {this.props.checkoutContents.weight_unit}</p>
+              {/* <p>Total Weight: {this.props.checkoutContents.total_weight} {this.props.checkoutContents.weight_unit}</p> */}
             </div>
             <div className = "card">
               <p>Total Price</p>
               <div class="dropdown-divider"></div>
               <div className="row">
                 <div class="col-md-6">
-                  <div className="text-left">${this.props.checkoutContents.price}</div>
+                  {/* <div className="text-left">${this.props.checkoutContents.price}</div> */}
                 </div>
                 <div class="col-md-6">
                   <div className="text-right">
@@ -118,7 +121,7 @@ componentDidMount() {
               <div class="dropdown-divider"></div>
               <div className="row">
                 <div class="col-md-6">
-                  <div className="text-left">${this.props.checkoutContents.tax}</div>
+                  {/* <div className="text-left">${this.props.checkoutContents.tax}</div> */}
                 </div>
                 <div class="col-md-6">
                   <div className="text-right">
@@ -129,7 +132,7 @@ componentDidMount() {
               <div class="dropdown-divider"></div>
               <div className="row">
                 <div class="col-md-6">
-                  <div className="text-left">${this.props.checkoutContents.total_cost}</div>
+                  {/* <div className="text-left">${this.props.checkoutContents.total_cost}</div> */}
                 </div>
                 <div class="col-md-6">
                   <div className="text-right">
