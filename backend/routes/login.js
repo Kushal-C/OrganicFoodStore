@@ -1,20 +1,28 @@
 var express = require('express');
 var router = express.Router();
-var cors = require('cors')
+var session  = require('express-session');
+var cors = require('cors');
 
 const database = require('./server_constants').mysql_pool;
 router.all('*', cors());
 
-
 var passport = require('passport');
-
-require('../config/passport')(passport); // pass passport for configuration
 
 router.post('/', passport.authenticate('local-login', {
   failureFlash : true // allow flash messages
 }),
 function(req, res) {
   console.log("User Authenticated.");
+
+/* This is if a remember me function is added to the front end
+  if (req.body.remember) {
+    console.log("reaches the if req.body.remember");
+    req.session.cookie.maxAge = 24 * 60 * 60 * 1000; // 1 day in milliseconds
+  } else {
+    console.log("does not reach req.body.");
+    req.session.cookie.expires = false;
+  }
+*/
 
   database.getConnection(function(err, connection){
     connection.query(
@@ -26,12 +34,6 @@ function(req, res) {
       }
     );
     });
-
-  if (req.body.remember) {
-    req.session.cookie.maxAge = 1000 * 60 * 3;
-  } else {
-    req.session.cookie.expires = false;
-  }
 });
 
 module.exports = router;  
