@@ -6,7 +6,7 @@ var LocalStrategy   = require('passport-local').Strategy;
 // load up the user model
 var mysql = require('mysql');
 
-const database = require('../database_constant/dbconfig').mysql_pool;
+const database = require('dbconfig').mysql_pool;
 
 
 //connection.query('USE ' + dbconfig.database);
