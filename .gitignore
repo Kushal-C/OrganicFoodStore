@@ -13,6 +13,7 @@ node_modules
 /client/src/actions/api_constants.js
 server_constants.js
 /backend/database_constant/dbconfig.js
+/backend/config/dbconfig.js
 
 # misc
 .DS_Store
