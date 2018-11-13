@@ -9,7 +9,7 @@ class CartContainer extends Component {
     render() {
         return (
             <div>
-                <Cart items={this.props.items}></Cart>
+                <Cart items={this.props.items} profile={this.props.login}></Cart>
             </div>
         );
     }
@@ -17,6 +17,7 @@ class CartContainer extends Component {
 
 function mapStateToProps(state) {
     return {
+        login: state.login,
         cart: state.cart
     };
 }
