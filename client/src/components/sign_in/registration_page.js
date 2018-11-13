@@ -52,9 +52,9 @@ class RegistrationPage extends Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="col-md-9 card">
-          <h3>Account Details</h3>
+      <div className="row" style={{margin:'20px'}}>
+        <div className="col-md-12 card">
+          <h3 style={{margin:'20px'}}>Account Details</h3>
           <br />
           <AccountDetails
             firstName={this.state.firstName}
@@ -79,7 +79,7 @@ class RegistrationPage extends Component {
             onChange={this.onChange}
           />
           
-          <Link to='/dashboard' className="text-white btn btn-primary"  >
+          <Link to='/dashboard' className="text-white btn btn-primary" style={{marginBottom:'20px', marginTop:'20px'}} >
               REGISTER
            </Link>
         </div>

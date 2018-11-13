@@ -17,10 +17,11 @@ class Cart extends Component{
     return(
       <div>
         <div className="row">
-          <h1 className="header-primary">Shopping Cart</h1>
+          <h1 className="header-primary shopping-cart">Shopping Cart</h1>
         </div>
-        <div className="row">
-          <div className="col-md-9">
+        <div className="row" style={{margin:'20px'}}>
+
+          <div className="col-md-3">
             <div className="card">
               {<CartItem items = {this.props.items}></CartItem>}
             </div>
@@ -29,7 +30,8 @@ class Cart extends Component{
             <TotalPrice items = {this.props.items}></TotalPrice>
           </div>
         </div>
-      </div>
+</div>
+
     );
   }
 }

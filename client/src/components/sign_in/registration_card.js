@@ -22,9 +22,9 @@ class RegistrationCard extends Component {
 
   render() {
     return (
-      <div className="col-md-6">
-        <div className="card">
-          <h4 className="card-title header-primary">REGISTER</h4>
+      <div className="col-md-4 ">
+        <div className="card" style={{ position: 'relative', height: '500px'}}>
+          <h4 className="card-title header-primary" style={{marginLeft: '25px', marginTop:'25px', marginBottom:'0px'}}>REGISTER</h4>
           <div className="card-body">
             <label>First Name:</label>
             <br />
@@ -57,7 +57,7 @@ class RegistrationCard extends Component {
               type="tel"
               name="phoneNumber"
             />
-            <button className="btn btn-primary">
+            <button className="btn btn-primary" style={{position:'absolute', bottom:'25px'}}>
               <Link
                 className="text-white"
                 to={{
