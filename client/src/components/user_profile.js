@@ -32,8 +32,8 @@ class UserProfile extends Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="col-md-9 card">
+      <div className="row" style={{margin:'20px'}}>
+        <div className="col-md-12 card">
           <h3>Account Details</h3>
           <br />
           <AccountDetails
@@ -58,7 +58,7 @@ class UserProfile extends Component {
             cvc={this.state.cvc}
             onChange={this.onChange}
           />
-          <Link to="/dashboard/featured" className="text-white btn btn-primary">
+          <Link to="/dashboard/featured" className="text-white btn btn-primary" style={{marginBottom:'20px', marginTop:'20px'}}>
             UPDATE PROFILE
           </Link>
         </div>
