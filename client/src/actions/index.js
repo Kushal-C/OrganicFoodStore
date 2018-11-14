@@ -10,7 +10,6 @@ import {
   PLACE_ORDER_REQUEST,
   EMPTY_CART_REQUEST,
   GET_CART_ITEMS_REQUEST
-  GET_CHECKOUT_CONTENTS_REQUEST
 } from "./action_constants";
 
 const route = "http://localhost:5000";
@@ -30,19 +29,19 @@ export function register(info) {
     payload: request
   };
 }
-export function getItemsRequest(category){
+export function getItemsRequest(category) {
   const request = axios.get(route + `/api/items/${category}`);
   return {
     type: GET_ITEMS_REQUEST,
     payload: request
-  }
+  };
 }
-export function getUserProfile(id){
+export function getUserProfile(id) {
   const request = axios.get(route + `/api/profile/${id}`);
   return {
-      type:GET_USER_PROFILE,
-      payload:request
-  }
+    type: GET_USER_PROFILE,
+    payload: request
+  };
 }
 
 export function updateUserProfile(profile) {
@@ -53,7 +52,7 @@ export function updateUserProfile(profile) {
   };
 }
 
-export function purchase(userId){
+export function purchase(userId) {
   const request = axios.post(route + "/api/purchase/" + userId);
   return {
     type: CHECKOUT_ITEMS,
@@ -80,7 +79,6 @@ export function placeOrder(item) {
 export function emptyCart(item) {
   const request = axios.post(route + "/dashboard/cart", item);
   return {
-
     type: EMPTY_CART_REQUEST,
     payload: request
   };

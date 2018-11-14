@@ -7,9 +7,6 @@ import Dashboard from "../components/dashboard/dashboard";
 
 
 class DashboardContainer extends Component {
-  constructor(props){
-    super(props);
-  }
   render() {
     console.log(this.props);
     //TODO: Replace item_props with a list of properties for each item to be rendered

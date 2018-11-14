@@ -6,9 +6,9 @@ export default class CartItem extends Component{
       <div>
       <h4 className="head-title">Order Details</h4>
 
-        {this.props.items.map(function(item){
+        {this.props.items.map(function(item,key){
             return(
-              <div>
+              <div key={key}>
                 <div className="row mr-2 ml-2" >
 
                   <div className="col-md-6">
