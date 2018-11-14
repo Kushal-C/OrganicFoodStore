@@ -59,7 +59,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/register', registerRouter);
-app.use('/dashboard', dashboardRouter);
+app.use('/dashboard/featured', dashboardRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

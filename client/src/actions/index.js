@@ -10,6 +10,7 @@ import {
   PLACE_ORDER_REQUEST,
   EMPTY_CART_REQUEST,
   GET_CART_ITEMS_REQUEST
+  GET_CHECKOUT_CONTENTS_REQUEST
 } from "./action_constants";
 
 const route = "http://localhost:5000";
