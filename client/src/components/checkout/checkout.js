@@ -22,11 +22,8 @@ const Map  = compose(
 
       DirectionsService.route(
         {
-          // origin: this.props.origin,
-          // destination: this.props.destination,
-          // travelMode: window.google.maps.TravelMode.DRIVING
-          origin: "SJSU",
-          destination: "CSU EB",
+          origin: this.props.origin,
+          destination: this.props.destination,
           travelMode: window.google.maps.TravelMode.DRIVING
         },
         (result, status) => {
@@ -72,27 +69,6 @@ componentDidMount() {
     this.delayedShowMarker();
   };
 
-  displayItems = () => {
-    {
-      let itemList = [];
-      for(var i in this.props.checkoutContents.items) {
-        itemList.push([i, this.props.checkoutContents.items[i]]);
-      }
-      console.log("ITEMS: " + JSON.stringify(itemList));
-
-      let ret = itemList.map(function(item){
-        // console.log("ITEM NAME: " + item[0] + " ITEM QUANTITIY: " + item[1]);
-        <div className="row">
-          <div className="col-md-6 text-left">{item[0]}</div>
-          <div className="col-md-6 text-right">
-            x{item[1]}
-          </div>
-        </div>
-      });
-      console.log("RET: " + ret);
-    }
-  }
-
   render() {
     console.log("Checkout Props: " + JSON.stringify(this.props.checkoutContents));
     return (
@@ -112,7 +88,17 @@ componentDidMount() {
             <div className = "card">
               <p>Order Details</p>
               <div class="dropdown-divider"></div>
-              {this.displayItems()}
+              {
+                this.props.checkoutContents.items.map(function(item){
+                  return(
+                  <div className="row">
+                    <div className="col-md-6 text-left">{item.name}</div>
+                    <div className="col-md-6 text-right">
+                      x{item.quantity}
+                    </div>
+                  </div>)
+                })
+              }
               <div class="dropdown-divider"></div>
               <p>Total Weight: {this.props.checkoutContents.total_weight} {this.props.checkoutContents.weight_unit}</p>
             </div>

@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 
 import { getCheckoutContents } from '../actions/index';
 import Checkout from "../components/checkout/checkout";
-import axios from "axios";
 
 class CheckoutContainer extends Component {
   state = {
@@ -12,22 +11,23 @@ class CheckoutContainer extends Component {
   };
 
   render() {
-    if(this.state.payload) {
-      console.log("DATA: " + JSON.stringify(this.state.payload.data));
-      return (
-        <Checkout checkoutContents = {this.state.payload.data}/>
-      );
-    }
-    else {
-      return (
-        <div> Loading...</div>
-      );
-    }
-  }
-
-  componentDidMount() {
-    axios.post("http://localhost:5000/estimated_routes").then(
-      (response) => this.setState({payload: response})
+    return (
+      <Checkout checkoutContents = {{
+        origin: "S 4th St, San Jose, CA 95112",
+        destination: "2293 Cabrillo Ave Santa Clara, CA 95050",
+        arrival_time: "40 minutes",
+        order_status: "In route",
+        items: [
+            {name: "Red Baron's Pizza", quantity: 1},
+            {name: "Strawberries", quantity: 2}
+        ],
+        total_weight: "3",
+        weight_unit: "lbs",
+        price: "8.99",
+        tax: "0.89",
+        total_cost: "9.89"
+        }}
+      />
     );
   }
 }

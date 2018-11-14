@@ -100,7 +100,10 @@ router.post("/", (req, res, next) => {
                 destination: "2293 Cabrillo Ave Santa Clara, CA 95050",
                 arrival_time: "40 minutes",
                 order_status: "In route",
-                items: {name: "Red Baron's Pizza", quantity: 1},
+                items: [
+                    {name: "Red Baron's Pizza", quantity: 1},
+                    {name: "Strawberries", quantity: 2}
+                ],
                 total_weight: "3",
                 weight_unit: "lbs",
                 price: "8.99",
