@@ -12,7 +12,6 @@ var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 var registerRouter = require('./routes/register');
 var dashboardRouter = require('./routes/dashboard');
-var estimatedRoutesRouter = require('./routes/estimated_routes');
 
 var app = express();
 const port = process.env.PORT || 5000;
@@ -61,7 +60,6 @@ app.use('/users', usersRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/register', registerRouter);
 app.use('/dashboard/featured', dashboardRouter);
-app.use('/estimated_routes', estimatedRoutesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
