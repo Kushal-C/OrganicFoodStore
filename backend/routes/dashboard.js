@@ -11,7 +11,8 @@ router.get("/featured", (req, res, next) => {
   
       database.getConnection(function(err, connection){
       connection.query(
-        "SELECT productName, description, imageLink, cost, weight, weightUnit FROM `product` LIMIT 10;", function(err, result, fields) {
+        //select * from table order by rand() limit 10
+        "SELECT productName, description, imageLink, cost, weight, weightUnit FROM `product` ORDER BY rand() LIMIT 10;", function(err, result, fields) {
           if (err) throw err;
           //console.log((JSON.stringify(result)));
           if (result.length > 0) res.send( JSON.stringify(result));
