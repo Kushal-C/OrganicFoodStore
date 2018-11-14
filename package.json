@@ -10,12 +10,8 @@
         "express": "^4.16.2",
         "google-map-react": "^1.0.9",
         "mysql": "^2.16.0",
-<<<<<<< HEAD
         "nodemon": "^1.18.5",
         "react-google-maps": "^9.4.5",
-=======
-        "nodemon": "^1.18.6",
->>>>>>> 4d0088962a84d5c9438998182976ceec875405fc
         "sql": "^0.78.0"
     },
     "devDependencies": {

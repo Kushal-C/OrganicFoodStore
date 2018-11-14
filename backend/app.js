@@ -60,12 +60,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/register', registerRouter);
-<<<<<<< HEAD
 app.use('/dashboard/featured', dashboardRouter);
 app.use('/estimated_routes', estimatedRoutesRouter);
-=======
-app.use('/dashboard', dashboardRouter);
->>>>>>> 4d0088962a84d5c9438998182976ceec875405fc
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
