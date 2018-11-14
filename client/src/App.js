@@ -7,6 +7,7 @@ import promiseMiddleware from "redux-promise";
 import reducers from "./reducers/index";
 import SignInContainer from "./containers/sign_in_container";
 import DashboardContainer from "./containers/dashboard_container";
+import CartContainer from "./containers/cart_container";
 import Cart from "./components/cart";
 import RegistrationContainer from "./containers/registration_container";
 import PastOrderContainer from "./containers/past_orders_container";
@@ -31,6 +32,7 @@ class App extends Component {
             <Route path="/pastorders" component={PastOrderContainer} />
             <Route path="/user" component={UserProfileContainer} />
             <Route exact path="/" component={SignInContainer} />
+            {/* <Route path="/cart" component={CartContainer} /> */}
             <Route path="/cart" render={()=><Cart items={
               [
                 {name : "Broccoli",
