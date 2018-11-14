@@ -15,24 +15,25 @@ export default class Dashboard extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{minWidth:'1200px'}}>
         <div className="row">
-          <div className="col-md-6 text-left">
+          <div className="col-md-6 text-left" style={{marginTop: '10px'}}>
             <h1 className="header-primary">OFS DELIVERY</h1>
           </div>
           <div className="col-md-6 text-right">
             <Link to="/user">
               <div className="dropdown">
                 <span className="badge badge-primary">
-                  John Smith
+                  {this.props.firstName + " " + this.props.lastName}
                 </span>
               </div>
             </Link>
           </div>
         </div>
         <div className="row">
-          <Sidebar />
-          <div className="col-md-9 text-left">
+          <Sidebar style={{height:'100%'}}/>
+          <div className="row col-md-9" >
+          <div className="fetitem col-md-12"> Featured Items</div>
             {this.props.item_props.map(function(item, index){
               return (
               <ItemCardContainer

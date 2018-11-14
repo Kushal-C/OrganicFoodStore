@@ -1,37 +1,38 @@
 import React, { Component } from 'react';
-import CartItemsListContainer from "../containers/cart_items_list_container"
-import TotalPrice from '../components/total_price';
+import CartItem from './cart_item';
+import TotalPrice from './total_price';
 
-export default class Cart extends Component{
-  constructor(props) {
-    super(props);
+class Cart extends Component{
+
+  generateComponents() {
+    let items = [];
+    for(let i = 0; i < this.props.length; i++) {
+      items.push(<CartItem items = {this.props.items}></CartItem>);
+    }
+    return items;
   }
 
   render() {
     return(
       <div>
         <div className="row">
-          <h1 className="header-primary">Shopping Cart</h1>
+          <h1 className="header-primary shopping-cart">Shopping Cart</h1>
         </div>
-        <div className="row">
-          <div className="col-md-9">
-            <CartItemsListContainer
-              items = {this.props.items}
-              cost = {this.props.cost}
-              weight = {this.props.weight}
-              weight_unit = {this.props.weight_unit}
-            ></CartItemsListContainer>
+        <div className="row" style={{margin:'20px'}}>
+
+          <div className="col-md-3">
+            <div className="card">
+              {<CartItem items = {this.props.items}></CartItem>}
+            </div>
           </div>
           <div className="col-md-3">
-            <TotalPrice
-              getProfile = {this.props.getProfile}
-              price = {this.props.price}
-              tax = {this.props.tax}
-              total_cost = {this.props.total_cost}
-            ></TotalPrice>
+            <TotalPrice items = {this.props.items}></TotalPrice>
           </div>
         </div>
-      </div>
-    )
+</div>
+
+    );
   }
 }
+
+export default Cart;

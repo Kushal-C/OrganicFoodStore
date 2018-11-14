@@ -37,9 +37,9 @@ class LoginCard extends Component {
 
     render(){
         return(
-            <div className="col-md-6">
-                <div className="card">
-                    <h4 className="card-title header-primary">LOGIN</h4>
+            <div className="col-md-7">
+                <div className="card" style={{height: '500px', position:'relative'}}>
+                    <h4 className="card-title header-primary " style={{marginLeft: '25px', marginTop:'25px', marginBottom:'0px'}}>LOGIN</h4>
                     <div className="card-body">
                         <label>Email:</label>
                         <br />
@@ -63,6 +63,7 @@ class LoginCard extends Component {
                         <br />
                         <button
                             className="btn btn-primary"
+                            style={{position:'absolute', bottom:'25px'}}
                             onClick={this.sendLoginCredentials}
                         >
                             <Link className="text-white" to="/dashboard/featured">LOGIN</Link>

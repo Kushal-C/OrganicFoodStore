@@ -17,20 +17,38 @@ body {
   background-color: #f5f6f8;
 }
 
+label {
+  margin-bottom: 0px;
+}
 ul, li {
   list-style: none;
   padding: 0;
 }
 
 ul {
-  height: 100vh;
+  border-top: 1px solid rgb(231, 231, 231);
+  list-style-type: none;
+  background-color: #fff;
+  padding: 0;
+  overflow: hidden;
+
+
+
 }
 li {
+  border-bottom: 1px solid rgb(231, 231, 231);
+  border-right: 1px solid rgb(231, 231, 231);
+  padding: 8px 16px;
   background-color: #fff;
+  text-decoration: none;
 }
 
-.col-md-3 {
-  padding: 0;
+.col-md-3{
+  padding: 0px;
+  margin: 3px;
+}
+.col-md-9{
+  margin-left:5px;
 }
 
 .text-white {
@@ -42,3 +60,24 @@ li {
   font-weight: 1000;
 }
 
+
+li:hover{
+  background-color: rgb(167, 167, 167);
+  color: white;
+}
+
+.fetitem{
+  font-size: 20px;
+  font-weight: bold;
+  border-bottom: 1px solid rgb(231, 231, 231);
+  margin-bottom: 20px;
+}
+
+.shopping-cart{
+  margin: 20px;
+}
+
+.head-title{
+  margin: 15px;
+  border-bottom: 1px solid rgb(231, 231, 231);
+}

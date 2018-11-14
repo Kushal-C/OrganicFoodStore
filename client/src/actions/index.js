@@ -6,14 +6,16 @@ import {
   GET_USER_PROFILE,
   ADD_TO_CART_REQUEST,
   UPDATE_USER_PROFILE,
+  CHECKOUT_ITEMS,
   PLACE_ORDER_REQUEST,
-  EMPTY_CART_REQUEST,
+    EMPTY_CART_REQUEST,
   GET_CART_ITEMS_REQUEST
 } from "./action_constants";
 
-let route = "http://localhost:5000"
+const route = "http://localhost:5000";
+
 export function login(info) {
-  const request = axios.post(route + "/api/login", info);
+  let request = axios.post(route + "/api/login", info);
   return {
     type: LOGIN_REQUEST,
     payload: request
@@ -47,7 +49,15 @@ export function updateUserProfile(profile) {
   return {
     type: UPDATE_USER_PROFILE,
     payload: request
-  }
+  };
+}
+
+export function purchase(userId){
+  const request = axios.post(route + "/api/purchase/" + userId);
+  return {
+    type: CHECKOUT_ITEMS,
+    payload: request
+  };
 }
 
 export function addToCart(item) {
@@ -69,6 +79,7 @@ export function placeOrder(item) {
 export function emptyCart(item) {
   const request = axios.post(route + "/dashboard/cart", item);
   return {
+
     type: EMPTY_CART_REQUEST,
     payload: request
   };

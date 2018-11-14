@@ -7,7 +7,7 @@ import { login, register } from "../actions/index";
 
 class SignInContainer extends Component {
   render() {
-    return (<SignIn loginState={this.props.loginState} registrationState={this.props.registrationState} login={login} register={register} />);
+    return (<SignIn loginState={this.props.loginState} registrationState={this.props.registrationState} login={this.props.login} register={this.props.register} />);
   }
 }
 

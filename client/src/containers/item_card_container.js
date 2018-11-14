@@ -8,7 +8,7 @@ import ItemCard from "../components/dashboard/item_card";
 class ItemCardContainer extends Component {
   render() {
     return (
-      <ItemCard
+      <ItemCard 
         addToCart={this.props.addToCart}
         name={this.props.name}
         description={this.props.description}
