@@ -30,7 +30,6 @@ class App extends Component {
             <Route path="/user" component={UserProfileContainer} />
             <Route exact path="/" component={SignInContainer} />
             <Route path="/cart" component={CartContainer} />
-            />
           </div>
         </Router>
       </Provider>

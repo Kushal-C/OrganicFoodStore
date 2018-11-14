@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {Link} from 'react-router-dom';
 
-import Sidebar from "../side_bar";
+import SidebarContainer from "../../containers/side_bar_container";
 import ItemCardContainer from "../../containers/item_card_container";
 
 export default class Dashboard extends Component {
@@ -31,7 +31,7 @@ export default class Dashboard extends Component {
           </div>
         </div>
         <div className="row">
-          <Sidebar style={{height:'100%'}}/>
+          <SidebarContainer match={this.props.match} style={{height:'100%'}}/>
           <div className="row col-md-9" >
           <div className="fetitem col-md-12"> Featured Items</div>
             {this.props.item_props.map(function(item, index){

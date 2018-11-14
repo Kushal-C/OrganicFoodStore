@@ -30,7 +30,7 @@ export function register(info) {
   };
 }
 export function getItemsRequest(category) {
-  const request = axios.get(route + `/api/items/${category}`);
+  const request = axios.get(route + `/api/dashboard/${category}`);
   return {
     type: GET_ITEMS_REQUEST,
     payload: request
