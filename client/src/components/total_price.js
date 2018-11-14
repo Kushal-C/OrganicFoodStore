@@ -5,8 +5,9 @@ export default class TotalPrice extends Component{
     return(
       <div>
         <div className="card">
-          <h4>Total Price</h4>
-          cost = ${this.props.total_cost}
+          <h4 className="head-title">Total Price</h4>
+          <div className="ml-3 mb-3">cost = ${this.props.total_cost}</div>
+          
         </div>
       </div>
     )

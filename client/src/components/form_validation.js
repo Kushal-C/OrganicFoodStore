@@ -69,8 +69,9 @@ export default class FormValidation extends Component {
 
   render() {
     return (
-      <div className={this.state.className}>
-        <input
+      <div  style = {{marginBottom :'15px'}}>
+        <input 
+          className={this.state.className}
           value={this.props.value}
           onChange={this.onChange}
           type={this.props.type}

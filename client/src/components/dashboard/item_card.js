@@ -25,25 +25,25 @@ export default class ItemCard extends Component {
 
   render() {
     return (
-      <div className="col-md-4">
-        <div className="card">
-          <img className="card-img-top" src={this.props.image_link} alt="Category"></img>
+      <div className="col-md-3" >
+        <div className="card " style={{width:'220px', height:'400px'}}>
+          <img className="card-img-top" src={this.props.image_link} alt="Category" style={{ height: '400px',width: '220px', overflow: 'hidden', objectFit:'cover'}}></img>
           <div className="card-body">
             <h4 className="card-title">{this.props.name}</h4>
             <p className="card-text">{this.props.description}</p>
-            <div className="row">
-             <div className="col-md-6 text-left">Cost = ${this.props.cost}</div>
-             <div className="col-md-6 text-left">
-               Weight = {this.props.weight} {this.props.weight_unit}
+            <div className="row" style={{borderTop: '1px solid rgb(231, 231, 231)', marginBottom: '10px'}}>
+             <div className="col-sm-12 col-md-6 text-left">${this.props.cost}</div>
+             <div className="col-sm-12 col-md-6 text-left">
+               {this.props.weight} {this.props.weight_unit}
              </div>
            </div>
-           <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add to Cart</button>
+           <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style={{marginLeft: '17px'}}>Add to Cart</button>
            <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog" role="document">
               <div className="modal-content">
-                <div className="modal-header">
+                <div className="modal-header " >
                   <h5 className="modal-title" id="exampleModalLabel">Quantity</h5>
-                  <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <button type="button" className="close" data-dismiss="modal" aria-label="Close" >
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>

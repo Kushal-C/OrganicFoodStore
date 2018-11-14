@@ -5,18 +5,23 @@ import Order from "../components/order.js";
 export default class PastOrders extends Component {
   render() {
     return(
-    this.props.orders.map(function(order){
-      return (
-      <div className="row">
+
+    <div className="row">
       <Sidebar/>
-      <div className="col-md-9">
+      <div className="col-md-8">
+    {this.props.orders.map(function(order){
+      return (
+      
+      <div className="col-md-12" style={{marginTop:'12px'}}>
         <Order
           status = {order.status}
           contents = {order.contents}
           total_cost = {order.total_cost}
         ></Order>
       </div>
-      </div>
-    )})
+      
+    )})}
+    </div>
+</div>
     )}
 }
