@@ -9,7 +9,7 @@ export default class AccountDetails extends Component {
   render() {
     return (
       <div>
-        <label for="firstName" class="col-form-label">
+        <label htmlFor="firstName" className="col-form-label">
           First Name
         </label>
         <Input
@@ -19,7 +19,7 @@ export default class AccountDetails extends Component {
           id="firstName"
           type="text"
         />
-        <label for="lastName" class="col-form-label">
+        <label htmlFor="lastName" className="col-form-label">
           Last Name
         </label>
         <Input
@@ -29,7 +29,7 @@ export default class AccountDetails extends Component {
           id="lastName"
           type="text"
         />
-        <label for="email" class="col-form-label">
+        <label htmlFor="email" className="col-form-label">
           Email
         </label>
         <Input
@@ -41,7 +41,7 @@ export default class AccountDetails extends Component {
           required_characters={["@", "."]}
           error_msg="Invalid email address"
         />
-        <label for="phoneNumber" class="col-form-label">
+        <label htmlFor="phoneNumber" className="col-form-label">
           Phone Number
         </label>
         <Input
@@ -53,7 +53,7 @@ export default class AccountDetails extends Component {
           error_msg="Invalid Phone Number"
           min_input_length={10}
         />
-        <label for="password" class="col-form-label">
+        <label htmlFor="password" className="col-form-label">
           Password
         </label>
         <Input
@@ -65,7 +65,7 @@ export default class AccountDetails extends Component {
           min_input_length={8}
           error_msg="Invalid password"
         />
-        <label for="confirmPassword" class="col-form-label">
+        <label htmlFor="confirmPassword" className="col-form-label">
           Confirm Password
         </label>
         <Input

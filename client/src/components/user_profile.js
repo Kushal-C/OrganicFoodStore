@@ -7,25 +7,30 @@ import PaymentInformation from "./sign_in/payment_information";
 class UserProfile extends Component {
   constructor(props) {
     super(props);
-    this.props.getProfile();
-    this.state = {
-      firstName: "",
-      lastName: "",
-      email: "",
-      phoneNumber: "",
-      password: "",
-      confirmPassword: "",
-      address: "",
-      city: "",
-      state: "",
-      zipcode: "",
-      cardNumber: "",
-      expiryDate: "",
-      cvc: ""
-    };
+    console.log(this.props.profile);
+    if(this.props.profile == null){
+      this.state = {
+        firstName: "",
+        lastName: "",
+        email: "",
+        phoneNumber: "",
+        password: "",
+        confirmPassword: "",
+        address: "",
+        city: "",
+        state: "",
+        zipcode: "",
+        cardNumber: "",
+        expiryDate: "",
+        cvc: ""
+      };
+    }
+    else {
+      this.state = this.props.profile[0];
+    }
+    
     this.onChange = this.onChange.bind(this);
   }
-
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
