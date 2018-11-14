@@ -39,7 +39,7 @@ export default class Dashboard extends Component {
               <ItemCardContainer
                 name = {item.name}
                 description = {item.description}
-                image_link = {item.image_link}
+                imageLink = {item.imageLink}
                 cost = {item.cost}
                 weight = {item.weight}
                 weight_unit = {item.weight_unit}

@@ -79,8 +79,10 @@ class RegistrationPage extends Component {
             onChange={this.onChange}
           />
           
-          <Link to='/dashboard' className="text-white btn btn-primary" style={{marginBottom:'20px', marginTop:'20px'}} >
-              REGISTER
+          <Link to='/' className="text-white btn btn-primary" style={{marginBottom:'20px', marginTop:'20px'}} >
+              <button onClick={this.props.register(this.state)}>
+                REGISTER
+              </button>
            </Link>
         </div>
       </div>

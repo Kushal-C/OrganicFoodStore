@@ -33,6 +33,7 @@ class RegistrationContainer extends Component {
         lastName={this.state.lastName}
         email={this.state.email}
         phoneNumber={this.state.phoneNumber}
+        register={this.props.register}
       />
     );
   }

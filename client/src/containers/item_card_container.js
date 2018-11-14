@@ -12,7 +12,7 @@ class ItemCardContainer extends Component {
         addToCart={this.props.addToCart}
         name={this.props.name}
         description={this.props.description}
-        image_link={this.props.image_link}
+        imageLink={this.props.imageLink}
         cost={this.props.cost}
         weight={this.props.weight}
         weight_unit={this.props.weight_unit}
