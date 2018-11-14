@@ -7,6 +7,9 @@ import {
   ADD_TO_CART_REQUEST,
   UPDATE_USER_PROFILE,
   CHECKOUT_ITEMS,
+  PLACE_ORDER_REQUEST,
+  EMPTY_CART_REQUEST,
+  GET_CART_ITEMS_REQUEST
   GET_CHECKOUT_CONTENTS_REQUEST
 } from "./action_constants";
 
@@ -66,19 +69,27 @@ export function addToCart(item) {
   };
 }
 
-export async function getCheckoutContents(callback) {
-  const request = await axios.post(route + "/estimated_routes");
-  console.log("request: " + JSON.stringify(request));
+export function placeOrder(item) {
+  const request = axios.post(route + "/dashboard/cart", item);
   return {
-    type: GET_CHECKOUT_CONTENTS_REQUEST,
+    type: PLACE_ORDER_REQUEST,
     payload: request
   };
-  // axios.post(route + "/estimated_routes").then (
-  //   (response) => {
-  //   return {
-  //       type: GET_CHECKOUT_CONTENTS_REQUEST,
-  //       payload: response
-  //     };
-  //   }
-  // )
+}
+
+export function emptyCart(item) {
+  const request = axios.post(route + "/dashboard/cart", item);
+  return {
+
+    type: EMPTY_CART_REQUEST,
+    payload: request
+  };
+}
+
+export function getCartItemsRequest(item) {
+  const request = axios.post(route + "/dashboard/cart", item);
+  return {
+    type: GET_CART_ITEMS_REQUEST,
+    payload: request
+  };
 }

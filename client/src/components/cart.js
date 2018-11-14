@@ -12,7 +12,6 @@ class Cart extends Component{
     return items;
   }
 
-
   render() {
     return(
       <div>
