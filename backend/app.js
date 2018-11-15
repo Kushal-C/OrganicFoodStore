@@ -1,3 +1,5 @@
+
+// Initialize express requirements, and etc.
 var createError = require('http-errors');
 var express = require('express');
 var session = require("express-session");
@@ -6,11 +8,12 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors')
 
-
+// Initialize routers used for database calls
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 var registerRouter = require('./routes/register');
+var dashboardRouter = require('./routes/dashboard');
 var estimatedRouteRouter = require('./routes/estimatedRoute');
 var pastOrdersRouter = require('./routes/pastOrders');
 var shoppingCartRouter = require('./routes/shoppingCart');
@@ -19,6 +22,7 @@ var cartItemsRouter = require('./routes/cartItems');
 var app = express();
 const port = process.env.PORT || 5000;
 
+// Require passport for authentication
 var passport = require("passport");
 var flash = require("connect-flash");
 
@@ -28,6 +32,8 @@ require("./config/passport")(passport); // pass passport for configuration
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
+
+// Setup cors
 app.use(cors());
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -43,16 +49,33 @@ app.use(function(req, res, next) {
   next();
 });
 
+
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+// Setup passport and sessions
+app.use(
+  session({
+    secret: "secret",
+    resave: true,
+    saveUninitialized: true
+  })
+); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
  
+// Setup routers for route calls
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/register', registerRouter);
+app.use('/api/dashboard', dashboardRouter);
 app.use('/estimatedroute', estimatedRouteRouter);
 app.use('/pastorders', pastOrdersRouter);
 app.use('/shoppingcart', shoppingCartRouter);
