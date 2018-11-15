@@ -1,16 +1,19 @@
-var createError = require("http-errors");
-var express = require("express");
+var createError = require('http-errors');
+var express = require('express');
 var session = require("express-session");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
-var cors = require("cors");
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
+var cors = require('cors')
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-var loginRouter = require("./routes/login");
-var registerRouter = require("./routes/register");
-var dashboardRouter = require("./routes/dashboard");
+
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var loginRouter = require('./routes/login');
+var registerRouter = require('./routes/register');
+var estimatedRouteRouter = require('./routes/estimatedRoute');
+var pastOrdersRouter = require('./routes/pastOrders');
+var shoppingCartRouter = require('./routes/shoppingCart');
 
 var app = express();
 const port = process.env.PORT || 5000;
@@ -43,24 +46,15 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
-
-app.use(
-  session({
-    secret: "secret",
-    resave: true,
-    saveUninitialized: true
-  })
-); // session secret
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-app.use(flash()); // use connect-flash for flash messages stored in session
-
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
-app.use("/api/login", loginRouter);
-app.use("/api/register", registerRouter);
-app.use("/api/dashboard", dashboardRouter);
+app.use(express.static(path.join(__dirname, 'public')));
+ 
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/api/login', loginRouter);
+app.use('/api/register', registerRouter);
+app.use('/estimatedroute', estimatedRouteRouter);
+app.use('/pastorders', pastOrdersRouter);
+app.use('/shoppingcart', shoppingCartRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
