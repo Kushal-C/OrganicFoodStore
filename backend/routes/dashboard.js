@@ -10,13 +10,18 @@ router.all('*', cors());
 router.get("/featured", (req, res, next) => {
   
       database.getConnection(function(err, connection){
-      connection.query(
-        //select * from table order by rand() limit 10
-        "SELECT productName, description, imageLink, cost, weight, weightUnit FROM `product` ORDER BY rand() LIMIT 10;", function(err, result, fields) {
+        if (err) throw err;
+          
+
+        connection.query("SELECT productName, description, imageLink, cost, weight, weightUnit FROM `product` ORDER BY rand() LIMIT 10;", function(err, result, fields) {
           if (err) throw err;
           //console.log((JSON.stringify(result)));
           if (result.length > 0) res.send( JSON.stringify(result));
           else res.send({ responseCode: "404" }); // user not found
+
+          connection.release();
+              // Handle error after the release.
+          if (error) throw error;
         }
       );
       });
@@ -47,6 +52,7 @@ router.get("/featured", (req, res, next) => {
       }
     );
     });
+    connection.end();
   });
 
   router.get("/bakery", (req, res, next) => {
@@ -61,6 +67,7 @@ router.get("/featured", (req, res, next) => {
       }
     );
     });
+    connection.end();
   });
 
   router.get("/drinks", (req, res, next) => {
@@ -75,6 +82,7 @@ router.get("/featured", (req, res, next) => {
       }
     );
     });
+    connection.end();
   });
 
   router.get("/snacks", (req, res, next) => {
@@ -89,6 +97,7 @@ router.get("/featured", (req, res, next) => {
       }
     );
     });
+    connection.end();
   });
 
 

@@ -33,6 +33,7 @@ function(req, res) {
         else res.send({ responseCode: "404" }); // user not found
       }
     );
+    connection.end();
     });
 });
 
