@@ -14,6 +14,7 @@ node_modules
 server_constants.js
 /backend/database_constant/dbconfig.js
 /backend/config/dbconfig.js
+/backend/config/googleconfig.js
 
 # misc
 .DS_Store
