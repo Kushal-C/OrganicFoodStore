@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var cors = require('cors')
 
-var myConsts = require('./server_constants')
+var myConsts = require('./config/dbconfig')
 const database = myConsts.connection.mysql_pool;
 router.all('*', cors());
 
