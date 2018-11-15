@@ -12,7 +12,7 @@ node_modules
 #api keys
 /client/src/actions/api_constants.js
 /backend/config/dbconfig.js
-/backend/config/googleapi.js
+/backend/config/googleconfig.js
 
 # misc
 .DS_Store
