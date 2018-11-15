@@ -3,7 +3,7 @@ var router = express.Router();
 var cors = require('cors')
 router.all('*', cors());
 
-const database = require('./config/dbconfig').mysql_pool;
+const database = require('../config/dbconfig').mysql_pool;
 
 
 router.post("/", (req, res, next) => {

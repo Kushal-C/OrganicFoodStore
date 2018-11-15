@@ -3,10 +3,10 @@ var router = express.Router();
 var cors = require('cors')
 
 //require server_constants and call it myConsts, then access each module.export{} const
-var myConsts = require('./config/googleapi');
+const myConsts = require('../config/googleconfig');
 const googleMapsClient = myConsts.googleMapsClient;
 const storeGeoLocs = myConsts.storeGeoLocs;
-const database = require('./config/dbconfig').mysql_pool;
+const database = require('../config/dbconfig').mysql_pool;
 
 router.all('*', cors());
 
