@@ -7,13 +7,26 @@ router.all('*', cors());
 
 router.get('/', (req, res, next) => {
     database.getConnection(function(err, connection){
-        console.log(JSON.stringify(req.body))
-        var itemsQuery = "SELECT p.productName, p.description, p.imageLink, p.cost * c.quantity as 'cost', p.weight * c.quantity as 'weight' \
-                            FROM product as p, (SELECT cartId, productId as pId, quantity FROM cart WHERE cartId = " + req.body.cartId + ") as c WHERE p.productId = c.pId AND c.cartId = " + req.body.cartId;
+        var cId = req.body.cartId;
+        var itemsQuery = "SELECT p.productName, p.description, c.quantity, p.cost * c.quantity as 'cost', p.weight * c.quantity as 'weight', p.weightUnit \
+                            FROM product as p, (SELECT cartId, productId as pId, quantity FROM cart WHERE cartId = " + cId + ") as c WHERE p.productId = c.pId AND c.cartId = " + cId + " GROUP BY p.productName";
         connection.query(itemsQuery, function(err, result){
             if (err) throw err;
             if (result.length > 0){
-                res.send(result);
+                var price=0, totalWeight=0;
+                result.forEach(item => {
+                    price += (item.cost * item.quantity);
+                    totalWeight += (item.weight * item.quantity);
+                });
+                price.toFixed(2);
+                totalWeight.toFixed(2);
+                var tax = (price*.1).toFixed(2);
+                var total_cost = (parseFloat(price)+parseFloat(tax)).toFixed(2);
+                res.send({items: result,
+                            price: price,
+                            tax: tax,
+                            total_cost: total_cost,
+                            total_weight: totalWeight});
             }
             else{
                 res.send({responseCode : "404",
