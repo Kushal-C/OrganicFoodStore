@@ -17,18 +17,33 @@ router.get('/', (req, res, next) => {
             var maxCartId = result[0].maxCartId;
             if (err) throw err;
             if (result[0].transactionId === 0){
-                var insertProductExistingCart = "INSERT INTO cart (cartId, productId, quantity, userId, total_weight, total_cost) \
+                var checkForExistingProduct = "SELECT productId FROM cart WHERE cartId = " + maxCartId + " AND productId = " + pId + " AND userId = " + uId;
+                connection.query(checkForExistingProduct, function(err, result){
+                    if (err) throw err;
+                    if (result.length > 0){
+                        var insertExistingProductExistingCart = "UPDATE cart SET quantity = quantity + " + q + " WHERE cartId = " + maxCartId + " AND productId = " + pId + " AND userId = " + uId;
+                        connection.query(insertExistingProductExistingCart, function(err, result){
+                            if (err) throw err;
+                            console.log("Successful item quantity updated");
+                            res.send({cartId: maxCartId});
+                        });
+                    }
+                    else{
+                        var insertNewProductExistingCart = "INSERT INTO cart (cartId, productId, quantity, userId, total_weight, total_cost) \
                                                 VALUES (" + maxCartId + ", " 
                                                 + pId + ", "
                                                 + q + ", "
                                                 + uId + ", "
                                                 + "(SELECT p.weight * " + q + " as 'total_weight' FROM product p WHERE p.productId = " + pId + " LIMIT 1), \
                                                 (SELECT p.cost * " + q + " as 'total_cost' FROM product p WHERE p.productId = " + pId + " LIMIT 1))";
-                connection.query(insertProductExistingCart, function(err, result2){
-                    if (err) throw err;
-                    console.log("Successful cart inserted");
-                    res.send({cartId: maxCartId});
+                        connection.query(insertNewProductExistingCart, function(err, result2){
+                        if (err) throw err;
+                            console.log("Successful cart inserted");
+                            res.send({cartId: maxCartId});
+                        });
+                    }
                 });
+                
             }
             else if (result[0].transactionId !== 0){
                 checkMaxCartId = "SELECT MAX(cartId) as maxCartId FROM cart";

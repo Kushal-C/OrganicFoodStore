@@ -5,7 +5,7 @@ var cors = require('cors')
 const database = require('../config/dbconfig').mysql_pool;
 router.all('*', cors());
 
-/* GET home page. */
+// Validates a shopping cart by adding a transaction (the order is confirmed by user)
 router.get('/', function(req, res, next) {
     // console.log("req: " + JSON.stringify(req.body))
     // console.log("req item size: " +  req.body.items.length) 
