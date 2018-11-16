@@ -7,7 +7,7 @@ import Cart from "../components/cart";
 class CartContainer extends Component {
 
   componentWillMount(){
-    this.props.getCartItems();
+    this.props.getCartItems({cartId: 1});
     // this.props.getUserProfile();
   }
 
