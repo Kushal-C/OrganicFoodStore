@@ -5,6 +5,7 @@ import GetItemsReducer from './get_items_reducer';
 import AddToCartReducer from './add_item_reducer';
 import UpdateProfileReducer from './update_profile_reducer';
 import GetCheckoutReducer from './get_checkout_reducer';
+import GetCartItemsReducer from './get_cart_items_reducer';
 
 const rootReducer = combineReducers({
   login: LoginReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   items: GetItemsReducer,
   cart: AddToCartReducer,
   updateProfile: UpdateProfileReducer,
-  checkoutContents: GetCheckoutReducer
+  checkoutContents: GetCheckoutReducer,
+  cartItems : GetCartItemsReducer
 });
 
 export default rootReducer;

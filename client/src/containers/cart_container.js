@@ -1,31 +1,40 @@
 import React, { Component } from "react";
+import { getCartItemsRequest, getUserProfile } from "../actions/index";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 import Cart from "../components/cart";
 
 class CartContainer extends Component {
+
+  componentWillMount(){
+    this.props.getCartItems();
+    // this.props.getUserProfile();
+  }
+
   render() {
+    if(!this.props.cartItems) {
+      return (
+        <div>Loading...</div>
+      )
+    }
     return (
-      <Cart
-        items={[
-          {
-            name: "Broccoli",
-            description: "Flower of Broccoli",
-            number: 3,
-            cost: 2,
-            weight: 1,
-            weight_unit: "pound"
-          },
-          {
-            name: "Mango",
-            description: "A whole mango",
-            number: 2,
-            cost: 2,
-            weight: 2,
-            weight_unit: "pounds"
-          }
-        ]}
-      />
+      <Cart items={this.props.cartItems} />
     );
   }
 }
 
-export default CartContainer;
+function mapStateToProps(state) {
+  return {
+    cartItems: state.cartItems,
+    profile: state.profile,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ getCartItems: getCartItemsRequest, profile: getUserProfile }, dispatch);
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CartContainer);
