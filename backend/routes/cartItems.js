@@ -8,15 +8,15 @@ router.all('*', cors());
 router.get('/', (req, res, next) => {
     database.getConnection(function(err, connection){
         var cId = req.body.cartId;
-        var itemsQuery = "SELECT p.productName, p.description, c.quantity, p.cost * c.quantity as 'cost', p.weight * c.quantity as 'weight', p.weightUnit \
-                            FROM product as p, (SELECT cartId, productId as pId, quantity FROM cart WHERE cartId = " + cId + ") as c WHERE p.productId = c.pId AND c.cartId = " + cId + " GROUP BY p.productName";
+        var itemsQuery = "SELECT p.productName as name, p.description as description, c.quantity as number, p.cost * c.quantity as 'cost', p.weight * c.quantity as 'weight', p.weightUnit as weight_unit \
+                            FROM product as p, (SELECT cartId, productId as pId, quantity FROM cart WHERE cartId = " + cId + ") as c WHERE p.productId = c.pId AND c.cartId = " + cId + " GROUP BY name";
         connection.query(itemsQuery, function(err, result){
             if (err) throw err;
             if (result.length > 0){
                 var price=0, totalWeight=0;
                 result.forEach(item => {
-                    price += (item.cost * item.quantity);
-                    totalWeight += (item.weight * item.quantity);
+                    price += item.cost;
+                    totalWeight += item.weight ;
                 });
                 price.toFixed(2);
                 totalWeight.toFixed(2);
