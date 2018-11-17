@@ -10,7 +10,8 @@ import {
   PLACE_ORDER_REQUEST,
   EMPTY_CART_REQUEST,
   GET_CART_ITEMS_REQUEST,
-  GET_PAST_ORDERS_REQUEST
+  GET_PAST_ORDERS_REQUEST,
+  GET_CHECKOUT_CONTENTS_REQUEST
 } from "./action_constants";
 
 const route = "http://localhost:5000";
@@ -70,19 +71,19 @@ export function addToCart(item) {
 }
 
 export function placeOrder(item) {
-  // const request = axios.post(route + "/shoppingCart", item);
-  // return {
-  //   type: PLACE_ORDER_REQUEST,
-  //   payload: request
-  // };
+  const request = axios.post(route + "/shoppingCart", item);
+  return {
+    type: PLACE_ORDER_REQUEST,
+    payload: request
+  };
 }
 
 export function emptyCart(item) {
-  // const request = axios.post(route + "/shoppingCart", item);
-  // return {
-  //   type: EMPTY_CART_REQUEST,
-  //   payload: request
-  // };
+  const request = axios.post(route + "/shoppingCart", item);
+  return {
+    type: EMPTY_CART_REQUEST,
+    payload: request
+  };
 }
 
 export function getCartItemsRequest(item) {
@@ -97,6 +98,14 @@ export function getPastOrdersRequest(item) {
   const request = axios.post(route + "/pastorders", item);
   return {
     type: GET_PAST_ORDERS_REQUEST,
+    payload: request
+  };
+}
+
+export function getCheckoutItemsRequest(item) {
+  const request = axios.post(route + "/estimatedroute", item);
+  return {
+    type: GET_CHECKOUT_CONTENTS_REQUEST,
     payload: request
   };
 }

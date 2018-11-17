@@ -35,8 +35,8 @@ function getClosestStore(address, startTime){//, func){
                 var d1 = parseFloat(distance1.substring(1, distance1.length - 3))               //parses distance to float from string
                 var d2 = parseFloat(distance2.substring(1, distance2.length - 3))
                 unit1 === 'ft' ? d1 /= 5280 : d1;                                               //checks units are not in ft, if they are convert to mi
-                unit2 === 'ft' ? d2 /= 5280 : d2;                                          
-                
+                unit2 === 'ft' ? d2 /= 5280 : d2;
+
                 // d1 > d2 ? console.log("return SM") : console.log("return SC")
                 return d1 > d2 ? console.log(JSON.stringify({origin: storeGeoLocs[1], deliveryInfo: response.json.rows[1]})) :      //return closest store
                         console.log(JSON.stringify({origin: storeGeoLocs[0], deliveryInfo: response.json.rows[0]}))
@@ -53,7 +53,7 @@ router.post("/", (req, res, next) => {
           if (err) throw err;
           //NEED TO GET VALID userId!!
           var sql = "SELECT address, city FROM user WHERE userId = 1";
-          
+
           //get closest store and delivery time
           connection.query(sql, function(err, result){                                              //queries for address of user, if no such user error response sent to frontend
             if (err) throw err;
@@ -64,7 +64,7 @@ router.post("/", (req, res, next) => {
                 // ua = "402 N El Camino Real, San Mateo, CA 94401"
                 // ua = "1 Washington Square san jose"
                 // ua = "fasdf san juoadf"
-                
+
                 ua = JSON.stringify(result[0].address) + ", " + JSON.stringify(result[0].city);
                 // console.log("user addy: " + ua)
                 var st = Date.now();
@@ -73,7 +73,7 @@ router.post("/", (req, res, next) => {
             else {
                 res.send({responseCode: "404",
                             reason: "No such userId"});
-            }   
+            }
           });
           //need to get valid userId and cartId from res
           sql = "SELECT p.productName, c.quantity \
@@ -93,7 +93,7 @@ router.post("/", (req, res, next) => {
                         var tax = parseFloat((price * .0725).toFixed(2));
                         var totalcost = price+tax;
                         res.send({  origin: ua,
-                                    destination: 1,
+                                    destination: "CSU East Bay",
                                     arrival_time: 1,
                                     order_status: "In route",
                                     items: items,
@@ -113,8 +113,8 @@ router.post("/", (req, res, next) => {
                 res.send({responseCode: "404",
                         reason: "Nothing in cart"});
             }
-          });      
+          });
       });
   });
 
-module.exports = router; 
+module.exports = router;
