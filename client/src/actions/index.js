@@ -86,7 +86,6 @@ export function emptyCart(item) {
 
 export function getCartItemsRequest(item) {
   const request = axios.post(route + "/cartitems", item);
-  console.log('cart item req: ' + JSON.stringify(request));
   return {
     type: GET_CART_ITEMS_REQUEST,
     payload: request
