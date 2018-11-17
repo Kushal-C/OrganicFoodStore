@@ -69,23 +69,24 @@ export function addToCart(item) {
 }
 
 export function placeOrder(item) {
-  const request = axios.post(route + "/dashboard/cart", item);
-  return {
-    type: PLACE_ORDER_REQUEST,
-    payload: request
-  };
+  // const request = axios.post(route + "/shoppingCart", item);
+  // return {
+  //   type: PLACE_ORDER_REQUEST,
+  //   payload: request
+  // };
 }
 
 export function emptyCart(item) {
-  const request = axios.post(route + "/dashboard/cart", item);
-  return {
-    type: EMPTY_CART_REQUEST,
-    payload: request
-  };
+  // const request = axios.post(route + "/shoppingCart", item);
+  // return {
+  //   type: EMPTY_CART_REQUEST,
+  //   payload: request
+  // };
 }
 
 export function getCartItemsRequest(item) {
-  const request = axios.post(route + "/dashboard/cart", item);
+  const request = axios.post(route + "/cartitems", item);
+  console.log('cart item req: ' + JSON.stringify(request));
   return {
     type: GET_CART_ITEMS_REQUEST,
     payload: request
