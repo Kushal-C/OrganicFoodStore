@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CartItem from './cart_item';
-import TotalPrice from './total_price';
+import TotalPriceContainer from '../containers/total_price_container';
 
 class Cart extends Component{
 
@@ -28,7 +28,7 @@ class Cart extends Component{
             </div>
           </div>
           <div className="col-md-3">
-            <TotalPrice price = {this.props.items.price} tax = {this.props.items.tax} total_cost = {this.props.items.total_cost} ></TotalPrice>
+            <TotalPriceContainer price = {this.props.items.price} tax = {this.props.items.tax} total_cost = {this.props.items.total_cost} ></TotalPriceContainer>
           </div>
         </div>
       </div>

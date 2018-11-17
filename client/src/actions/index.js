@@ -71,7 +71,9 @@ export function addToCart(item) {
 }
 
 export function placeOrder(item) {
-  const request = axios.post(route + "/shoppingCart", item);
+  console.log("ROUTE: " + route + "/shoppingcart");
+  console.log("PLACING ORDER CONTENTS: " + JSON.stringify(item));
+  const request = axios.post(route + "/shoppingcart", item);
   return {
     type: PLACE_ORDER_REQUEST,
     payload: request

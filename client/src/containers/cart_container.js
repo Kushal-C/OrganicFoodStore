@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getCartItemsRequest, getUserProfile } from "../actions/index";
+import { getCartItemsRequest, getItemsRequest, getUserProfile } from "../actions/index";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Cart from "../components/cart";
@@ -33,6 +33,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ getCartItems: getCartItemsRequest, profile: getUserProfile }, dispatch);
+
 }
 
 export default connect(

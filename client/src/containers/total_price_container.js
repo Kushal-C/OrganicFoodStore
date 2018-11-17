@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+
+import { getCartItemsRequest } from "../actions/index";
 import TotalPrice from '../components/total_price';
 
 class TotalPriceContainer extends Component{
@@ -6,11 +10,17 @@ class TotalPriceContainer extends Component{
     super(props);
   }
 
+  componentDidMount() {
+    this.props.getCartItems({cartId : 1});
+  }
+
   render() {
+    console.log("cart: " + JSON.stringify(this.props.cartItems));
+    console.log("profile: " + JSON.stringify(this.props.login));
     return(
       <TotalPrice
-        //TODO: Need to get the user id rather than profile
-        getProfile = {this.props.getProfile}
+        profile = {this.props.login[0]}
+        cartItems = {this.props.cartItems}
         price = {this.props.price}
         tax = {this.props.tax}
         total_cost = {this.props.total_cost}
@@ -21,9 +31,10 @@ class TotalPriceContainer extends Component{
 
 function mapStateToProps(state) {
   return {
-    price = state.price,
-    tax = state.tax,
-    items = state.items,
+    price : state.price,
+    login : state.login,
+    cartItems : state.cartItems,
+    tax : state.tax,
   };
 }
 
