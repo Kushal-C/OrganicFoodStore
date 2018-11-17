@@ -14,6 +14,7 @@ class Cart extends Component{
   }
 
   render() {
+    console.log("Items: " + JSON.stringify(this.props.items.items));
     return(
       <div>
         <div className="row">
