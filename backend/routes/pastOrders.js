@@ -6,7 +6,7 @@ const database = require('../config/dbconfig').mysql_pool;
 router.all('*', cors());
 
 //need name of item, quantity, total cost of same product, total cost of all products
-router.get("/", (req, res, next) => {
+router.post("/", (req, res, next) => {
     console.log("req.body: " + JSON.stringify(req.body));
       database.getConnection(function(err, connection){
         console.log("userId: " + req.body.userId)
@@ -16,7 +16,47 @@ router.get("/", (req, res, next) => {
           connection.query(cartQuery, function(err, result){
               if (err) throw err;
               if (result.length > 0){
-                console.log("result: " + JSON.stringify(result));
+                // console.log("result: " + JSON.stringify(result));
+                result = {data:
+                  [
+                    {
+                      orderId : 1,
+                      status : "processed",
+                      contents:
+                      [
+                        {
+                          name: "cake",
+                          quantity : 5,
+                          cost: 20
+                        },
+                        {
+                          name: "pie",
+                          quantity : 5,
+                          cost: 20
+                        }
+                      ],
+                      total_cost : 40
+                    },
+                    {
+                      orderId : 2,
+                      status : "processed",
+                      contents:
+                      [
+                        {
+                          name: "Brocolli",
+                          quantity : 10,
+                          cost: 20
+                        },
+                        {
+                          name: "Mango",
+                          quantity : 2,
+                          cost: 4
+                        }
+                      ],
+                      total_cost : 40
+                    }
+                  ]
+                }
                 res.send(result);
             }
               else {
@@ -27,4 +67,4 @@ router.get("/", (req, res, next) => {
       });
   });
 
-module.exports = router;  
+module.exports = router;

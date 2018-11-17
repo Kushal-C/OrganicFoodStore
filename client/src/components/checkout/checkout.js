@@ -71,9 +71,6 @@ export default class Checkout extends Component {
   };
 
   render() {
-    console.log(
-      "Checkout Props: " + JSON.stringify(this.props.checkoutContents)
-    );
     return (
       <div className="row">
         <div className="col-md-8">

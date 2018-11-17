@@ -9,7 +9,8 @@ import {
   CHECKOUT_ITEMS,
   PLACE_ORDER_REQUEST,
   EMPTY_CART_REQUEST,
-  GET_CART_ITEMS_REQUEST
+  GET_CART_ITEMS_REQUEST,
+  GET_PAST_ORDERS_REQUEST
 } from "./action_constants";
 
 const route = "http://localhost:5000";
@@ -88,6 +89,14 @@ export function getCartItemsRequest(item) {
   const request = axios.post(route + "/cartitems", item);
   return {
     type: GET_CART_ITEMS_REQUEST,
+    payload: request
+  };
+}
+
+export function getPastOrdersRequest(item) {
+  const request = axios.post(route + "/pastorders", item);
+  return {
+    type: GET_PAST_ORDERS_REQUEST,
     payload: request
   };
 }

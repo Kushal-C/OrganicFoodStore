@@ -7,8 +7,15 @@ import Checkout from "../components/checkout/checkout";
 
 class CheckoutContainer extends Component {
   state = {
-    payload: null
+    payload: null,
+    orderId: 1
   };
+
+  componentWillMount() {
+    let path_names = this.props.location.pathname.split('/');
+    let id = path_names[path_names.length - 1];
+    this.state.orderId = id;
+  }
 
   render() {
     return (
