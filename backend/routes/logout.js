@@ -11,6 +11,7 @@ var passport = require('passport');
 
 router.get('/logout', function(req, res) {
 	req.logout();
+    console.log("logged out");
 });
 
 module.exports = router;  
