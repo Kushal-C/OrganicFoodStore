@@ -12,11 +12,11 @@ export default class CartItem extends Component{
                 <div className="row mr-2 ml-2" >
 
                   <div className="col-md-6">
-                    {item.name}
+                    {item.name} x {item.number}
                   </div>
 
                   <div className="col-md-6 text-right">
-                    ${item.cost} x {item.number}
+                    ${item.cost}
                   </div>
 
                   </div>

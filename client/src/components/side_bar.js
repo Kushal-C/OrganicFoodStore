@@ -31,7 +31,7 @@ class Sidebar extends Component {
           <Link to="/dashboard/pastorders" style={{ textDecoration: "none" }}>
             <li>Past Orders</li>
           </Link>
-          <Link to="/cart" style={{ textDecoration: "none" }}>
+          <Link to="/dashboard/cart" style={{ textDecoration: "none" }}>
             <li>Shopping Cart</li>
           </Link>
           <Link to="/" style={{ textDecoration: "none" }}>

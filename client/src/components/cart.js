@@ -17,17 +17,13 @@ class Cart extends Component{
     console.log("Items: " + JSON.stringify(this.props.items.items));
     return(
       <div>
-        <div className="row">
-          <h1 className="header-primary shopping-cart">Shopping Cart</h1>
-        </div>
-        <div className="row" style={{margin:'20px'}}>
-
-          <div className="col-md-3">
+        <div className="row" >
+          <div className="col-md-12">
             <div className="card">
-              {<CartItem items = {this.props.items.items}></CartItem>}
+              <CartItem items = {this.props.items.items}></CartItem>
             </div>
           </div>
-          <div className="col-md-3">
+          <div className="col-md-8" style={{marginTop:'20px'}}>
             <TotalPriceContainer price = {this.props.items.price} tax = {this.props.items.tax} total_cost = {this.props.items.total_cost} ></TotalPriceContainer>
           </div>
         </div>

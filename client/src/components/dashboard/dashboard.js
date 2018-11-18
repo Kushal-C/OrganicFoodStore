@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 import SidebarContainer from "../../containers/side_bar_container";
 import ItemCardContainer from "../../containers/item_card_container";
-import CartContainer from "../../containers/item_card_container";
+import CartContainer from "../../containers/cart_container";
 import PastOrdersContainer from "../../containers/past_orders_container";
 
 export default class Dashboard extends Component {
@@ -22,18 +22,20 @@ export default class Dashboard extends Component {
   }
 
   displayComponent() {
-    // if(this.props.match.params.category == "cart") {
-    //   return (
-    //     <CartContainer />
-    //   )
-    // }
-    // else if(this.props.match.params.category == "pastorders") {
-    if(this.props.match.params.category == "pastorders") {
+    if(this.props.match.params.category == "cart") {
+      console.log("Rendering cart container component!");
+      return (
+        <CartContainer />
+      )
+    }
+    else if(this.props.match.params.category == "pastorders") {
+      console.log("Rendering past orders container component!");
       return(
         <PastOrdersContainer />
       );
     }
     else {
+      console.log("Rendering item card container component!");
       return(
         this.props.item_props.map(function(item, index){
           return (

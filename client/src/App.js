@@ -29,7 +29,7 @@ class App extends Component {
             {/* <Route path="/pastorders" component={PastOrderContainer} /> */}
             <Route path="/user" component={UserProfileContainer} />
             <Route exact path="/" component={SignInContainer} />
-            <Route path="/cart" component={CartContainer} />
+            {/* <Route path="/cart" component={CartContainer} /> */}
           </div>
         </Router>
       </Provider>

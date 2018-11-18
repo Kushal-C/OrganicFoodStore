@@ -7,7 +7,7 @@ import Cart from "../components/cart";
 class CartContainer extends Component {
 
   componentWillMount(){
-    console.log("route: " + this.props.location.pathname);
+    // console.log("route: " + this.props.location.pathname);
     this.props.getCartItems({cartId : 1});
     // this.props.getUserProfile();
   }
