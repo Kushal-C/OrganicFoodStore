@@ -91,7 +91,7 @@ app.use('/shoppingcart', shoppingCartRouter);
 app.use('/cartitems', cartItemsRouter);
 app.use('/cart-add', addToCartRouter);
 app.use('/cart-delete', deleteFromCartRouter);
-app.use('/logout/', logoutRouter);
+app.use('/logout', logoutRouter);
 
 
 // catch 404 and forward to error handler
