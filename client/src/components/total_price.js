@@ -26,7 +26,6 @@ export default class TotalPrice extends Component {
       )
     }
     let ret = {items: orderList};
-    console.log("Ret: " + JSON.stringify(ret));
     return ret;
   }
 

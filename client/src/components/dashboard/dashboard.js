@@ -23,19 +23,16 @@ export default class Dashboard extends Component {
 
   displayComponent() {
     if(this.props.match.params.category == "cart") {
-      console.log("Rendering cart container component!");
       return (
         <CartContainer />
       )
     }
     else if(this.props.match.params.category == "pastorders") {
-      console.log("Rendering past orders container component!");
       return(
         <PastOrdersContainer />
       );
     }
     else {
-      console.log("Rendering item card container component!");
       return(
         this.props.item_props.map(function(item, index){
           return (
@@ -54,7 +51,6 @@ export default class Dashboard extends Component {
   }
 
   render() {
-    console.log("match val: " + JSON.stringify(this.props.match.params));
     return (
       <div style={{minWidth:'1200px'}}>
         <div className="row">

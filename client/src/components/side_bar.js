@@ -5,7 +5,6 @@ import { logout } from "../actions/index";
 class Sidebar extends Component {
 
   logoutReq() {
-    console.log("CLICKED LOGOUT");
     logout();
   }
 

@@ -72,8 +72,6 @@ export function addToCart(item) {
 }
 
 export function placeOrder(item) {
-  console.log("ROUTE: " + route + "/shoppingcart");
-  console.log("PLACING ORDER CONTENTS: " + JSON.stringify(item));
   const request = axios.post(route + "/shoppingcart", item);
   return {
     type: PLACE_ORDER_REQUEST,
@@ -115,8 +113,6 @@ export function getCheckoutItemsRequest(item) {
 
 export function logout() {
   const request = axios.post(route + "/logout");
-  console.log("Sending logout req");
-  console.log("Request ret value: " + JSON.stringify(request));
   return {
     type: LOGOUT_REQUEST,
     payload: request
