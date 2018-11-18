@@ -74,7 +74,7 @@ export default class Checkout extends Component {
     return (
       <div className="row">
         <div className="col-md-8">
-          <div style={{ height: "150%", width: "100%" }}>
+          <div style={{ height: "150%", width: "150%" }}>
             <Map
               origin={this.props.checkoutContents.origin}
               destination={this.props.checkoutContents.destination}
