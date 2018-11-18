@@ -13,7 +13,15 @@ export default class Dashboard extends Component {
     };
   }
 
+  getCategory() {
+    console.log("match: " + JSON.stringify(this.props.match.params.category));
+    let categoryName = this.props.match.params.category;
+    categoryName = categoryName[0].toUpperCase() + categoryName.substring(1, categoryName.length);
+    return categoryName;
+  }
+
   render() {
+
     return (
       <div style={{minWidth:'1200px'}}>
         <div className="row">
@@ -33,7 +41,7 @@ export default class Dashboard extends Component {
         <div className="row">
           <SidebarContainer match={this.props.match} style={{height:'100%'}}/>
           <div className="row col-md-9" >
-          <div className="fetitem col-md-12"> Featured Items</div>
+          <div className="fetitem col-md-12"> {this.getCategory()}</div>
             {this.props.item_props.map(function(item, index){
               return (
               <ItemCardContainer
