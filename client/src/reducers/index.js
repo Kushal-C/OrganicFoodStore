@@ -15,8 +15,8 @@ const rootReducer = combineReducers({
   cart: AddToCartReducer,
   updateProfile: UpdateProfileReducer,
   checkoutContents: GetCheckoutReducer,
-  cartItems : GetCartItemsReducer,
-  pastOrders : GetPastOrdersReducer,
+  cartItems :  GetCartItemsReducer,
+  pastOrders : GetPastOrdersReducer
 });
 
 export default rootReducer;

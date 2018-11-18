@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { logout } from "../actions/index";
+
 class Sidebar extends Component {
+
+  logoutReq() {
+    logout();
+  }
+
   render() {
     return (
       <div className="col-md-3">
@@ -26,6 +33,9 @@ class Sidebar extends Component {
           </Link>
           <Link to="/dashboard/cart" style={{ textDecoration: "none" }}>
             <li>Shopping Cart</li>
+          </Link>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <li onClick={ () => this.logoutReq()}>Sign Out</li>
           </Link>
         </ul>
       </div>

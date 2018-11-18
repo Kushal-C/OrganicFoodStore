@@ -4,6 +4,8 @@ import React, { Component } from "react";
 import SidebarContainer from "../../containers/side_bar_container";
 import ItemCardContainer from "../../containers/item_card_container";
 import TopBar from "../../containers/top_bar_container";
+import CartContainer from "../../containers/cart_container";
+import PastOrdersContainer from "../../containers/past_orders_container";
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -14,6 +16,41 @@ export default class Dashboard extends Component {
     };
   }
 
+  getCategory() {
+    let categoryName = this.props.match.params.category;
+    categoryName = categoryName[0].toUpperCase() + categoryName.substring(1, categoryName.length);
+    return categoryName;
+  }
+
+  displayComponent() {
+    if(this.props.match.params.category == "cart") {
+      return (
+        <CartContainer />
+      )
+    }
+    else if(this.props.match.params.category == "pastorders") {
+      return(
+        <PastOrdersContainer />
+      );
+    }
+    else {
+      return(
+        this.props.item_props.map(function(item, index){
+          return (
+          <ItemCardContainer
+            name = {item.name}
+            description = {item.description}
+            imageLink = {item.imageLink}
+            cost = {item.cost}
+            weight = {item.weight}
+            weight_unit = {item.weight_unit}
+            key={index}/>);
+        })
+      )
+    }
+
+  }
+
   render() {
 
     let categoryString = this.props.match.params.category;
@@ -22,22 +59,25 @@ console.log("CATEGORY: " + this.props.match.params.category);
     return (
       
       <div style={{minWidth:'1200px'}}>
-      <div className="row">
-        <SidebarContainer match={this.props.match} style={{height:'100%'}}/>
-          <div className="row col-md-9" style={{margin:'0px', padding:'0px'}} >
-            <TopBar />
-            <div className="catitem col-md-12"> {categoryString}</div>
-              {this.props.item_props.map(function(item, index){
-                return (
-                <ItemCardContainer
-                  name = {item.name}
-                  description = {item.description}
-                  imageLink = {item.imageLink}
-                  cost = {item.cost}
-                  weight = {item.weight}
-                  weight_unit = {item.weight_unit}
-                  key={index}/>);
-              })}
+        <div className="row">
+          <div className="col-md-6 text-left" style={{marginTop: '10px'}}>
+            <h1 className="header-primary">OFS DELIVERY</h1>
+          </div>
+          <div className="col-md-6 text-right">
+            <Link to="/user">
+              <div className="dropdown">
+                <span className="badge badge-primary">
+                  {this.props.firstName + " " + this.props.lastName}
+                </span>
+              </div>
+            </Link>
+          </div>
+        </div>
+        <div className="row">
+          <SidebarContainer match={this.props.match} style={{height:'100%'}}/>
+          <div className="row col-md-9" >
+          <div className="fetitem col-md-12"> {this.getCategory()}</div>
+            {this.displayComponent()}
           </div>
         </div>
       </div>

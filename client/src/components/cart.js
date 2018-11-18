@@ -4,6 +4,7 @@ import TotalPrice from './total_price';
 import TopBar from "../containers/top_bar_container";
 import SidebarContainer from "../containers/side_bar_container";
 
+import TotalPriceContainer from '../containers/total_price_container';
 
 class Cart extends Component{
 
@@ -17,7 +18,6 @@ class Cart extends Component{
   }
 
   render() {
-    console.log("Items: " + JSON.stringify(this.props.items.items));
     return(
       <div>
         <div className="row">
@@ -30,11 +30,11 @@ class Cart extends Component{
           <div className="col-md-6">
           
             <div className="card">
-              {<CartItem items = {this.props.items.items}></CartItem>}
+              <CartItem items = {this.props.items.items}></CartItem>
             </div>
           </div>
-          <div className="col-md-6">
-            <TotalPrice price = {this.props.items.price} tax = {this.props.items.tax} total_cost = {this.props.items.total_cost} ></TotalPrice>
+          <div className="col-md-8" style={{marginTop:'20px'}}>
+            <TotalPriceContainer price = {this.props.items.price} tax = {this.props.items.tax} total_cost = {this.props.items.total_cost} ></TotalPriceContainer>
           </div>
         </div>
       </div>

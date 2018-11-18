@@ -1,13 +1,32 @@
 import React, { Component } from "react";
-import { placeOrder, emptyCart } from "../actions/index";
+import { placeOrder } from "../actions/index";
 
 export default class TotalPrice extends Component {
-  placeOrder(user_id) {
-    placeOrder(user_id);
+  placeOrder() {
+    if(this.props.cartItems.items.length > 0) {
+      placeOrder(this.generateRequestPayload());
+    }
   }
 
-  emptyCart(user_id) {
-    emptyCart(user_id);
+  emptyCart() {
+    if(this.props.cartItems.items.length > 0) {
+      this.props.emptyCart();
+    }
+  }
+
+  generateRequestPayload() {
+    let orderList = [];
+    for(let currentItem in this.props.cartItems.items) {
+      orderList.push(
+        {
+          productId : this.props.cartItems.items[currentItem].productId,
+          quantity : this.props.cartItems.items[currentItem].number,
+          userId : this.props.profile.userId
+        }
+      )
+    }
+    let ret = {items: orderList};
+    return ret;
   }
 
   render() {
@@ -33,19 +52,17 @@ export default class TotalPrice extends Component {
           <div className="col text-left">
             <button
               className="btn btn-secondary"
-              onClick={this.emptyCart(this.props.getProfile)}
+              onClick={() => this.emptyCart()}
             >
-              {" "}
-              Empty Cart{" "}
+              Empty Cart
             </button>
           </div>
           <div className="col text-right">
             <button
               className="btn btn-primary"
-              onClick={this.placeOrder(this.props.getProfile)}
+              onClick={() =>this.placeOrder()}
             >
-              {" "}
-              Place order{" "}
+            Place order
             </button>
           </div>
         </div>

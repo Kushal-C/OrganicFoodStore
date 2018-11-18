@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getCartItemsRequest, getUserProfile } from "../actions/index";
+import { getCartItemsRequest, emptyCart, getUserProfile } from "../actions/index";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Cart from "../components/cart";
@@ -7,8 +7,7 @@ import Cart from "../components/cart";
 class CartContainer extends Component {
 
   componentWillMount(){
-    console.log(JSON.stringify(this.props.match.params));
-    console.log("route: " + this.props.location.pathname);
+    // console.log("route: " + this.props.location.pathname);
     this.props.getCartItems({cartId : 1});
     // this.props.getUserProfile();
   }
@@ -34,6 +33,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ getCartItems: getCartItemsRequest, profile: getUserProfile }, dispatch);
+
 }
 
 export default connect(

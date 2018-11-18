@@ -26,7 +26,7 @@ class App extends Component {
             <Route path="/register/profile" component={RegistrationContainer} />
             <Route path="/checkout/view" component={CheckoutContainer} />
             <Route path="/dashboard/:category" component={DashboardContainer} />
-            <Route path="/dashboard/pastorders" component={PastOrderContainer} />
+            {/* <Route path="/pastorders" component={PastOrderContainer} /> */}
             <Route path="/user" component={UserProfileContainer} />
             <Route exact path="/" component={SignInContainer} />
             {/* <Route path="/cart" component={CartContainer} /> */}
