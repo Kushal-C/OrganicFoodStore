@@ -11,7 +11,11 @@ router.get('/', function(req, res, next) {
     // console.log("req item size: " +  req.body.items.length) 
     database.getConnection(function(err, connection){
         connection.query("SELECT MAX(cartId) as maxC, MAX(transactionId) as maxT FROM cart", function(err, result){
-            if (err) res.send({responseCode: "404"})
+            if (err) {
+                connection.release();
+                console.log("shoppingCart connection released");
+                throw err;
+            }
             if (result.length > 0){
                 // console.log("result: " + JSON.stringify(result));
                 var nextCartId = result[0].maxC + 1;
@@ -20,7 +24,11 @@ router.get('/', function(req, res, next) {
                 var uid = req.body.items[0].userId;
                 var insertTransactionQuery = "INSERT INTO transaction(transactionId, cartId, userId) VALUES (" + nextTransactionId + ", " + nextCartId + ", " + uid + ")"
                 connection.query(insertTransactionQuery, function(err){
-                    if (err) res.send({responseCode: "404: " + err});
+                    if (err) {
+                        connection.release();
+                        console.log("shoppingCart connection released");
+                        throw err;
+                    }
                     console.log("Successful transaction insert");
                 });
                 for (var i = 0; i < req.body.items.length; i++){
@@ -34,16 +42,22 @@ router.get('/', function(req, res, next) {
                                         (SELECT p.weight * " + q + " as 'totalWeight' FROM product p WHERE p.productId = " + pid +" LIMIT 1),\
                                         (SELECT p.cost * " + q + " as 'totalCost' FROM product p WHERE p.productId = " + pid + " LIMIT 1))";
                     connection.query(insertItemsQuery, function(err){
-                        if (err) res.send({responseCode: "404: " + err});
+                        if (err) {
+                            connection.release();
+                            console.log("shoppingCart connection released");
+                            throw err;
+                        }
                         console.log("Successful cart insert");
                     });
                 }
                 res.send({responseCode: "200"})
             }
             else {
-              res.send({responseCode: "404: " + err});
+              res.send({responseCode: "404: "});
             }
         });
+        connection.release();
+        console.log("shoppingCart connection released");
     });
 });
 

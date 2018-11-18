@@ -13,7 +13,11 @@ router.post('/', (req, res, next) => {
         var pId = req.body.productId;
         var deleteFromCart = "SELECT quantity FROM cart WHERE cartId = " + cId + " AND productId = " + pId;
         connection.query(deleteFromCart, function(err, result){
-            if (err) throw err;
+            if (err) {
+                connection.release();
+                console.log("cartDelete connection released");
+                throw err;
+            }
             if (result.length > 0) {
                 var cartQuantity = result[0].quantity;
                 // console.log("cartQuantity: " +cartQuantity);
@@ -29,11 +33,16 @@ router.post('/', (req, res, next) => {
                     }) 
                     :
                     connection.query("SET SQL_SAFE_UPDATES = 0", function(err, result){
-                        if (err) throw err;
+                        if (err) {
+                            connection.release();
+                            console.log("cartDelete connection released");
+                            throw err;
+                        }
                         connection.query("DELETE FROM cart WHERE cartId = " + cId + " AND productId = " + pId + " AND userId = " + uId, function(err, result){
                             if (err){
                                 connection.query("SET SQL_SAFE_UPDATES = 1", function(err, result){
                                     if (err){
+                                        connection.release();
                                         console.log("ERROR, SQL_SAFE_UPDATE re-enabled");
                                         res.send({responseCode: "404"});
                                         throw err;
@@ -42,7 +51,11 @@ router.post('/', (req, res, next) => {
                             }
                         else{
                             connection.query("SET SQL_SAFE_UPDATES = 1", function(err, result){
-                                if (err) throw err;
+                                if (err) {
+                                    connection.release();
+                                    console.log("cartDelete connection released");
+                                    throw err;
+                                }
                                 console.log("SUCCESS, SQL_SAFE_UPDATE re-enabled");
                                 console.log("Successful removal of entire item from cart");  
                                 res.send({responseCode: "200"});
@@ -54,6 +67,8 @@ router.post('/', (req, res, next) => {
             else{
                 res.send({responseCode: "404", reason: "Invalid productId or cartId"});
             }
+            connection.release();
+            console.log("cartDelete connection released");
         });
     });
 });
