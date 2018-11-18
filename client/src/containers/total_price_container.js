@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import { getCartItemsRequest } from "../actions/index";
+import { getCartItemsRequest, emptyCart} from "../actions/index";
 import TotalPrice from '../components/total_price';
 
 class TotalPriceContainer extends Component{
@@ -15,10 +15,9 @@ class TotalPriceContainer extends Component{
   }
 
   render() {
-    console.log("cart: " + JSON.stringify(this.props.cartItems));
-    console.log("profile: " + JSON.stringify(this.props.login));
     return(
       <TotalPrice
+        emptyCart = {this.props.emptyCart}
         profile = {this.props.login[0]}
         cartItems = {this.props.cartItems}
         price = {this.props.price}
@@ -39,7 +38,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getCartItems: getCartItemsRequest }, dispatch);
+  return bindActionCreators({ getCartItems: getCartItemsRequest, emptyCart: emptyCart }, dispatch);
 }
 
 export default connect(

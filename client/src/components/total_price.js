@@ -1,13 +1,19 @@
 import React, { Component } from "react";
-import { placeOrder, emptyCart } from "../actions/index";
+import { placeOrder } from "../actions/index";
 
 export default class TotalPrice extends Component {
   placeOrder() {
-    placeOrder(this.generateRequestPayload());
+    if(this.props.cartItems.items.length > 0) {
+      placeOrder(this.generateRequestPayload());
+    }
   }
 
   emptyCart() {
-    emptyCart();
+    console.log("Before cart items empty cart: " + JSON.stringify(this.props.cartItems.items));
+    if(this.props.cartItems.items.length > 0) {
+      this.props.emptyCart();
+    }
+    console.log("After cart items empty cart: " + JSON.stringify(this.props.cartItems.items));
   }
 
   generateRequestPayload() {
