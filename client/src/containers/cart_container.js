@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getCartItemsRequest, getItemsRequest, getUserProfile } from "../actions/index";
+import { getCartItemsRequest, emptyCart, getUserProfile } from "../actions/index";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Cart from "../components/cart";

@@ -12,7 +12,10 @@ router.post('/', function(req, res, next) {
     database.getConnection(function(err, connection){
         connection.query("SELECT MAX(cartId) as maxC, MAX(transactionId) as maxT FROM cart", function(err, result){
             if (err) res.send({responseCode: "404"})
-            if (result.length > 0){
+            if(result.length == 0) {
+                res.send({responseCode: "200"});
+            }
+            else if (result.length > 0){
                 // console.log("result: " + JSON.stringify(result));
                 var nextCartId = result[0].maxC + 1;
                 var nextTransactionId = result[0].maxT + 1;

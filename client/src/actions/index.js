@@ -80,11 +80,11 @@ export function placeOrder(item) {
   };
 }
 
-export function emptyCart(item) {
-  const request = axios.post(route + "/shoppingCart", item);
+export function emptyCart() {
+  // const request = axios.post(route + "/shoppingCart");
   return {
     type: EMPTY_CART_REQUEST,
-    payload: request
+    payload: {items: []}
   };
 }
 
