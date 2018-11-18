@@ -12,7 +12,8 @@ import {
   GET_CART_ITEMS_REQUEST,
   GET_PAST_ORDERS_REQUEST,
   GET_CHECKOUT_CONTENTS_REQUEST,
-  LOGOUT_REQUEST
+  LOGOUT_REQUEST,
+  UPDATE_PAST_ORDERS
 } from "./action_constants";
 
 const route = "http://localhost:5000";
@@ -80,7 +81,6 @@ export function placeOrder(item) {
 }
 
 export function emptyCart() {
-  // const request = axios.post(route + "/shoppingCart");
   return {
     type: EMPTY_CART_REQUEST,
     payload: {items: []}
@@ -118,3 +118,11 @@ export function logout() {
     payload: request
   };
 }
+
+export function updatePastOrders(newPastOrders) {
+  return {
+    type: UPDATE_PAST_ORDERS,
+    payload: newPastOrders
+  };
+}
+

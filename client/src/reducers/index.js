@@ -7,6 +7,7 @@ import UpdateProfileReducer from './update_profile_reducer';
 import GetCheckoutReducer from './get_checkout_reducer';
 import GetCartItemsReducer from './get_cart_items_reducer';
 import GetPastOrdersReducer from './get_past_orders_reducer';
+import GetPastOrdersFormattedReducer from './past_orders_formatted_reducer';
 
 const rootReducer = combineReducers({
   login: LoginReducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   updateProfile: UpdateProfileReducer,
   checkoutContents: GetCheckoutReducer,
   cartItems :  GetCartItemsReducer,
-  pastOrders : GetPastOrdersReducer
+  pastOrders : GetPastOrdersReducer,
+  pastOrdersFormatted : GetPastOrdersFormattedReducer
 });
 
 export default rootReducer;

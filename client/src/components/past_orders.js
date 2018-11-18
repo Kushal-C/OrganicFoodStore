@@ -4,6 +4,7 @@ import Order from "../components/order.js";
 
 export default class PastOrders extends Component {
   render() {
+    console.log("ORDERS: " + JSON.stringify(this.props));
     return(
 
     <div className="row">
