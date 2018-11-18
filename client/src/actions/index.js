@@ -11,7 +11,8 @@ import {
   EMPTY_CART_REQUEST,
   GET_CART_ITEMS_REQUEST,
   GET_PAST_ORDERS_REQUEST,
-  GET_CHECKOUT_CONTENTS_REQUEST
+  GET_CHECKOUT_CONTENTS_REQUEST,
+  LOGOUT_REQUEST
 } from "./action_constants";
 
 const route = "http://localhost:5000";
@@ -108,6 +109,16 @@ export function getCheckoutItemsRequest(item) {
   const request = axios.post(route + "/estimatedroute", item);
   return {
     type: GET_CHECKOUT_CONTENTS_REQUEST,
+    payload: request
+  };
+}
+
+export function logout() {
+  const request = axios.post(route + "/logout");
+  console.log("Sending logout req");
+  console.log("Request ret value: " + JSON.stringify(request));
+  return {
+    type: LOGOUT_REQUEST,
     payload: request
   };
 }
