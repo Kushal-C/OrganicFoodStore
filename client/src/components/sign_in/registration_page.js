@@ -20,9 +20,9 @@ class RegistrationPage extends Component {
         address: "",
         city: "",
         state: "",
-        zipcode: "",
-        cardNumber: "",
-        expiryDate: "",
+        zipCode: "",
+        creditCardNumber: "",
+        expirationDate: "",
         cvc: ""
       };
     } else {
@@ -36,57 +36,38 @@ class RegistrationPage extends Component {
         address: "",
         city: "",
         state: "",
-        zipcode: "",
-        cardNumber: "",
-        expiryDate: "",
+        zipCode: "",
+        creditCardNumber: "",
+        expirationDate: "",
         cvc: ""
       };
     }
     this.onChange = this.onChange.bind(this);
+    this.register = this.register.bind(this);
   }
-
+  register(){
+    this.props.register(this.state);
+  }
   onChange(e) {
-    console.log(e);
     this.setState({ [e.target.name]: e.target.value });
   }
 
   render() {
-    return (
-      <div className="row" style={{margin:'20px'}}>
+    return <div className="row" style={{ margin: "20px" }}>
         <div className="col-md-12 card">
-          <h3 style={{margin:'20px'}}>Account Details</h3>
+          <h3 style={{ margin: "20px" }}>Account Details</h3>
           <br />
-          <AccountDetails
-            firstName={this.state.firstName}
-            lastName={this.state.lastName}
-            email={this.state.email}
-            phoneNumber={this.state.phoneNumber}
-            password={this.state.password}
-            confirmPassword={this.state.confirmPassword}
-            onChange={this.onChange}
-          />
+          <AccountDetails firstName={this.state.firstName} lastName={this.state.lastName} email={this.state.email} phoneNumber={this.state.phoneNumber} password={this.state.password} confirmPassword={this.state.confirmPassword} onChange={this.onChange} />
           <br />
           <h3>Payment Information</h3>
           <br />
-          <PaymentInformation
-            address={this.state.address}
-            city={this.state.city}
-            state={this.state.state}
-            zipcode={this.state.zipcode}
-            cardNumber={this.state.cardNumber}
-            expiryDate={this.state.expiryDate}
-            cvc={this.state.cvc}
-            onChange={this.onChange}
-          />
-          
-          <Link to='/' className="text-white btn btn-primary" style={{marginBottom:'20px', marginTop:'20px'}} >
-              <button onClick={this.props.register(this.state)}>
-                REGISTER
-              </button>
-           </Link>
+          <PaymentInformation address={this.state.address} city={this.state.city} state={this.state.state} zipCode={this.state.zipCode} creditCardNumber={this.state.creditCardNumber} expirationDate={this.state.expirationDate} cvc={this.state.cvc} onChange={this.onChange} />
+
+          <Link to="/" className="text-white btn btn-primary" onClick={this.register} style={{ marginBottom: "20px", marginTop: "20px" }}>
+            Register
+          </Link>
         </div>
-      </div>
-    );
+      </div>;
   }
 }
 
