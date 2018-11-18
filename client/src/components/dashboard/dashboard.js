@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import {Link} from 'react-router-dom';
+//import {Link} from 'react-router-dom';
 
 import SidebarContainer from "../../containers/side_bar_container";
 import ItemCardContainer from "../../containers/item_card_container";
+import TopBar from "../../containers/top_bar_container";
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -14,37 +15,29 @@ export default class Dashboard extends Component {
   }
 
   render() {
+
+    let categoryString = this.props.match.params.category;
+    categoryString = categoryString[0].toUpperCase() + categoryString.substring(1, categoryString.length);
+console.log("CATEGORY: " + this.props.match.params.category);
     return (
+      
       <div style={{minWidth:'1200px'}}>
-        <div className="row">
-          <div className="col-md-6 text-left" style={{marginTop: '10px'}}>
-            <h1 className="header-primary">OFS DELIVERY</h1>
-          </div>
-          <div className="col-md-6 text-right">
-            <Link to="/user">
-              <div className="dropdown">
-                <span className="badge badge-primary">
-                  {this.props.firstName + " " + this.props.lastName}
-                </span>
-              </div>
-            </Link>
-          </div>
-        </div>
-        <div className="row">
-          <SidebarContainer match={this.props.match} style={{height:'100%'}}/>
-          <div className="row col-md-9" >
-          <div className="fetitem col-md-12"> Featured Items</div>
-            {this.props.item_props.map(function(item, index){
-              return (
-              <ItemCardContainer
-                name = {item.name}
-                description = {item.description}
-                imageLink = {item.imageLink}
-                cost = {item.cost}
-                weight = {item.weight}
-                weight_unit = {item.weight_unit}
-                key={index}/>);
-            })}
+      <div className="row">
+        <SidebarContainer match={this.props.match} style={{height:'100%'}}/>
+          <div className="row col-md-9" style={{margin:'0px', padding:'0px'}} >
+            <TopBar />
+            <div className="catitem col-md-12"> {categoryString}</div>
+              {this.props.item_props.map(function(item, index){
+                return (
+                <ItemCardContainer
+                  name = {item.name}
+                  description = {item.description}
+                  imageLink = {item.imageLink}
+                  cost = {item.cost}
+                  weight = {item.weight}
+                  weight_unit = {item.weight_unit}
+                  key={index}/>);
+              })}
           </div>
         </div>
       </div>
