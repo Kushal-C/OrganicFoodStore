@@ -7,10 +7,8 @@ const database = require('../config/dbconfig').mysql_pool;
 
 
 router.post("/", (req, res) => {
-    console.log("Registration button pressed");
-
     database.getConnection((err, connection) => {
-        if (err) throw err;  
+        if (err) throw err;
         console.log("Connected!");
         const sql = "INSERT INTO user (firstName, lastName, email, phoneNumber, password, address, city, state, zipcode, creditCardNumber, expirationDate, cvc) \
                         VALUES('" +
