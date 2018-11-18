@@ -45,7 +45,7 @@ li {
 
 .col-md-3{
   padding: 0px;
-  margin: 3px;
+  margin-bottom: 15px;
 }
 .col-md-9{
   margin-left:5px;
@@ -66,7 +66,7 @@ li:hover{
   color: white;
 }
 
-.fetitem{
+.catitem{
   font-size: 20px;
   font-weight: bold;
   border-bottom: 1px solid rgb(231, 231, 231);
@@ -80,4 +80,16 @@ li:hover{
 .head-title{
   margin: 15px;
   border-bottom: 1px solid rgb(231, 231, 231);
+}
+
+.no-hover{
+  pointer-events: none;
+}
+
+.topbar{
+  border-bottom: 1px solid rgb(231, 231, 231);
+  margin-bottom: 10px;
+  height: 58px;
+  background-color: #fff;
+
 }

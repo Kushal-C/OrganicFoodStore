@@ -23,8 +23,6 @@ class RegistrationContainer extends Component {
         phoneNumber: ""
       };
     }
-
-    console.log(this.state);
   }
   render() {
     return (

@@ -1,10 +1,18 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { logout } from "../actions/index";
+
 class Sidebar extends Component {
+
+  logoutReq() {
+    logout();
+  }
+
   render() {
     return (
       <div className="col-md-3">
         <ul>
+          <li className="no-hover" style={{fontWeight:'bold',fontSize:'27px'}}>OFS Delivery</li>
           <Link to="/dashboard/featured" style={{ textDecoration: "none" }}>
             <li onClick={this.props.routeUpdate}>Featured Items</li>
           </Link>
@@ -20,20 +28,14 @@ class Sidebar extends Component {
           <Link to="/dashboard/snacks" style={{ textDecoration: "none" }}>
             <li onClick={this.props.routeUpdate}>Snacks</li>
           </Link>
-          <Link to="/dashboard/utensils" style={{ textDecoration: "none" }}>
-            <li onClick={this.props.routeUpdate}>Utensils</li>
-          </Link>
-          <Link to="/dashboard/medicine" style={{ textDecoration: "none" }}>
-            <li onClick={this.props.routeUpdate}>Medicine</li>
-          </Link>
-          <Link to="/dashboard/assorted" style={{ textDecoration: "none" }}>
-            <li onClick={this.props.routeUpdate}>Other</li>
-          </Link>
-          <Link to="/pastorders" style={{ textDecoration: "none" }}>
+          <Link to="/dashboard/pastorders" style={{ textDecoration: "none" }}>
             <li>Past Orders</li>
           </Link>
-          <Link to="/cart" style={{ textDecoration: "none" }}>
+          <Link to="/dashboard/cart" style={{ textDecoration: "none" }}>
             <li>Shopping Cart</li>
+          </Link>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <li onClick={ () => this.logoutReq()}>Sign Out</li>
           </Link>
         </ul>
       </div>

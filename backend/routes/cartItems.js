@@ -5,7 +5,7 @@ var cors = require('cors')
 const database = require('../config/dbconfig').mysql_pool;
 router.all('*', cors());
 
-router.get('/', (req, res, next) => {
+router.post('/', (req, res, next) => {
     database.getConnection(function(err, connection){
         var cId = req.body.cartId;
         var itemsQuery = "SELECT p.productId as productId, p.productName as name, p.description as description, c.quantity as number, p.cost * c.quantity as 'cost', p.weight * c.quantity as 'weight', p.weightUnit as weight_unit \

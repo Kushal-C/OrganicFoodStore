@@ -1,50 +1,44 @@
 import React, { Component } from "react";
-/*
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-*/
+import { getCheckoutItemsRequest } from "../actions/index";
 import Checkout from "../components/checkout/checkout";
 
 class CheckoutContainer extends Component {
   state = {
-    payload: null
+    orderId: 1
   };
 
+  componentWillMount() {
+    let path_names = this.props.location.pathname.split('/');
+    let id = path_names[path_names.length - 1];
+    this.state.orderId = id;
+    this.props.checkoutContentsReq({ "userId": this.props.login[0].userId, "transactionId": this.state.orderId });
+  }
+
   render() {
-    return (
-      <Checkout
-        checkoutContents={{
-          origin: "S 4th St, San Jose, CA 95112",
-          destination: "2293 Cabrillo Ave Santa Clara, CA 95050",
-          arrival_time: "40 minutes",
-          order_status: "In route",
-          items: [
-            { name: "Red Baron's Pizza", quantity: 1 },
-            { name: "Strawberries", quantity: 2 }
-          ],
-          total_weight: "3",
-          weight_unit: "lbs",
-          price: "8.99",
-          tax: "0.89",
-          total_cost: "9.89"
-        }}
-      />
-    );
+    if(!this.props.checkoutContents) {
+      return (
+        <div>Loading...</div>
+      )
+    }
+    else {
+      return (
+        <Checkout checkoutContents={this.props.checkoutContents} />
+      );
+    }
   }
 }
-/*
+
 function mapStateToProps(state) {
-  return { checkoutContents : state.checkoutContents};
+  return { checkoutContents : state.checkoutContents, login : state.login};
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ checkoutContents : getCheckoutContents }, dispatch);
+  return bindActionCreators({ checkoutContentsReq : getCheckoutItemsRequest }, dispatch);
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(CheckoutContainer);
-*/
-
-export default CheckoutContainer;
