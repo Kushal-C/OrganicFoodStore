@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 
 import SidebarContainer from "../../containers/side_bar_container";
 import ItemCardContainer from "../../containers/item_card_container";
+import CartContainer from "../../containers/cart_container";
+import PastOrdersContainer from "../../containers/past_orders_container";
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -14,14 +16,45 @@ export default class Dashboard extends Component {
   }
 
   getCategory() {
-    console.log("match: " + JSON.stringify(this.props.match.params.category));
     let categoryName = this.props.match.params.category;
     categoryName = categoryName[0].toUpperCase() + categoryName.substring(1, categoryName.length);
     return categoryName;
   }
 
-  render() {
+  displayComponent() {
+    if(this.props.match.params.category == "cart") {
+      console.log("Rendering cart container component!");
+      return (
+        <CartContainer />
+      )
+    }
+    else if(this.props.match.params.category == "pastorders") {
+      console.log("Rendering past orders container component!");
+      return(
+        <PastOrdersContainer />
+      );
+    }
+    else {
+      console.log("Rendering item card container component!");
+      return(
+        this.props.item_props.map(function(item, index){
+          return (
+          <ItemCardContainer
+            name = {item.name}
+            description = {item.description}
+            imageLink = {item.imageLink}
+            cost = {item.cost}
+            weight = {item.weight}
+            weight_unit = {item.weight_unit}
+            key={index}/>);
+        })
+      )
+    }
 
+  }
+
+  render() {
+    console.log("match val: " + JSON.stringify(this.props.match.params));
     return (
       <div style={{minWidth:'1200px'}}>
         <div className="row">
@@ -42,17 +75,7 @@ export default class Dashboard extends Component {
           <SidebarContainer match={this.props.match} style={{height:'100%'}}/>
           <div className="row col-md-9" >
           <div className="fetitem col-md-12"> {this.getCategory()}</div>
-            {this.props.item_props.map(function(item, index){
-              return (
-              <ItemCardContainer
-                name = {item.name}
-                description = {item.description}
-                imageLink = {item.imageLink}
-                cost = {item.cost}
-                weight = {item.weight}
-                weight_unit = {item.weight_unit}
-                key={index}/>);
-            })}
+            {this.displayComponent()}
           </div>
         </div>
       </div>

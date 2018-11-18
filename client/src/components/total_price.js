@@ -33,7 +33,7 @@ export default class TotalPrice extends Component {
   render() {
     return (
       <div className="card">
-        <h4>Total Price</h4>
+        <h4 className="head-title">Total Price</h4>
         <div className="dropdown-divider" />
         <div className="row">
           <div className="col text-left">${this.props.price} </div>
