@@ -9,9 +9,10 @@ router.all('*', cors());
 var passport = require('passport');
 
 
-router.get('/logout', function(req, res) {
-	req.logout();
-    console.log("logged out");
+router.post('/', function(req, res) {
+    req.logout();
+    console.log("logged out on server side");
+    res.send({responseCode: "200"});
 });
 
-module.exports = router;  
+module.exports = router;

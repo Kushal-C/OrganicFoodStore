@@ -78,7 +78,7 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
- 
+
 // Setup routers for route calls
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -91,7 +91,7 @@ app.use('/shoppingcart', shoppingCartRouter);
 app.use('/cartitems', cartItemsRouter);
 app.use('/cart-add', addToCartRouter);
 app.use('/cart-delete', deleteFromCartRouter);
-app.use('/api/logout/', logoutRouter);
+app.use('/logout/', logoutRouter);
 
 
 // catch 404 and forward to error handler
