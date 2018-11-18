@@ -19,9 +19,9 @@ class UserProfile extends Component {
         address: "",
         city: "",
         state: "",
-        zipcode: "",
-        cardNumber: "",
-        expiryDate: "",
+        zipCode: "",
+        creditCardNumber: "",
+        expirationDate: "",
         cvc: ""
       };
     }
@@ -30,7 +30,21 @@ class UserProfile extends Component {
     }
     
     this.onChange = this.onChange.bind(this);
+    this.updateProfile = this.updateProfile.bind(this);
   }
+
+  updateProfile(){
+    if(this.state.password !== this.state.confirmPassword){
+      alert("Passwords don't match");
+    }
+    else if (this.state.password.length === 0 || this.state.confirmPassword.length === 0){
+      alert('Please properly enter your password in both fields');
+    }
+    else {
+      this.props.updateProfile(this.state, this.props.userId);
+    }
+  }
+
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -57,13 +71,13 @@ class UserProfile extends Component {
             address={this.state.address}
             city={this.state.city}
             state={this.state.state}
-            zipcode={this.state.zipcode}
-            cardNumber={this.state.cardNumber}
-            expiryDate={this.state.expiryDate}
+            zipCode={this.state.zipCode}
+            creditCardNumber={this.state.creditCardNumber}
+            expirationDate={this.state.expirationDate}
             cvc={this.state.cvc}
             onChange={this.onChange}
           />
-          <Link to="/dashboard/featured" className="text-white btn btn-primary" style={{marginBottom:'20px', marginTop:'20px'}}>
+          <Link to="/dashboard/featured" className="text-white btn btn-primary" onClick={this.updateProfile} style={{marginBottom:'20px', marginTop:'20px'}}>
             UPDATE PROFILE
           </Link>
         </div>

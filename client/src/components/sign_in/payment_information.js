@@ -31,31 +31,31 @@ export default class PaymentInformation extends Component {
                 />
                 <label htmlFor="zipcode" className="col-form-label">Zip</label>
                 <Input
-                    name="zipcode"
+                    name="zipCode"
                     onChange={this.props.onChange}
-                    value={this.props.zipcode}
+                    value={this.props.zipCode}
                     type="number"
-                    id="zipcode"
+                    id="zipCode"
                     error_msg="Invalid Zip Code"
                     min_input_length={5}
                 />
                 <label htmlFor="cardNumber" className="col-form-label">Card Number</label>
                 <Input
-                    value={this.props.cardNumber}
+                    value={this.props.creditCardNumber}
                     onChange={this.props.onChange}
                     type="number"
-                    name="cardNumber"
-                    id="cardNumber"
+                    name="creditCardNumber"
+                    id="creditCardNumber"
                     min_input_length={16}
                     error_msg="Invalid Credit Card Number"
                 />
                 <label htmlFor="expiryDate" className="col-form-label">Expiry</label>
                 <Input
-                    value={this.props.expiryDate}
+                    value={this.props.expirationDate}
                     onChange={this.props.onChange}
                     type="number"
-                    name="expiryDate"
-                    id="expiryDate"
+                    name="expirationDate"
+                    id="expirationDate"
                     min_input_length={5}
                     error_msg="Invalid Expiry Date"
                 />

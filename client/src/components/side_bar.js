@@ -9,10 +9,11 @@ class Sidebar extends Component {
   }
 
   render() {
-    return (
-      <div className="col-md-3">
+    return <div className="col-md-3">
         <ul>
-          <li className="no-hover" style={{fontWeight:'bold',fontSize:'27px'}}>OFS Delivery</li>
+          <li className="no-hover" style={{ fontWeight: "bold", fontSize: "27px" }}>
+            OFS Delivery
+          </li>
           <Link to="/dashboard/featured" style={{ textDecoration: "none" }}>
             <li onClick={this.props.routeUpdate}>Featured Items</li>
           </Link>
@@ -34,12 +35,11 @@ class Sidebar extends Component {
           <Link to="/dashboard/cart" style={{ textDecoration: "none" }}>
             <li>Shopping Cart</li>
           </Link>
-          <Link to="/" style={{ textDecoration: "none" }}>
-            <li onClick={ () => this.logoutReq()}>Sign Out</li>
+          <Link to="/" style={{ textDecoration: "none", color: "#e74c3c" }}>
+            <li onClick={() => this.logoutReq()}>Sign Out</li>
           </Link>
         </ul>
-      </div>
-    );
+      </div>;
   }
 }
 
