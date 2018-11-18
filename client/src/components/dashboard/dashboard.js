@@ -36,9 +36,10 @@ export default class Dashboard extends Component {
     else {
       return(
         this.props.item_props.map(function(item, index){
+          console.log(item);
           return (
           <ItemCardContainer
-            name = {item.name}
+            name = {item.productName}
             description = {item.description}
             imageLink = {item.imageLink}
             cost = {item.cost}

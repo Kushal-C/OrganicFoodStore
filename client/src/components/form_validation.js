@@ -31,9 +31,11 @@ export default class FormValidation extends Component {
   }
 
   isValidField() {
-    if (this.props.value.length < 1) {
+    if (this.props.value.length < 1) 
+    {
       this.setState({fieldIsValid: false})
-    } else {
+    } 
+    else {
       let req = this.isValidLength() && this.hasRequiredCharacters();
       if(req){
         this.setState({className:"form-control is-valid"})
