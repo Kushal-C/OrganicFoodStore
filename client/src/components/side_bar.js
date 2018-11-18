@@ -28,7 +28,7 @@ class Sidebar extends Component {
           <Link to="/dashboard/snacks" style={{ textDecoration: "none" }}>
             <li onClick={this.props.routeUpdate}>Snacks</li>
           </Link>
-          <Link to="/pastorders" style={{ textDecoration: "none" }}>
+          <Link to="/dashboard/pastorders" style={{ textDecoration: "none" }}>
             <li>Past Orders</li>
           </Link>
           <Link to="/cart" style={{ textDecoration: "none" }}>

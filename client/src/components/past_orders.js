@@ -7,8 +7,6 @@ export default class PastOrders extends Component {
     return(
 
     <div className="row">
-      <Sidebar/>
-      <div className="col-md-8">
     {this.props.orders.map(function(order){
       return (
 
@@ -22,7 +20,6 @@ export default class PastOrders extends Component {
       </div>
 
     )})}
-    </div>
 </div>
     )}
 }
