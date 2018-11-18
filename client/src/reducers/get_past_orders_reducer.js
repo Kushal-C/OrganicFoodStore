@@ -1,9 +1,8 @@
-import {GET_ITEMS_REQUEST } from "../actions/action_constants";
+import { GET_PAST_ORDERS_REQUEST } from "../actions/action_constants";
 
 export default function (state = null, action) {
     switch (action.type) {
-        case GET_ITEMS_REQUEST:
-            console.log("GET ITEMS REQUEST RECEIVED BY REDUCER");
+        case GET_PAST_ORDERS_REQUEST:
             return action.payload.data;
         default:
             return state;

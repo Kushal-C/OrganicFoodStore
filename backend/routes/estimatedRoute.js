@@ -19,7 +19,6 @@ router.post("/", (req, res, next) => {
           var uId = req.body.userId;
           var tId = req.body.transactionId;
           var sql = "SELECT address, city FROM user WHERE userId = " + uId;
-          
           //get closest store and delivery time
           connection.query(sql, function(err, result){                                              //queries for address of user, if no such user error response sent to frontend
             if (err) throw err;
@@ -30,7 +29,7 @@ router.post("/", (req, res, next) => {
                 // ua = "402 N El Camino Real, San Mateo, CA 94401"
                 // ua = "1 Washington Square san jose"
                 // ua = "fasdf san juoadf"
-                
+              
                 ua = result[0].address + ", " + result[0].city;
                 var st = Date.now();
                 r = googleMapsClient.distanceMatrix(
@@ -79,7 +78,7 @@ router.post("/", (req, res, next) => {
             else {
                 res.send({responseCode: "404",
                             reason: "No such userId"});
-            }   
+            }
           });
           sql = "SELECT p.productName, c.quantity \
                     FROM product p, (SELECT productId, quantity FROM cart WHERE userId = " + uId+ " AND transactionId = "+tId+") c\
@@ -117,8 +116,8 @@ router.post("/", (req, res, next) => {
                 res.send({responseCode: "404",
                         reason: "Nothing in cart"});
             }
-          });      
+          });
       });
   });
 
-module.exports = router; 
+module.exports = router;

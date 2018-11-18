@@ -6,13 +6,16 @@ const database = require('../config/dbconfig').mysql_pool;
 router.all('*', cors());
 
 // Validates a shopping cart by adding a transaction (the order is confirmed by user)
-router.get('/', function(req, res, next) {
+router.post('/', function(req, res, next) {
     // console.log("req: " + JSON.stringify(req.body))
-    // console.log("req item size: " +  req.body.items.length) 
+    // console.log("req item size: " +  req.body.items.length)
     database.getConnection(function(err, connection){
         connection.query("SELECT MAX(cartId) as maxC, MAX(transactionId) as maxT FROM cart", function(err, result){
             if (err) res.send({responseCode: "404"})
-            if (result.length > 0){
+            if(result.length == 0) {
+                res.send({responseCode: "200"});
+            }
+            else if (result.length > 0){
                 // console.log("result: " + JSON.stringify(result));
                 var nextCartId = result[0].maxC + 1;
                 var nextTransactionId = result[0].maxT + 1;
@@ -28,7 +31,7 @@ router.get('/', function(req, res, next) {
                     q = req.body.items[i].quantity;
                     insertItemsQuery = "INSERT INTO cart (cartId, transactionId, productId, quantity, userId, total_weight, total_cost) VALUES (" + nextCartId + ", "
                                         + nextTransactionId + ", "
-                                        + pid + ", " 
+                                        + pid + ", "
                                         + q + ", "
                                         + uid + ", \
                                         (SELECT p.weight * " + q + " as 'totalWeight' FROM product p WHERE p.productId = " + pid +" LIMIT 1),\

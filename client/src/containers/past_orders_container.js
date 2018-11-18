@@ -1,47 +1,45 @@
 import React, { Component } from "react";
 import PastOrders from "../components/past_orders";
+import { getPastOrdersRequest, getUserProfile } from "../actions/index";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 
-export default class PastOrdersContainer extends Component {
+class PastOrdersContainer extends Component {
+
+  componentWillMount(){
+    this.props.getPastOrders({userId : this.props.login[0].userId});
+  }
+
   render() {
-    // return <PastOrders orders = {this.props.orders}></PastOrders>;
-    return <PastOrders orders = {
-      [
-        {
-          status : "processed",
-          contents:
-          [
-            {
-              name: "cake",
-              quantity : 5,
-              cost: 20
-            },
-            {
-              name: "pie",
-              quantity : 5,
-              cost: 20
-            }
-          ],
-          total_cost : 40
-        },
-        {
-          status : "processed",
-          contents:
-          [
-            {
-              name: "Brocolli",
-              quantity : 10,
-              cost: 20
-            },
-            {
-              name: "Mango",
-              quantity : 2,
-              cost: 4
-            }
-          ],
-          total_cost : 40
-        }
-      ]
 
-    }></PastOrders>
+    if(!this.props.pastOrders) {
+      return (
+        <div>Loading...</div>
+      )
+    }
+    else {
+      return (
+        <div>
+          <PastOrders orders = {this.props.pastOrders.data}></PastOrders>
+        </div>
+      );
+    }
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    pastOrders: state.pastOrders,
+    login: state.login,
+    profile: state.profile,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ getPastOrders: getPastOrdersRequest, getUserProfile: getUserProfile }, dispatch);
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PastOrdersContainer);

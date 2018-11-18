@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Link} from "react-router-dom";
 
 //Takes in a list of properties:
 //-Order status
@@ -7,6 +8,7 @@ import React, { Component } from "react";
 //-Total price
 export default class Order extends Component {
   render() {
+    var routingLink = "/checkout/view/" + this.props.orderId;
     return (
       <div class="card">
         <div class="card-body">
@@ -17,6 +19,7 @@ export default class Order extends Component {
             )
           })}
           <h5>Total Cost: ${this.props.total_cost}</h5>
+          <button className="btn btn-primary"><Link className="text-white" to={routingLink}>View Order</Link></button>
         </div>
       </div>
     );
