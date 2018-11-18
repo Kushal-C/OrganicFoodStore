@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import {addToCart} from '../actions/index';
+import { addToCart } from '../actions/index';
 import ItemCard from "../components/dashboard/item_card";
 
 class ItemCardContainer extends Component {
   render() {
     return (
-      <ItemCard 
+      <ItemCard
         addToCart={this.props.addToCart}
         name={this.props.name}
         description={this.props.description}
@@ -28,7 +28,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ addToCart: addToCart}, dispatch);
+  return bindActionCreators({ addToCart: addToCart }, dispatch);
 }
 
 export default connect(

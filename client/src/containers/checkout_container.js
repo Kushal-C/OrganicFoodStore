@@ -13,7 +13,7 @@ class CheckoutContainer extends Component {
     let path_names = this.props.location.pathname.split('/');
     let id = path_names[path_names.length - 1];
     this.state.orderId = id;
-    this.props.checkoutContentsReq({ userId: this.props.userId, orderId: this.state.orderId });
+    this.props.checkoutContentsReq({ "userId": this.props.login[0].userId, "transactionId": this.state.orderId });
   }
 
   render() {

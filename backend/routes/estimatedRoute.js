@@ -29,7 +29,7 @@ router.post("/", (req, res, next) => {
                 // ua = "402 N El Camino Real, San Mateo, CA 94401"
                 // ua = "1 Washington Square san jose"
                 // ua = "fasdf san juoadf"
-              
+
                 ua = result[0].address + ", " + result[0].city;
                 var st = Date.now();
                 r = googleMapsClient.distanceMatrix(
@@ -57,8 +57,8 @@ router.post("/", (req, res, next) => {
                         var d1 = parseFloat(distance1.substring(1, distance1.length - 3))               //parses distance to float from string
                         var d2 = parseFloat(distance2.substring(1, distance2.length - 3))
                         unit1 === 'ft' ? d1 /= 5280 : d1;                                               //checks units are not in ft, if they are convert to mi
-                        unit2 === 'ft' ? d2 /= 5280 : d2;                                          
-                
+                        unit2 === 'ft' ? d2 /= 5280 : d2;
+
                         if (d1 > d1){
                             r = {origin: storeGeoLocs[1], deliveryInfo: response.json.rows[1]};
                             // console.log("HI 1: " +JSON.stringify(r));
@@ -97,7 +97,7 @@ router.post("/", (req, res, next) => {
                         var totalcost = price+tax;
                         res.send({  origin: ua,
                                     destination: "1984 Los Padres Blvd Santa Clara, CA 95050",
-                                    arrival_time: r,
+                                    arrival_time: "40 Minutes",
                                     order_status: "In route",
                                     items: items,
                                     total_weight: weight,

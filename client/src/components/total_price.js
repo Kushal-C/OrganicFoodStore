@@ -9,11 +9,9 @@ export default class TotalPrice extends Component {
   }
 
   emptyCart() {
-    console.log("Before cart items empty cart: " + JSON.stringify(this.props.cartItems.items));
     if(this.props.cartItems.items.length > 0) {
       this.props.emptyCart();
     }
-    console.log("After cart items empty cart: " + JSON.stringify(this.props.cartItems.items));
   }
 
   generateRequestPayload() {
