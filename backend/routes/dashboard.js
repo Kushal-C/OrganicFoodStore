@@ -12,7 +12,7 @@ router.get("/featured", (req, res) => {
 	database.getConnection((err, connection) => {
 		if (err) throw err;  
 
-        connection.query("SELECT productName, description, imageLink, cost, weight, weightUnit FROM `product` ORDER BY rand() LIMIT 10;", (error, result, fields) => {
+        connection.query("SELECT productId, productName, description, imageLink, cost, weight, weightUnit FROM `product` ORDER BY rand() LIMIT 10;", (error, result, fields) => {
 			// When done with the connection, release it.
 			connection.release();
               // Handle error after the release.
@@ -42,7 +42,7 @@ router.get("/groceries",  (req, res) => {
 
 	database.getConnection((err, connection) => {
 		if (err) throw err; 		
-        connection.query("SELECT productName, description, imageLink, cost, weight, weightUnit FROM `product` WHERE  category='grocery' LIMIT 10;", (error, result, fields) => {        
+        connection.query("SELECT productId, productName, description, imageLink, cost, weight, weightUnit FROM `product` WHERE  category='grocery' LIMIT 10;", (error, result, fields) => {        
             // When done with the connection, release it.
 			connection.release();
               // Handle error after the release.
@@ -63,7 +63,7 @@ router.get("/groceries",  (req, res) => {
 router.get("/bakery", (req, res) => {
     database.getConnection((err, connection) => {
 		if (err) throw err; 		
-        connection.query("SELECT productName, description, imageLink, cost, weight, weightUnit FROM `product` WHERE  category='bakery' LIMIT 10;", (error, result, fields) => {
+        connection.query("SELECT productId, productName, description, imageLink, cost, weight, weightUnit FROM `product` WHERE  category='bakery' LIMIT 10;", (error, result, fields) => {
 			// When done with the connection, release it.
 			connection.release();
               // Handle error after the release.
@@ -81,7 +81,7 @@ router.get("/bakery", (req, res) => {
 router.get("/drinks", (req, res) => {
     database.getConnection((err, connection) => {
         if (err) throw err; 	
-    	connection.query("SELECT productName, description, imageLink, cost, weight, weightUnit FROM `product` WHERE  category='drink' LIMIT 10;", (error, result, fields) => {
+    	connection.query("SELECT productId, productName, description, imageLink, cost, weight, weightUnit FROM `product` WHERE  category='drink' LIMIT 10;", (error, result, fields) => {
 			// When done with the connection, release it.
 			connection.release();
               // Handle error after the release.
@@ -98,7 +98,7 @@ router.get("/drinks", (req, res) => {
 router.get("/snacks", (req, res) => {
     database.getConnection((err, connection) => {
         if (err) throw err;
-        connection.query("SELECT productName, description, imageLink, cost, weight, weightUnit FROM `product` WHERE  category='snack' LIMIT 10;", (error, result, fields) => {
+        connection.query("SELECT productId, productName, description, imageLink, cost, weight, weightUnit FROM `product` WHERE  category='snack' LIMIT 10;", (error, result, fields) => {
 			// When done with the connection, release it.
 			connection.release();
               // Handle error after the release.
