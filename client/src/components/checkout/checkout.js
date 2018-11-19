@@ -79,19 +79,12 @@ export default class Checkout extends Component {
             <Map
               origin={this.props.checkoutContents.origin}
               destination={this.props.checkoutContents.destination}
-            />;
+            />
           </div>
-          <div className="card" style={{ width: "100%" }}>
-            <div className="row col-md-12" style={{ marginTop:'10px', marginBottom:'10px' }}>
-              <div className="col-md-6 text-left">
-                <CountdownTimer />
-              </div>
-              <div className="col-md-6 text-right">
-                Order Status: {this.props.checkoutContents.order_status}
-              </div>
+            <div className="col-md-6 text-left">
+              <CountdownTimer orderStatus = { this.props.checkoutContents.orderStatus } />
             </div>
-          </div>
-        </div>
+            </div>
         <div className="col-md-3">
           <div className="card" style={{ width: "100%", marginLeft:'10px', marginBottom:'10px', padding:'20px'}}>
             <p className="head-title"> Order Details</p>

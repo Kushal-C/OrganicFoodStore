@@ -26,6 +26,7 @@ export default class CoundownTimer extends Component {
 
     if (this.state.initialSeconds == 0) {
       clearInterval(this.timeHandler);
+
     }
   }
 
@@ -34,10 +35,34 @@ export default class CoundownTimer extends Component {
   }
 
   render() {
-    return(
-      <div>
-        Arrival Time {this.state.currentTime} Seconds
+    if(this.state.initialSeconds == 0) {
+      alert("Order has arrived");
+      return(
+        <div className="card" style={{ width: "207%" }}>
+          <div className="row col-md-12" style={{ marginTop:'10px', marginBottom:'10px' }}>
+            <div className="col-md-6 text-left">
+              Arrival Time: {this.state.currentTime}
+            </div>
+            <div className="col-md-6 text-right">
+              Order Status: Complete
+          </div>
+        </div>
       </div>
-    );
+      );
+    }
+    else {
+      return (
+        <div className="card" style={{ width: "207%" }}>
+          <div className="row col-md-12" style={{ marginTop:'10px', marginBottom:'10px' }}>
+            <div className="col-md-6 text-left">
+              Arrival Time: {this.state.currentTime}
+            </div>
+            <div className="col-md-6 text-right">
+              Order Status: {this.props.order_status}
+          </div>
+        </div>
+      </div>
+      );
+    }
   }
 }
