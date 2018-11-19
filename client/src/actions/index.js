@@ -47,8 +47,8 @@ export function getUserProfile(id) {
   };
 }
 
-export function updateUserProfile(profile) {
-  const request = axios.post(route + "/api/profile", profile);
+export function updateUserProfile(profile, id) {
+  const request = axios.post(route + `/api/profile/${id}`, profile);
   return {
     type: UPDATE_USER_PROFILE,
     payload: request
@@ -64,10 +64,9 @@ export function purchase(userId) {
 }
 
 export function addToCart(item) {
-  const request = axios.post(route + "/dashboard/featured", item);
   return {
     type: ADD_TO_CART_REQUEST,
-    payload: request
+    payload: item
   };
 }
 
