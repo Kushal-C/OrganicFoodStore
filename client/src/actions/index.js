@@ -12,7 +12,9 @@ import {
   GET_CART_ITEMS_REQUEST,
   GET_PAST_ORDERS_REQUEST,
   GET_CHECKOUT_CONTENTS_REQUEST,
-  LOGOUT_REQUEST
+  LOGOUT_REQUEST,
+  ADMIN_ADD_REQ,
+  ADMIN_GET_REQ
 } from "./action_constants";
 
 const route = "http://localhost:5000";
@@ -114,6 +116,24 @@ export function logout() {
   const request = axios.post(route + "/logout");
   return {
     type: LOGOUT_REQUEST,
+    payload: request
+  };
+}
+
+export function adminAddReq(item) {
+  const request = axios.post(route + "/admin-add", item);
+  console.log("Admin add req called");
+  return {
+    type: ADMIN_ADD_REQ,
+    payload: request
+  };
+}
+
+export function adminGetItemsReq(item) {
+  const request = axios.post(route + "/admin-get-products");
+  console.log("Admin Get Items Req called");
+  return {
+    type: ADMIN_GET_REQ,
     payload: request
   };
 }
