@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Link} from 'react-router-dom';
 
 export default class TotalPrice extends Component {
   constructor(props){
@@ -37,7 +38,7 @@ export default class TotalPrice extends Component {
       tax = price * .1;
       total_cost = price + tax;
     }
-    
+
     return (
       <div className="card" style={{padding:'20px'}}>
         <h4 className="head-title">Total Price</h4>
@@ -70,7 +71,7 @@ export default class TotalPrice extends Component {
               className="btn btn-primary"
               onClick={this.placeOrder}
             >
-            Place order
+            <Link className="text-white" to="/dashboard/pastorders">Place Order</Link>
             </button>
           </div>
         </div>
