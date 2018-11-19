@@ -49,8 +49,8 @@ export function getUserProfile(id) {
   };
 }
 
-export function updateUserProfile(profile, id) {
-  const request = axios.post(route + `/api/profile/${id}`, profile);
+export function updateUserProfile(profile) {
+  const request = axios.post(route + `/update-user-info`, profile);
   return {
     type: UPDATE_USER_PROFILE,
     payload: request

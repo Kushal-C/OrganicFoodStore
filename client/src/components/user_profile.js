@@ -35,7 +35,7 @@ class UserProfile extends Component {
   componentWillMount(){
     this.setState({ confirmPassword: "" });
   }
-  
+
   updateProfile(){
     if(this.state.password !== this.state.confirmPassword){
       alert("Passwords don't match");
@@ -44,7 +44,7 @@ class UserProfile extends Component {
       alert('Please properly enter your password in both fields');
     }
     else {
-      this.props.updateProfile(this.state, this.props.userId);
+      this.props.updateProfile(this.state);
     }
   }
 
