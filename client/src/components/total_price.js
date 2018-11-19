@@ -31,7 +31,7 @@ export default class TotalPrice extends Component {
 
   render() {
     return (
-      <div className="card">
+      <div className="card" style={{padding:'20px'}}>
         <h4 className="head-title">Total Price</h4>
         <div className="dropdown-divider" />
         <div className="row">
@@ -49,7 +49,7 @@ export default class TotalPrice extends Component {
         </div>
         <div className="dropdown-divider" />
         <div className="row">
-          <div className="col text-left">
+          <div className="col-md-6 text-left">
             <button
               className="btn btn-secondary"
               onClick={() => this.emptyCart()}
@@ -57,7 +57,7 @@ export default class TotalPrice extends Component {
               Empty Cart
             </button>
           </div>
-          <div className="col text-right">
+          <div className="col-md-6 text-right">
             <button
               className="btn btn-primary"
               onClick={() =>this.placeOrder()}

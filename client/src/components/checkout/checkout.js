@@ -72,16 +72,16 @@ export default class Checkout extends Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="col-md-8">
+      <div className="row col-md-12">
+        <div className="row col-md-9">
           <div style={{ height: "150%", width: "150%" }}>
             <Map
               origin={this.props.checkoutContents.origin}
               destination={this.props.checkoutContents.destination}
             />;
           </div>
-          <div className="card">
-            <div className="row">
+          <div className="card" style={{ width: "100%" }}>
+            <div className="row col-md-12" style={{ marginTop:'10px', marginBottom:'10px' }}>
               <div className="col-md-6 text-left">
                 Arrival Time: {this.props.checkoutContents.arrival_time}
               </div>
@@ -91,9 +91,9 @@ export default class Checkout extends Component {
             </div>
           </div>
         </div>
-        <div className="col-md-4">
-          <div className="card">
-            <p>Order Details</p>
+        <div className="col-md-3">
+          <div className="card" style={{ width: "100%", marginLeft:'10px', marginBottom:'10px', padding:'20px'}}>
+            <p className="head-title"> Order Details</p>
             <div className="dropdown-divider" />
             <div>
             {/* {this.props.checkoutContents.items.map(function(item, key) {
@@ -107,14 +107,13 @@ export default class Checkout extends Component {
               )
             })} */}
             </div>
-            <div class="dropdown-divider" />
             <p>
               Total Weight: {this.props.checkoutContents.total_weight}{" "}
               {this.props.checkoutContents.weight_unit}
             </p>
           </div>
-          <div className="card">
-            <p>Total Price</p>
+          <div className="card" style={{ width: "100%", marginLeft:'10px', marginBottom:'10px', padding:'20px' }}>
+            <p className="head-title">Total Price</p>
             <div class="dropdown-divider" />
             <div className="row">
               <div class="col-md-6">
