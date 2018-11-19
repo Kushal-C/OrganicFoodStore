@@ -6,6 +6,7 @@ import ItemCardContainer from "../../containers/item_card_container";
 import TopBar from "../../containers/top_bar_container";
 import CartContainer from "../../containers/cart_container";
 import PastOrdersContainer from "../../containers/past_orders_container";
+import CheckoutContainer from "../../containers/checkout_container";
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -33,12 +34,16 @@ export default class Dashboard extends Component {
         <PastOrdersContainer />
       );
     }
+    else if(this.props.match.params.category == "checkout") {
+      return(<CheckoutContainer />)
+    }
     else {
       return(
         this.props.item_props.map(function(item, index){
+          console.log(item);
           return (
           <ItemCardContainer
-            name = {item.name}
+            name = {item.productName}
             description = {item.description}
             imageLink = {item.imageLink}
             cost = {item.cost}
@@ -57,15 +62,15 @@ export default class Dashboard extends Component {
     categoryString = categoryString[0].toUpperCase() + categoryString.substring(1, categoryString.length);
 console.log("CATEGORY: " + this.props.match.params.category);
     return (
-      
+
       <div style={{minWidth:'1200px'}}>
         <div className="row">
 
           <SidebarContainer match={this.props.match}/>
           <div className="row col-md-9" style={{padding:'0px', margin:'0px'}}>
             <TopBar/>
-            
-            
+
+
               <div className="catitem col-md-12"> {this.getCategory()}</div>
                 {this.displayComponent()}
 

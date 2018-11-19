@@ -8,7 +8,7 @@ import {Link} from "react-router-dom";
 //-Total price
 export default class Order extends Component {
   render() {
-    var routingLink = "/checkout/view/" + this.props.orderId;
+    var routingLink = "/dashboard/checkout/view/" + this.props.orderId;
     return (
       <div className="card">
         <div className="card-body">

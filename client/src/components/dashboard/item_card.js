@@ -4,11 +4,12 @@ export default class ItemCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      name: this.props.name,
       quantity : 1
     }
     
     this.onChange = this.onChange.bind(this);
-    this.sendAddToCart = this.sendAddToCartReq.bind(this);
+    this.sendAddToCartReq = this.sendAddToCartReq.bind(this);
 
   }
 
@@ -19,7 +20,7 @@ export default class ItemCard extends Component {
   sendAddToCartReq() {
     this.props.addToCart({
       name : this.props.name,
-      quantity: this.state.quantity
+      quantity: parseInt(this.state.quantity)
     });
   }
 
@@ -52,7 +53,7 @@ export default class ItemCard extends Component {
                   <input type="text" name="quantity" value = {this.state.quantity} onChange={this.onChange}></input>
                 </div>
                 <div className="modal-footer">
-                  <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.sendAddToCart}>Add to Cart</button>
+                  <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.sendAddToCartReq}>Add to Cart</button>
                 </div>
               </div>
             </div>
