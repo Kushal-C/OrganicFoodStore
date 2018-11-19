@@ -23,6 +23,8 @@ var deleteFromCartRouter = require('./routes/cartDelete');
 var getCartIDRouter = require('./routes/cartGetId');
 var updateUserInfoRouter = require('./routes/updateUserInfo');
 var logoutRouter = require('./routes/logout');
+var adminAddRouter = require('./routes/adminAdd');
+var adminGetAllProductsRouter = require('./routes/adminGetAllProducts');
 
 var app = express();
 const port = process.env.PORT || 5000;
@@ -96,6 +98,8 @@ app.use('/cart-delete', deleteFromCartRouter);
 app.use('/cart-get-id', getCartIDRouter);
 app.use('/update-user-info', updateUserInfoRouter);
 app.use('/logout', logoutRouter);
+app.use('/admin-add', adminAddRouter);
+app.use('/admin-get-products', adminGetAllProductsRouter);
 
 
 // catch 404 and forward to error handler
