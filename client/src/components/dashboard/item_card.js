@@ -7,7 +7,7 @@ export default class ItemCard extends Component {
       name: this.props.name,
       quantity : 1
     }
-    
+
     this.onChange = this.onChange.bind(this);
     this.sendAddToCartReq = this.sendAddToCartReq.bind(this);
 
