@@ -24,10 +24,10 @@ export default class Dashboard extends Component {
     categoryString = categoryString[0].toUpperCase() + categoryString.substring(1, categoryString.length);
 
     let items = this.props.item_props.map(function (item, index) {
-      console.log(item);
       return (
         <ItemCardContainer
           key={index}
+          productID={item.productId}
           productName={item.productName}
           description={item.description}
           imageLink={item.imageLink}

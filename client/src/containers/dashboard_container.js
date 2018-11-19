@@ -13,7 +13,7 @@ class DashboardContainer extends Component {
   }
 
   render() {
-    if (this.props.login[0] != null && this.props.items != null) {
+    if (this.props.login !== null && this.props.items !== null) {
       return (
         <Dashboard
           firstName={this.props.login[0].firstName}

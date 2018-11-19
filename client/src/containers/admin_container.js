@@ -11,7 +11,7 @@ class AdminContainer extends Component {
   }
 
   render() {
-    if(JSON.stringify(this.props.adminItems) == "{}") {
+    if(JSON.stringify(this.props.adminItems) === "{}") {
       return (
         <div>Loading...</div>
       )

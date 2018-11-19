@@ -57,15 +57,14 @@ export function updateUserProfile(profile, id) {
   };
 }
 
-export function purchase(userId) {
-  const request = axios.post(route + "/api/purchase/" + userId);
-  return {
-    type: CHECKOUT_ITEMS,
-    payload: request
-  };
-}
 
 export function addToCart(item) {
+  axios.post(route + `/cart-add`, {
+    productId: item.productID,
+    quantity: item.quantity,
+    userId: item.userId
+  });
+
   return {
     type: ADD_TO_CART_REQUEST,
     payload: item
@@ -84,7 +83,7 @@ export function emptyCart() {
   // const request = axios.post(route + "/shoppingCart");
   return {
     type: EMPTY_CART_REQUEST,
-    payload: {items: []}
+    payload: []
   };
 }
 

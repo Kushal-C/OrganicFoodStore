@@ -6,9 +6,28 @@ import { addToCart } from '../actions/index';
 import ItemCard from "../components/dashboard/item_card";
 
 class ItemCardContainer extends Component {
+  constructor(props){
+    super(props);
+  }
   render() {
+    if(this.props.login === null){
+      return (
+        <ItemCard
+          id={0}
+          addToCart={this.props.addToCart}
+          productName={this.props.productName}
+          description={this.props.description}
+          imageLink={this.props.imageLink}
+          cost={this.props.cost}
+          weight={this.props.weight}
+          weight_unit={this.props.weight_unit}
+          productID={this.props.productID}
+        />
+      );
+    }
     return (
       <ItemCard
+        id={this.props.login[0].userId}
         addToCart={this.props.addToCart}
         productName={this.props.productName}
         description={this.props.description}
@@ -16,6 +35,7 @@ class ItemCardContainer extends Component {
         cost={this.props.cost}
         weight={this.props.weight}
         weight_unit={this.props.weight_unit}
+        productID={this.props.productID}
       />
     );
   }
@@ -24,7 +44,8 @@ class ItemCardContainer extends Component {
 function mapStateToProps(state) {
   return {
     cart: state.cart,
-    items: state.items
+    items: state.items,
+    login: state.login
   };
 }
 

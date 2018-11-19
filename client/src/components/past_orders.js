@@ -6,9 +6,9 @@ export default class PastOrders extends Component {
   render() {
     return(
       <div className = "row">
-        {this.props.orders.map(function(order){
+        {this.props.orders.map(function(order, key){
           return (
-          <Order
+          <Order key={key}
             orderId = {order.orderId}
             status = {order.status}
             contents = {order.contents}

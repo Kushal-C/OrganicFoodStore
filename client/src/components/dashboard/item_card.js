@@ -3,26 +3,24 @@ import React, { Component } from "react";
 export default class ItemCard extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       name: this.props.productName,
       quantity : 1
     };
-
-    console.log(this.props);
 
     this.onChange = this.onChange.bind(this);
     this.sendAddToCartReq = this.sendAddToCartReq.bind(this);
 
   }
 
+
   onChange(event) {
     this.setState({quantity: event.target.value});
   }
 
   sendAddToCartReq() {
-    console.log(this.props);
-    this.props.addToCart(this.state);
+    console.log(this.props.id);
+    this.props.addToCart({name: this.props.productName, quantity: this.state.quantity, cost:this.props.cost, weight:this.props.weight, weight_unit:this.props.weight_unit, productID:this.props.productID, userId:this.props.id});
   }
 
   render() {

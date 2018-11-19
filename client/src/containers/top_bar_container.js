@@ -8,7 +8,7 @@ import TopBar from "../components/dashboard/top_bar";
 class TopBarContainer extends Component {
 
   render() {
-    if (this.props.login[0] != null) {
+    if (this.props.login !== null) {
       return (
         <TopBar
           firstName={this.props.login[0].firstName}

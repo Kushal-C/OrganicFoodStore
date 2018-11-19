@@ -24,8 +24,7 @@ class PastOrdersContainer extends Component {
     for (let i = 0; i < this.props.pastOrders.length; i++) {
       let hasOrderId = false;
       for (let j = 0; j < result.data.length; j++) {
-        // console.log("result.data[j].cartId: " + result.data[j].orderId + " this.props.pastOrders[i].transactionId: " + this.props.pastOrders[i].transactionId);
-        if(result.data[j].orderId == this.props.pastOrders[i].transactionId) {
+        if(result.data[j].orderId === this.props.pastOrders[i].transactionId) {
           hasOrderId = true;
         }
       }
@@ -44,7 +43,7 @@ class PastOrdersContainer extends Component {
   fillContents(result) {
     for (let i = 0; i < this.props.pastOrders.length; i++) {
       for (let j = 0; j < result.data.length; j++) {
-        if(result.data[j].orderId == this.props.pastOrders[i].transactionId) {
+        if(result.data[j].orderId === this.props.pastOrders[i].transactionId) {
           result.data[j].contents.push({
             name: this.props.pastOrders[i].productName,
             quantity: this.props.pastOrders[i].q,

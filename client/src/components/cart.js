@@ -5,13 +5,8 @@ import TotalPriceContainer from '../containers/total_price_container';
 
 class Cart extends Component{
 
-  generateComponents() {
-    let items = [];
-    for (var index in this.props.items.items) {
-      items.push({index : this.props.items.items[index]});
-    };
-
-    return items;
+  constructor(props){
+    super(props);
   }
 
   render() {
@@ -25,7 +20,7 @@ class Cart extends Component{
           <div className="col-md-6">
           
             <div className="card" style={{padding:'20px'}} >
-              <CartItem items = {this.props.items.items}></CartItem>
+              <CartItem items = {this.props.items}></CartItem>
             </div>
           </div>
           <div className="col-md-6">
