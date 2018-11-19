@@ -21,7 +21,11 @@ router.post("/", (req, res, next) => {
           var sql = "SELECT address, city FROM user WHERE userId = " + uId;
           //get closest store and delivery time
           connection.query(sql, function(err, result){                                              //queries for address of user, if no such user error response sent to frontend
-            if (err) throw err;
+            if (err) {
+                connection.release();
+                console.log("estimatedRoute connection released");
+                throw err;
+            }
             if (result.length > 0){
 
                 //tests for address
@@ -84,12 +88,20 @@ router.post("/", (req, res, next) => {
                     FROM product p, (SELECT productId, quantity FROM cart WHERE userId = " + uId+ " AND transactionId = "+tId+") c\
                     WHERE p.productId = c.productId";
           connection.query(sql, function(err, result){                                                              //queries for product and quantity of product, if no such cart exists, error response sent to frontend
-            if (err) throw err;
+            if (err) {
+                connection.release();
+                console.log("estimatedRoute connection released");
+                throw err;
+            }
             if (result.length > 0){
                 items = result;
                 sql2 = "SELECT SUM(total_weight) as 'total_weight', SUM(total_cost) as 'price' FROM cart WHERE userId = "+uId+" AND transactionId = " +tId; //queries for total weight and cost of product for a particular cart, if nothing in cart, error response sent to frontend
                 connection.query(sql2, function(err, result2){
-                    if (err) throw err;
+                    if (err) {
+                        connection.release();
+                        console.log("estimatedRoute connection released");
+                        throw err;
+                    }
                     if (result2.length > 0){
                         var weight = parseFloat(result2[0].total_weight.toFixed(2));
                         var price = parseFloat(result2[0].price.toFixed(2));
@@ -117,6 +129,8 @@ router.post("/", (req, res, next) => {
                         reason: "Nothing in cart"});
             }
           });
+          connection.release();   
+          console.log("estimatedRoute connection released");
       });
   });
 

@@ -9,50 +9,68 @@ export default class AccountDetails extends Component {
   render() {
     return (
       <div>
-        <label htmlFor="firstName" className="col-form-label">
-          First Name
-        </label>
-        <Input
-          name="firstName"
-          onChange={this.props.onChange}
-          value={this.props.firstName}
-          id="firstName"
-          type="text"
-        />
-        <label htmlFor="lastName" className="col-form-label">
-          Last Name
-        </label>
-        <Input
-          name="lastName"
-          onChange={this.props.onChange}
-          value={this.props.lastName}
-          id="lastName"
-          type="text"
-        />
-        <label htmlFor="email" className="col-form-label">
-          Email
-        </label>
-        <Input
-          name="email"
-          onChange={this.props.onChange}
-          value={this.props.email}
-          type="text"
-          id="email"
-          required_characters={["@", "."]}
-          error_msg="Invalid email address"
-        />
-        <label htmlFor="phoneNumber" className="col-form-label">
-          Phone Number
-        </label>
-        <Input
-          name="phoneNumber"
-          onChange={this.props.onChange}
-          value={this.props.phoneNumber}
-          type="number"
-          id="Phone Number"
-          error_msg="Invalid Phone Number"
-          min_input_length={10}
-        />
+
+      <div className="row">
+
+          <div className="col-md-6">
+            <label htmlFor="firstName" className="col-form-label">
+              First Name
+            </label>
+            <Input
+              name="firstName"
+              onChange={this.props.onChange}
+              value={this.props.firstName}
+              id="firstName"
+              type="text"
+            />
+          </div>
+
+          <div className="col-md-6">
+            <label htmlFor="lastName" className="col-form-label">
+              Last Name
+            </label>
+            <Input
+              name="lastName"
+              onChange={this.props.onChange}
+              value={this.props.lastName}
+              id="lastName"
+              type="text"
+            />
+          </div>
+
+      </div>
+
+      <div className="row">
+        <div className="col-md-6">
+              <label htmlFor="email" className="col-form-label">
+                Email
+              </label>
+              <Input
+                name="email"
+                onChange={this.props.onChange}
+                value={this.props.email}
+                type="text"
+                id="email"
+                required_characters={["@", "."]}
+                error_msg="Invalid email address"
+              />
+        </div>
+        <div className="col-md-6">
+              <label htmlFor="phoneNumber" className="col-form-label">
+                Phone Number
+              </label>
+              <Input
+                name="phoneNumber"
+                onChange={this.props.onChange}
+                value={this.props.phoneNumber}
+                type="number"
+                id="Phone Number"
+                error_msg="Invalid Phone Number"
+                min_input_length={10}
+              />
+        </div>
+      </div>
+
         <label htmlFor="password" className="col-form-label">
           Password
         </label>

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import {Link} from 'react-router-dom';
 
 import SidebarContainer from "../../containers/side_bar_container";
 import ItemCardContainer from "../../containers/item_card_container";
@@ -24,17 +23,17 @@ export default class Dashboard extends Component {
   }
 
   displayComponent() {
-    if(this.props.match.params.category == "cart") {
+    if(this.props.match.params.category === "cart") {
       return (
         <CartContainer />
       )
     }
-    else if(this.props.match.params.category == "pastorders") {
+    else if(this.props.match.params.category === "pastorders") {
       return(
         <PastOrdersContainer />
       );
     }
-    else if(this.props.match.params.category == "checkout") {
+    else if(this.props.match.params.category === "checkout") {
       return(<CheckoutContainer />)
     }
     else {
@@ -65,14 +64,17 @@ console.log("CATEGORY: " + this.props.match.params.category);
 
       <div style={{minWidth:'1200px'}}>
         <div className="row">
-
           <SidebarContainer match={this.props.match}/>
           <div className="row col-md-9" style={{padding:'0px', margin:'0px'}}>
             <TopBar/>
 
 
               <div className="catitem col-md-12"> {this.getCategory()}</div>
+
+              <div className=" row col-md-12" style={{marginLeft:'10px', marginTop:'10px'}}>
                 {this.displayComponent()}
+                
+                </div>
 
           </div>
         </div>

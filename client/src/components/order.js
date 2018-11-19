@@ -10,12 +10,12 @@ export default class Order extends Component {
   render() {
     var routingLink = "/dashboard/checkout/view/" + this.props.orderId;
     return (
-      <div className="card">
+      <div className="card" style={{marginBottom:'20px'}}>
         <div className="card-body">
           <h4 className="card-title">Order Status - {this.props.status}</h4>
-          {this.props.contents.map(function(item){
+          {this.props.contents.map(function(item, key){
             return(
-              <div >{item.name} x{item.quantity} Cost: ${item.cost}</div>
+              <div key={key}>{item.name} x{item.quantity} Cost: ${item.cost}</div>
             )
           })}
           <h5>Total Cost: ${this.props.total_cost}</h5>

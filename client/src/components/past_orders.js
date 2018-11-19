@@ -9,8 +9,8 @@ export default class PastOrders extends Component {
     //   <Sidebar/>
       
     //   <div className="row col-md-9" style={{margin:'0px', padding:'0px'}}>
-    //   <TopBarContainer/>
-        this.props.orders.map(function(order){
+   <div>
+        {this.props.orders.map(function(order){
           return (
             <Order
               orderId = {order.orderId}
@@ -18,8 +18,8 @@ export default class PastOrders extends Component {
               contents = {order.contents}
               total_cost = {order.total_cost}
             ></Order>
-        )})
-     // </div>
-     //</div>
+        )})}
+  </div>
+
     )}
 }
