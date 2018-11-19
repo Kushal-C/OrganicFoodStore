@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import { getItemsRequest, getUserProfile } from "../actions/index";
+import { getItemsRequest, getUserProfile, addToCart } from "../actions/index";
 import Dashboard from "../components/dashboard/dashboard";
 
 class DashboardContainer extends Component {
@@ -20,7 +20,7 @@ class DashboardContainer extends Component {
           lastName={this.props.login[0].lastName}
           getItems={this.props.getItems}
           match={this.props.match}
-          getProfile={getUserProfile}
+          getProfile={this.props.getUserProfile}
           item_props={this.props.items}
         />
       );
@@ -29,7 +29,7 @@ class DashboardContainer extends Component {
       <Dashboard
         firstName={"John"}
         lastName={"Smith"}
-        getItems={this.props.getItemsRequest}
+        getItems={this.props.getItems}
         getProfile={this.props.getUserProfile}
         match={this.props.match}
         item_props={[
@@ -58,7 +58,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    { getItems: getItemsRequest, getUserProfile: getUserProfile },
+    { getItems: getItemsRequest, getUserProfile: getUserProfile},
     dispatch
   );
 }
