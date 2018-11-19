@@ -60,15 +60,11 @@ console.log("CATEGORY: " + this.props.match.params.category);
       
       <div style={{minWidth:'1200px'}}>
         <div className="row">
-
           <SidebarContainer match={this.props.match}/>
           <div className="row col-md-9" style={{padding:'0px', margin:'0px'}}>
             <TopBar/>
-            
-            
-              <div className="catitem col-md-12"> {this.getCategory()}</div>
-                {this.displayComponent()}
-
+            <div className="catitem col-md-12" style={{marginLeft:'10px'}}> {this.getCategory()}</div>
+            {this.displayComponent()}
           </div>
         </div>
       </div>
