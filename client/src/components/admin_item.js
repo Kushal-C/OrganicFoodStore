@@ -25,11 +25,12 @@ export default class AdminItem extends Component {
 
   onChange(event) {
     this.setState({ newQuantity : event.target.value });
+
   }
 
   render() {
     return (
-      <div className="card">
+      <div className="card col-md-3 ml-4" style={{padding:'20px', marginBottom:'20px'}}>
         <div className="text-left">
           <div>Item Name: {this.props.name}</div>
           <div>Current Quantity: {this.state.currentQuantity}</div>
