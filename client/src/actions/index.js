@@ -106,6 +106,7 @@ export function getPastOrdersRequest(item) {
 
 export function getCheckoutItemsRequest(item) {
   const request = axios.post(route + "/estimatedroute", item);
+  console.log("ITEM: _ " + JSON.stringify(item));
   return {
     type: GET_CHECKOUT_CONTENTS_REQUEST,
     payload: request
