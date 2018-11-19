@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import Input from "../form_validation";
 
 export default class AccountDetails extends Component {
-  constructor(props) {
-    super(props);
-    console.log(props);
-  }
   render() {
     return (
       <div>

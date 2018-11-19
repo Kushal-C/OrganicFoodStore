@@ -14,6 +14,7 @@ export default class Dashboard extends Component {
       firstName: "",
       lastName: "",
     };
+    this.displayComponent = this.displayComponent.bind(this);
   }
 
   getCategory() {
@@ -39,18 +40,18 @@ export default class Dashboard extends Component {
     else {
       return(
         this.props.item_props.map(function(item, index){
-          console.log(item);
           return (
           <ItemCardContainer
-            name = {item.productName}
+            productName = {item.productName}
             description = {item.description}
             imageLink = {item.imageLink}
             cost = {item.cost}
             weight = {item.weight}
             weight_unit = {item.weight_unit}
-            key={index}/>);
+            key={index}/>
+            );
         })
-      )
+      );
     }
 
   }
@@ -59,7 +60,6 @@ export default class Dashboard extends Component {
 
     let categoryString = this.props.match.params.category;
     categoryString = categoryString[0].toUpperCase() + categoryString.substring(1, categoryString.length);
-console.log("CATEGORY: " + this.props.match.params.category);
     return (
 
       <div style={{minWidth:'1200px'}}>
@@ -67,15 +67,10 @@ console.log("CATEGORY: " + this.props.match.params.category);
           <SidebarContainer match={this.props.match}/>
           <div className="row col-md-9" style={{padding:'0px', margin:'0px'}}>
             <TopBar/>
-
-
               <div className="catitem col-md-12"> {this.getCategory()}</div>
-
               <div className=" row col-md-12" style={{marginLeft:'10px', marginTop:'10px'}}>
                 {this.displayComponent()}
-                
                 </div>
-
           </div>
         </div>
       </div>

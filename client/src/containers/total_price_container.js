@@ -6,9 +6,6 @@ import { getCartItemsRequest, emptyCart} from "../actions/index";
 import TotalPrice from '../components/total_price';
 
 class TotalPriceContainer extends Component{
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     this.props.getCartItems({cartId : 1});

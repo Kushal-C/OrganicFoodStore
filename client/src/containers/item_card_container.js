@@ -10,7 +10,7 @@ class ItemCardContainer extends Component {
     return (
       <ItemCard
         addToCart={this.props.addToCart}
-        name={this.props.name}
+        productName={this.props.productName}
         description={this.props.description}
         imageLink={this.props.imageLink}
         cost={this.props.cost}
