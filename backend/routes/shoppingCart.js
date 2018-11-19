@@ -14,16 +14,16 @@ router.post('/', function(req, res, next) {
         var maxCartAndTransactionQuery = "SELECT MAX(cartId) as maxC FROM cart WHERE transactionId = 0 AND userId = " + uId;
         connection.query(maxCartAndTransactionQuery, function(err, result){
             if (err) {
-                connection.release();
-                console.log("shoppingCart connection released");
+                // connection.release();
+                // console.log("shoppingCart connection released");
                 throw err;
             }
             if (result.length > 0){
                 var getMaxTransactionIdQuery = "SELECT MAX(transactionId) as tId FROM transaction";
                 connection.query(getMaxTransactionIdQuery, function(err, result2){
                     if (err) {
-                        connection.release();
-                        console.log("shoppingCart connection released");
+                        // connection.release();
+                        // console.log("shoppingCart connection released");
                         throw err;
                     }
                     if (result2.length > 0){
@@ -35,8 +35,8 @@ router.post('/', function(req, res, next) {
                                                                 + "'in progress')";
                         connection.query(createTransactionQuery, function(err, result3){
                             if (err) {
-                                connection.release();
-                                console.log("shoppingCart connection released");
+                                // connection.release();
+                                // console.log("shoppingCart connection released");
                                 throw err;
                             }
                             console.log("real res3: "+JSON.stringify(result3));
@@ -46,8 +46,8 @@ router.post('/', function(req, res, next) {
                                                                      " WHERE cartId = " + result[0].maxC + " AND userId = " + uId;
                                 connection.query(updateTransactionIdOfCartQuery, function(err, result4){
                                     if (err){
-                                        connection.release();
-                                        console.log("shoppingCart connection released");
+                                        // connection.release();
+                                        // console.log("shoppingCart connection released");
                                         throw err;
                                     }
                                     if (result4.affectedRows > 0 && result4.warningCount === 0){

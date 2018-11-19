@@ -111,20 +111,34 @@ router.post("/", (req, res, next) => {
                                     throw err;
                                 }
                                 if (result2.length > 0){
-                                    var weight = parseFloat(result2[0].total_weight.toFixed(2));
-                                    var price = parseFloat(result2[0].price.toFixed(2));
-                                    var tax = parseFloat((price * .0725).toFixed(2));
-                                    var totalcost = price+tax;  
-                                    res.send({  origin: ua,
-                                        destination: "1984 Los Padres Blvd Santa Clara, CA 95050",
-                                        arrival_time: "40 Minutes",
-                                        order_status: "In route",
-                                        items: items,
-                                        total_weight: weight,
-                                        price: price,
-                                        tax: tax,
-                                        total_cost: totalcost
+                                    sql3 = "SELECT status FROM transaction WHERE transactionId = " +tId+ " AND userId = "+uId;
+                                    connection.query(sql3, function(err, resultStatus){
+                                        if (err) {
+                                            connnection.release();
+                                            console.log("estimatedRoute connection released");
+                                            throw err;
+                                        }
+                                        if (resultStatus.length > 0){
+                                            var weight = parseFloat(result2[0].total_weight.toFixed(2));
+                                            var price = parseFloat(result2[0].price.toFixed(2));
+                                            var tax = parseFloat((price * .0725).toFixed(2));
+                                            var totalcost = price+tax;  
+                                            res.send({  origin: ua,
+                                                destination: "1984 Los Padres Blvd Santa Clara, CA 95050",
+                                                arrival_time: "40 Minutes",
+                                                order_status: resultStatus[0].status,
+                                                items: items,
+                                                total_weight: weight,
+                                                price: price,
+                                                tax: tax,
+                                                total_cost: totalcost
+                                            });
+                                        }
+                                        else {
+                                            res.send({responseCode: "404", reason: "Nothing in cart"});
+                                        }
                                     });
+                                    
                                 }
                                 else{
                                     res.send({responseCode: "404",
