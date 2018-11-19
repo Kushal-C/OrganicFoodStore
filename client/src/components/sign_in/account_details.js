@@ -89,7 +89,7 @@ export default class AccountDetails extends Component {
           name="confirmPassword"
           id="confirmPassword"
           min_input_length={8}
-          error_msg="Invalid password"
+          error_msg="Passwords don't match"
         />
       </div>
     );

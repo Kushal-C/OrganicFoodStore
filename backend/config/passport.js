@@ -109,15 +109,16 @@ module.exports = function(passport) {
                     connection.release();
                     // Handle error after the release.
                     if (error) throw error;
-                    console.log("passport local login connection released");
                 
                     if (!rows.length) {
-                        return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
+                        console.log("Could not find email");
+                        return done(null, false);//, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
                     }
 
                     // if the user is found but the password is wrong
                     if (password != rows[0].password){
-                        return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
+                        console.log("Wrong password");
+                        return done(null, false);//, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
                     }
                     // all is well, return successful user
                     return done(null, rows[0]);

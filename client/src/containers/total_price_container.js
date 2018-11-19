@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { getCartItemsRequest, emptyCart} from "../actions/index";
 import TotalPrice from '../components/total_price';
 
-class TotalPriceContainer extends Component{
+class TotalPriceContainer extends Component {
 
   componentDidMount() {
     this.props.getCartItems({cartId : 1});

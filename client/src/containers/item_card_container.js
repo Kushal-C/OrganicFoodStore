@@ -23,7 +23,8 @@ class ItemCardContainer extends Component {
 
 function mapStateToProps(state) {
   return {
-    cart: state.cart
+    cart: state.cart,
+    items: state.items
   };
 }
 
