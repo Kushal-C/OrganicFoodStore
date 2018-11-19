@@ -94,21 +94,21 @@ export default class Checkout extends Component {
         <div className="col-md-3">
           <div className="card" style={{ width: "100%", marginLeft:'10px', marginBottom:'10px', padding:'20px'}}>
             <p className="head-title"> Order Details</p>
-            <div className="dropdown-divider" />
             <div>
-            {/* {this.props.checkoutContents.items.map(function(item, key) {
-              return (
-                <div key={key}>
-                  <div className="row">
-                    <div className="col-md-6 text-left">{item.name}</div>
+            {
+              this.props.checkoutContents.items.map(function(item) {
+                return(
+                    <div className="row">
+                    <div className="col-md-6 text-left">{item.productName}</div>
                     <div className="col-md-6 text-right">x{item.quantity}</div>
                   </div>
-                </div>
-              )
-            })} */}
+                );
+              })
+            }
             </div>
+            <div className="dropdown-divider" />
             <p>
-              Total Weight: {this.props.checkoutContents.total_weight}{" "}
+              Total Weight: {this.props.checkoutContents.total_weight}{" "} Pounds
               {this.props.checkoutContents.weight_unit}
             </p>
           </div>
