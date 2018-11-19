@@ -10,7 +10,7 @@ export default class Order extends Component {
   render() {
     var routingLink = "/dashboard/checkout/view/" + this.props.orderId;
     return (
-      <div className="card" style={{marginBottom:'20px'}}>
+      <div className="card col-md-4 ml-4" style={{padding:'20px', marginBottom:'20px'}}>
         <div className="card-body">
           <h4 className="card-title">Order Status - {this.props.status}</h4>
           {this.props.contents.map(function(item, key){

@@ -6,21 +6,87 @@ import { connect } from "react-redux";
 
 class PastOrdersContainer extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      dataIsReady : false,
+      pastOrders : {}
+    }
+  }
+
   componentWillMount(){
     this.props.getPastOrders({userId : this.props.login[0].userId});
   }
 
-  render() {
+  transformServerData() {
+    let result = {data: []};
+    result.data.push ({orderId : this.props.pastOrders[0].transactionId, status : this.props.pastOrders[0].status , contents: [], total_cost: 0});
+    for (let i = 0; i < this.props.pastOrders.length; i++) {
+      let hasOrderId = false;
+      for (let j = 0; j < result.data.length; j++) {
+        // console.log("result.data[j].cartId: " + result.data[j].orderId + " this.props.pastOrders[i].transactionId: " + this.props.pastOrders[i].transactionId);
+        if(result.data[j].orderId == this.props.pastOrders[i].transactionId) {
+          hasOrderId = true;
+        }
+      }
+      if(!hasOrderId) {
+        result.data.push({orderId : this.props.pastOrders[i].transactionId, status : this.props.pastOrders[i].status , contents: [], total_cost: 0});
+      }
+    }
+    console.log("result: " + JSON.stringify(result));
 
+    let res = this.fillContents(result);
+    console.log("res: " + JSON.stringify(res));
+    this.setState({ pastOrders : res, dataIsReady : true });
+
+  }
+
+  fillContents(result) {
+    for (let i = 0; i < this.props.pastOrders.length; i++) {
+      for (let j = 0; j < result.data.length; j++) {
+        if(result.data[j].orderId == this.props.pastOrders[i].transactionId) {
+          result.data[j].contents.push({
+            name: this.props.pastOrders[i].productName,
+            quantity: this.props.pastOrders[i].q,
+            cost: this.props.pastOrders[i].cost
+          });
+        }
+      }
+    }
+    // console.log("RESULT: " + JSON.stringify(result));
+    return this.calculateTotalCost(result);
+  }
+
+  calculateTotalCost(result) {
+    for (let i = 0; i < result.data.length; i++) {
+      let contentArr = result.data[i].contents;
+      let total = 0;
+      for(let j = 0; j < contentArr.length; j++) {
+        total += contentArr[j].cost;
+      }
+      result.data[i].total_cost = total;
+    }
+    console.log("finished calculate total cost");
+    return result;
+  }
+
+  render() {
     if(!this.props.pastOrders) {
       return (
         <div>Loading...</div>
       )
     }
+   else if(!this.state.dataIsReady) {
+    this.transformServerData();
+    return (
+        <div>Loading...</div>
+      )
+    }
     else {
+      console.log("PAST ORDER DATA: " + JSON.stringify(this.state.pastOrders));
       return (
         <div>
-          <PastOrders orders = {this.props.pastOrders.data}></PastOrders>
+          <PastOrders orders = {this.state.pastOrders.data}></PastOrders>
         </div>
       );
     }
