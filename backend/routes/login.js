@@ -10,7 +10,7 @@ var passport = require('passport');
 
 
 router.post('/', passport.authenticate('local-login', {
-    failureFlash : true // allow flash messages
+    failWithError : true
     }), (req, res) => {
     console.log("User Authenticated.");
 
@@ -21,7 +21,6 @@ router.post('/', passport.authenticate('local-login', {
             connection.release();
             // Handle error after the release.
             if (error) throw error;
-            console.log("login connection released");
 
             //console.log((JSON.stringify(req.user.email)));
             if (result.length > 0) res.send( JSON.stringify(result));
@@ -29,6 +28,11 @@ router.post('/', passport.authenticate('local-login', {
         
         });
     });
-});
+    },
+    function(err, req, res, next){
+        // Handle error
+        return res.send({ responseCode: "404" }); // user not found
+    }
+);
 
 module.exports = router;  
