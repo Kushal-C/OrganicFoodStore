@@ -35,7 +35,7 @@ export default class AdminItem extends Component {
           className={"form-control"}
           value={this.props.value}
           onChange={this.onChange}
-          type={this.props.type}
+          type="number"
           name={this.props.name}
           required
         />
