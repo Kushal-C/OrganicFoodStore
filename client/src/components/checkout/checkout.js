@@ -96,7 +96,6 @@ export default class Checkout extends Component {
             <p className="head-title"> Order Details</p>
             <div>
             {
-              // console.log("OTEMS : " + JSON.stringify(this.props.checkoutContents.items))
               this.props.checkoutContents.items.map(function(item) {
                 return(
                     <div className="row">
