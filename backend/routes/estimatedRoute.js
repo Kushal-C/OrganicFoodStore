@@ -93,34 +93,44 @@ router.post("/", (req, res, next) => {
                 console.log("estimatedRoute connection released");
                 throw err;
             }
+            items = result;
             if (result.length > 0){
-                items = result;
-                sql2 = "SELECT SUM(total_weight) as 'total_weight', SUM(total_cost) as 'price' FROM cart WHERE userId = "+uId+" AND transactionId = " +tId; //queries for total weight and cost of product for a particular cart, if nothing in cart, error response sent to frontend
-                connection.query(sql2, function(err, result2){
-                    if (err) {
+                sql = "UPDATE transaction SET status = 'complete' WHERE transactionId = "+tId+" AND userId = "+uId;
+                connection.query(sql, function(err, resultUpdate){
+                    if (err){
                         connection.release();
                         console.log("estimatedRoute connection released");
                         throw err;
                     }
-                    if (result2.length > 0){
-                        var weight = parseFloat(result2[0].total_weight.toFixed(2));
-                        var price = parseFloat(result2[0].price.toFixed(2));
-                        var tax = parseFloat((price * .0725).toFixed(2));
-                        var totalcost = price+tax;
-                        res.send({  origin: ua,
-                                    destination: "1984 Los Padres Blvd Santa Clara, CA 95050",
-                                    arrival_time: "40 Minutes",
-                                    order_status: "In route",
-                                    items: items,
-                                    total_weight: weight,
-                                    price: price,
-                                    tax: tax,
-                                    total_cost: totalcost
-                        });
-                    }
-                    else{
-                        res.send({responseCode: "404",
-                                    reason: "Nothing in cart"});
+                    if (resultUpdate.affectedRows > 0 && resultUpdate.warningCount == 0){
+                            sql2 = "SELECT SUM(total_weight) as 'total_weight', SUM(total_cost) as 'price' FROM cart WHERE userId = "+uId+" AND transactionId = " +tId; //queries for total weight and cost of product for a particular cart, if nothing in cart, error response sent to frontend
+                            connection.query(sql2, function(err, result2){
+                                if (err) {
+                                    connection.release();
+                                    console.log("estimatedRoute connection released");
+                                    throw err;
+                                }
+                                if (result2.length > 0){
+                                    var weight = parseFloat(result2[0].total_weight.toFixed(2));
+                                    var price = parseFloat(result2[0].price.toFixed(2));
+                                    var tax = parseFloat((price * .0725).toFixed(2));
+                                    var totalcost = price+tax;  
+                                    res.send({  origin: ua,
+                                        destination: "1984 Los Padres Blvd Santa Clara, CA 95050",
+                                        arrival_time: "40 Minutes",
+                                        order_status: "In route",
+                                        items: items,
+                                        total_weight: weight,
+                                        price: price,
+                                        tax: tax,
+                                        total_cost: totalcost
+                                    });
+                                }
+                                else{
+                                    res.send({responseCode: "404",
+                                        reason: "Nothing in cart"});
+                                }
+                            });
                     }
                 });
             }

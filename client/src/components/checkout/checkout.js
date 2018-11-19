@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { compose, withProps, lifecycle } from "recompose";
 import { DirectionsRenderer } from "react-google-maps";
 import { GOOGLE_MAPS_API_KEY } from "../../actions/api_constants";
+import CountdownTimer from './countdown_timer';
 
 const { withScriptjs, withGoogleMap, GoogleMap } = require("react-google-maps");
 
@@ -74,23 +75,16 @@ export default class Checkout extends Component {
     return (
       <div className="row col-md-12">
         <div className="row col-md-9">
-          <div style={{ height: "150%", width: "150%" }}>
+          <div style={{ height: "100%", width: "150%" }}>
             <Map
               origin={this.props.checkoutContents.origin}
               destination={this.props.checkoutContents.destination}
-            />;
+            />
           </div>
-          <div className="card" style={{ width: "100%" }}>
-            <div className="row col-md-12" style={{ marginTop:'10px', marginBottom:'10px' }}>
-              <div className="col-md-6 text-left">
-                Arrival Time: {this.props.checkoutContents.arrival_time}
-              </div>
-              <div className="col-md-6 text-right">
-                Order Status: {this.props.checkoutContents.order_status}
-              </div>
+            <div className="col-md-6 text-left">
+              <CountdownTimer orderStatus = { this.props.checkoutContents.orderStatus } />
             </div>
-          </div>
-        </div>
+            </div>
         <div className="col-md-3">
           <div className="card" style={{ width: "100%", marginLeft:'10px', marginBottom:'10px', padding:'20px'}}>
             <p className="head-title"> Order Details</p>
