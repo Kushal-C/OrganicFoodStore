@@ -5,7 +5,8 @@ export default class AdminItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newQuantity : ""
+      newQuantity : "",
+      currentQuantity : this.props.quantity
     }
 
     this.onChange = this.onChange.bind(this);
@@ -16,7 +17,10 @@ export default class AdminItem extends Component {
       productId : this.props.productId,
       quantity: this.state.newQuantity
     }
+
     adminAddReq(req);
+    let newVal = Number(this.state.currentQuantity) + Number(this.state.newQuantity);
+    this.setState({currentQuantity : newVal});
   }
 
   onChange(event) {
@@ -28,7 +32,7 @@ export default class AdminItem extends Component {
       <div className="card">
         <div className="text-left">
           <div>Item Name: {this.props.name}</div>
-          <div>Current Quantity: {this.props.quantity}</div>
+          <div>Current Quantity: {this.state.currentQuantity}</div>
         </div>
         Quantity to Add:
         <input
