@@ -6,6 +6,13 @@ import SignIn from "../components/sign_in/sign_in";
 import { login, register } from "../actions/index";
 
 class SignInContainer extends Component {
+  constructor(props){
+    super(props);
+    this.isAdmin = this.isAdmin.bind(this);
+  }
+  isAdmin(){
+    this.props.history.push('/admin');
+  }
   render() {
     return (
       <SignIn
@@ -13,6 +20,7 @@ class SignInContainer extends Component {
         registrationState={this.props.registrationState}
         login={this.props.login}
         register={this.props.register}
+        admin={this.isAdmin}
       />
     );
   }

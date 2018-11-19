@@ -17,6 +17,8 @@ const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, logger)(
   createStore
 );
 
+
+
 class App extends Component {
   render() {
     return (
