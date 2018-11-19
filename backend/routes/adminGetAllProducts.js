@@ -9,11 +9,11 @@ router.post('/', (req, res, next) => {
     database.getConnection(function(err, connection){
         var getAllProductsQuery = "SELECT productId, productName, quantity FROM product";
         connection.query(getAllProductsQuery, function(err, result){
-            connection.resolve();
-            console.log("adminFetchAllProducts connection resolved");
+            connection.release();
+            console.log("adminFetchAllProducts connection released");
             if (err) throw err;
             if (result.length > 0){
-                console.log(JSON.stringify(result));
+                // console.log(JSON.stringify(result));
                 res.send(result);
             }
             else{
