@@ -10,7 +10,7 @@ router.post("/", (req, res) => {
     database.getConnection((err, connection) => {
         if (err) throw err;
         console.log("Connected!");
-        const sql = "UPDATE user SET firstName = '" + req.body.firstName +
+        var sql = "UPDATE user SET firstName = '" + req.body.firstName +
           "', lastName = '" + req.body.lastName +
           "', email = '" + req.body.email +
           "', phoneNumber = '" + req.body.phoneNumber +
@@ -25,13 +25,26 @@ router.post("/", (req, res) => {
 
         connection.query(sql, (error, result) => {
             // When done with the connection, release it.
-            connection.release();
-            console.log("updateUserInfo connection released");
+            console.log(JSON.stringify(result));
             // Handle error after the release.
-            if (error) throw err;
+            if (error) {
+                connection.release();
+                console.log("updateUserInfo connection released");
+                throw err;
+            }
             if (result.affectedRows > 0){
-                console.log("1 record updated");
-                res.send({responseCode : "200"});  
+                sql = "SELECT * FROM user WHERE firstName = '"+req.body.firstName+"' AND lastName = '"+req.body.lastName+"' AND phoneNumber = '"+req.body.phoneNumber +"'";
+                connection.query(sql, function(err, result2){
+                    if (err) {
+                        connection.release();
+                        console.log("updateUserInfo connection released");
+                        throw err;
+                    }
+                    if (result2.length > 0){
+                        console.log("1 record update");
+                        res.send(result2);
+                    }
+                });
             }
             else{
                 console.log("No matching email, no records updated");
