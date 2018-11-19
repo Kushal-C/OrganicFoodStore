@@ -17,7 +17,6 @@ router.get("/featured", (req, res) => {
 			connection.release();
               // Handle error after the release.
           	if (error) throw error;
-            console.log("featured connection released");
 
           	if (result.length > 0) res.send( JSON.stringify(result));
           	else res.send({ responseCode: "404" }); // user not found
@@ -68,7 +67,6 @@ router.get("/bakery", (req, res) => {
 			connection.release();
               // Handle error after the release.
           	if (error) throw error;
-            console.log("bakery connection released");
 
             if (result.length > 0) res.send( JSON.stringify(result));
             else res.send({ responseCode: "404" }); // user not found
@@ -103,7 +101,6 @@ router.get("/snacks", (req, res) => {
 			connection.release();
               // Handle error after the release.
           	if (error) throw error;
-            console.log("snacks connection released");
 
             if (result.length > 0) res.send( JSON.stringify(result));
             else res.send({ responseCode: "404" }); // user not found
