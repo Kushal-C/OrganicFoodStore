@@ -11,7 +11,13 @@ router.post('/', (req, res, next) => {
         var itemsQuery = "SELECT p.productId as productId, p.productName as name, p.description as description, c.quantity as number, p.cost * c.quantity as 'cost', p.weight * c.quantity as 'weight', p.weightUnit as weight_unit \
                             FROM product as p, (SELECT cartId, productId as pId, quantity FROM cart WHERE cartId = " + cId + ") as c WHERE p.productId = c.pId AND c.cartId = " + cId + " GROUP BY name";
         connection.query(itemsQuery, function(err, result){
-            if (err) throw err;
+            connection.release();
+            console.log("cartItems connection released");
+            if (err) {
+                connection.release();
+                console.log("cartItems connection released");
+                throw err;
+            }
             if (result.length > 0){
                 var price=0, totalWeight=0;
                 result.forEach(item => {
