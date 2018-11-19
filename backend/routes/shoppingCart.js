@@ -32,7 +32,7 @@ router.post('/', function(req, res, next) {
                                                       VALUES (" + nextTransactionId + ", " 
                                                                 + result[0].maxC + ", "
                                                                 + uId + ", "
-                                                                + "'processed')";
+                                                                + "'in progress')";
                         connection.query(createTransactionQuery, function(err, result3){
                             if (err) {
                                 connection.release();
