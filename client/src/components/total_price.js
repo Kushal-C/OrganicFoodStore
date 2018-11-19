@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { Link } from "react-router-dom";
 export default class TotalPrice extends Component {
   constructor(props){
     super(props);
@@ -10,6 +10,7 @@ export default class TotalPrice extends Component {
   placeOrder() {
     if(this.props.cartItems.length > 0) {
       this.props.placeOrder(this.generateRequestPayload());
+      this.props.emptyCart();
     }
   }
 
@@ -38,8 +39,7 @@ export default class TotalPrice extends Component {
       total_cost = price + tax;
     }
     
-    return (
-      <div className="card" style={{padding:'20px'}}>
+    return <div className="card" style={{ padding: "20px" }}>
         <h4 className="head-title">Total Price</h4>
         <div className="dropdown-divider" />
         <div className="row">
@@ -58,23 +58,16 @@ export default class TotalPrice extends Component {
         <div className="dropdown-divider" />
         <div className="row">
           <div className="col-md-6 text-left">
-            <button
-              className="btn btn-secondary"
-              onClick={this.placeOrder}
-            >
+            <button className="btn btn-secondary" onClick={this.emptyCart}>
               Empty Cart
             </button>
           </div>
           <div className="col-md-6 text-right">
-            <button
-              className="btn btn-primary"
-              onClick={this.placeOrder}
-            >
-            Place order
-            </button>
+            <Link className="btn btn-primary" to="/dashboard/pastorders" onClick={this.placeOrder}>
+              Place Order
+            </Link>
           </div>
         </div>
-      </div>
-    );
+      </div>;
   }
 }

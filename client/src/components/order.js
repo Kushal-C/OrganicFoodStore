@@ -12,7 +12,7 @@ export default class Order extends Component {
     return (
       <div className="card col-md-4 ml-4" style={{padding:'20px', marginBottom:'20px'}}>
         <div className="card-body">
-          <h4 className="card-title">Order Status - {this.props.status}</h4>
+          <h4 className="card-title">Order - {this.props.orderId}</h4>
           {this.props.contents.map(function(item, key){
             return(
               <div key={key}>{item.name} x{item.quantity} Cost: ${item.cost}</div>
