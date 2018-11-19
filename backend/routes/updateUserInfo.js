@@ -16,9 +16,9 @@ router.post("/", (req, res) => {
           "', phoneNumber = '" + req.body.phoneNumber +
           "', password = '" + req.body.password +
           "', address = '" + req.body.address +
-          "', zipcode = '" + req.body.zipcode +
-          "', creditCardNumber = '" + req.body.cardNumber +
-          "', expirationDate = '" + req.body.expiryDate  +
+          "', zipcode = '" + req.body.zipCode +
+          "', creditCardNumber = '" + req.body.creditCartNumber +
+          "', expirationDate = '" + req.body.expirationDate  +
           "', cvc = '" + req.body.cvc +
           "' WHERE email = '" + req.body.email + "'";
         // console.log("sql command to update profile: " + sql);
