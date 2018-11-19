@@ -7,21 +7,18 @@ import { adminGetItemsReq, adminAddReq } from '../actions/index';
 class AdminContainer extends Component {
 
   componentDidMount() {
-    console.log("Comp mounted");
     this.props.adminGetItemsReq();
   }
 
   render() {
-    if(!this.props.adminItems) {
+    if(JSON.stringify(this.props.adminItems) == "{}") {
       return (
         <div>Loading...</div>
       )
     }
     else {
-      console.log("admin container items: " + JSON.stringify(this.props.adminItems));
       return (
-        // <div>admin stuff</div>
-        <Admin items = { this.props.adminItems } />
+        <Admin items = { this.props.adminItems } adminAddReq = { adminGetItemsReq } />
       );
     }
   }
@@ -33,7 +30,6 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ adminGetItemsReq: adminGetItemsReq, adminAddReq: adminAddReq }, dispatch);
-
 }
 
 export default connect(
