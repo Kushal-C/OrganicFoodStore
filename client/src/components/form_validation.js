@@ -31,6 +31,7 @@ export default class FormValidation extends Component {
   }
 
   isValidField() {
+    console.log(this.props);
     if (this.props.value.length < 1) 
     {
       this.setState({fieldIsValid: false})

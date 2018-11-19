@@ -7,7 +7,6 @@ import PaymentInformation from "./sign_in/payment_information";
 class UserProfile extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.profile);
     if(this.props.profile == null){
       this.state = {
         firstName: "",
@@ -33,6 +32,10 @@ class UserProfile extends Component {
     this.updateProfile = this.updateProfile.bind(this);
   }
 
+  componentWillMount(){
+    this.setState({ confirmPassword: "" });
+  }
+  
   updateProfile(){
     if(this.state.password !== this.state.confirmPassword){
       alert("Passwords don't match");
