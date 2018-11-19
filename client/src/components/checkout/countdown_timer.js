@@ -51,6 +51,7 @@ export default class CoundownTimer extends Component {
       );
     }
     else {
+      console.log("ORDER STATUS: " + JSON.stringify(this.props));
       return (
         <div className="card" style={{ width: "207%" }}>
           <div className="row col-md-12" style={{ marginTop:'10px', marginBottom:'10px' }}>
@@ -58,7 +59,7 @@ export default class CoundownTimer extends Component {
               Arrival Time: {this.state.currentTime}
             </div>
             <div className="col-md-6 text-right">
-              Order Status: {this.props.order_status}
+              Order Status: {this.props.orderStatus}
           </div>
         </div>
       </div>
