@@ -80,19 +80,27 @@ router.all('*', cors());
 //need name of item, quantity, total cost of same product, total cost of all products
 router.post("/", (req, res, next) => {
     var uId = req.body.userId;
-
       database.getConnection(function(err, connection){
-          var getOrderInfo = "SELECT transactionId, cartId, status, p.productName, quantity as q, cost * quantity as 'cost' \
-                              FROM (SELECT transactionId, status, cartId FROM innodb.transaction WHERE userId = "+uId+") as t, \
+          var getOrderInfo = "SELECT transactionId, orderTime, cartId, status, p.productName, quantity as q, cost * quantity as 'cost' \
+                              FROM (SELECT transactionId, status, cartId, orderTime FROM innodb.transaction WHERE userId = "+uId+") as t, \
                               (SELECT productId, quantity, transactionId as tId FROM innodb.cart WHERE userId = "+uId+") as c, \
                               (SELECT productId, productName, cost FROM innodb.product) as p \
                               WHERE p.productId = c.productId AND t.transactionId = c.tId ORDER BY transactionId;";
+
           connection.query(getOrderInfo, function(err, result){
             connection.release();
             console.log("pastOrders connection released");
             if (err) throw err;
             if (result.length > 0){
-              // console.log("result: " +JSON.stringify(result));
+              DELIVERY_TIME_MILLISECONDS = 300000;
+              for (let i = 0; i < result.length; i++) {
+                if(Date.now() - result[i].orderTime > DELIVERY_TIME_MILLISECONDS) {
+                  result[i].status = "Completed"
+                }
+                else {
+                  result[i].status = "In Progress"
+                }
+              }
               res.send(result);
             }
           });

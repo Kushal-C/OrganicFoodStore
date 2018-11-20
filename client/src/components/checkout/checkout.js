@@ -72,7 +72,6 @@ export default class Checkout extends Component {
   };
 
   render() {
-    console.log("this.props.checkoutContents.orderStatus " + JSON.stringify(this.props.checkoutContents.order_status));
     return (
       <div className="row col-md-12">
         <div className="row col-md-9">
@@ -83,7 +82,7 @@ export default class Checkout extends Component {
             />
           </div>
             <div className="col-md-6 text-left">
-              <CountdownTimer orderStatus = { this.props.checkoutContents.order_status } />
+              <CountdownTimer orderStatus = { this.props.checkoutContents.order_status } arrivalTime = {this.props.checkoutContents.arrival_time } />
             </div>
             </div>
         <div className="col-md-3">

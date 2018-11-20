@@ -95,7 +95,7 @@ router.post("/", (req, res, next) => {
             }
             items = result;
             if (result.length > 0){
-                sql = "UPDATE transaction SET status = 'complete' WHERE transactionId = "+tId+" AND userId = "+uId;
+                sql = "UPDATE transaction SET status = 'Completed' WHERE transactionId = "+tId+" AND userId = "+uId;
                 connection.query(sql, function(err, resultUpdate){
                     if (err){
                         connection.release();
@@ -111,7 +111,7 @@ router.post("/", (req, res, next) => {
                                     throw err;
                                 }
                                 if (result2.length > 0){
-                                    sql3 = "SELECT status FROM transaction WHERE transactionId = " +tId+ " AND userId = "+uId;
+                                    sql3 = "SELECT status, orderTime FROM transaction WHERE transactionId = " +tId+ " AND userId = "+uId;
                                     connection.query(sql3, function(err, resultStatus){
                                         if (err) {
                                             connnection.release();
@@ -122,11 +122,24 @@ router.post("/", (req, res, next) => {
                                             var weight = parseFloat(result2[0].total_weight.toFixed(2));
                                             var price = parseFloat(result2[0].price.toFixed(2));
                                             var tax = parseFloat((price * .0725).toFixed(2));
-                                            var totalcost = price+tax;  
+                                            var totalcost = price+tax;
+                                            let remaining_time = 0;
+                                            let newStatus = "";
+                                            let DELIVERY_TIME_MILLISECONDS = 300000;
+                                            let tmp = Date.now() - resultStatus[0].orderTime;
+                                            console.log("tmp: " + tmp);
+                                            if(parseInt(tmp / 60000) < parseInt(DELIVERY_TIME_MILLISECONDS / 60000)) {
+                                                remaining_time = DELIVERY_TIME_MILLISECONDS - tmp;
+                                                newStatus = "In Progress";
+                                            }
+                                            else {
+                                                remaining_time = 0;
+                                                newStatus = "Completed";
+                                            }
                                             res.send({  origin: ua,
                                                 destination: "1984 Los Padres Blvd Santa Clara, CA 95050",
-                                                arrival_time: "40 Minutes",
-                                                order_status: resultStatus[0].status,
+                                                arrival_time: remaining_time,
+                                                order_status: newStatus,
                                                 items: items,
                                                 total_weight: weight,
                                                 price: price,
@@ -138,7 +151,7 @@ router.post("/", (req, res, next) => {
                                             res.send({responseCode: "404", reason: "Nothing in cart"});
                                         }
                                     });
-                                    
+
                                 }
                                 else{
                                     res.send({responseCode: "404",
@@ -153,7 +166,7 @@ router.post("/", (req, res, next) => {
                         reason: "Nothing in cart"});
             }
           });
-          connection.release();   
+          connection.release();
           console.log("estimatedRoute connection released");
       });
   });
