@@ -105,7 +105,6 @@ export function getPastOrdersRequest(item) {
 
 export function getCheckoutItemsRequest(item) {
   const request = axios.post(route + "/estimatedroute", item);
-  console.log("ITEM: _ " + JSON.stringify(item));
   return {
     type: GET_CHECKOUT_CONTENTS_REQUEST,
     payload: request
@@ -122,7 +121,6 @@ export function logout() {
 
 export function adminAddReq(item) {
   const request = axios.post(route + "/admin-add", item);
-  console.log("Admin add req called");
   return {
     type: ADMIN_ADD_REQ,
     payload: request
@@ -131,7 +129,6 @@ export function adminAddReq(item) {
 
 export function adminGetItemsReq(item) {
   const request = axios.post(route + "/admin-get-products");
-  console.log("Admin Get Items Req called");
   return {
     type: ADMIN_GET_REQ,
     payload: request

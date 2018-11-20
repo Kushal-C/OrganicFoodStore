@@ -18,12 +18,10 @@ export default class TotalPrice extends Component {
   }
 
   checkEmptyOrder() {
-    console.log("CART ITEMS: " + JSON.stringify(this.props.cartItems));
     return this.props.cartItems.length == 0;
   }
 
   placeOrder() {
-    console.log("CHECK WEIGHT: " + this.checkOverWeight());
     if(this.checkOverWeight()) {
       if(this.props.cartItems) {
         this.props.placeOrder(this.generateRequestPayload());
@@ -42,8 +40,6 @@ export default class TotalPrice extends Component {
   }
 
   generateRequestPayload() {
-    console.log("TOTAL PRICE USER ID:");
-    console.log(this.props.profile);
     return {userId: this.props.profile[0].userId};
   }
 

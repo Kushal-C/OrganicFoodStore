@@ -19,7 +19,6 @@ export default class ItemCard extends Component {
   }
 
   sendAddToCartReq() {
-    console.log(this.props.id);
     this.props.addToCart({name: this.props.productName, quantity: this.state.quantity, cost:this.props.cost, weight:this.props.weight, weight_unit:this.props.weight_unit, productID:this.props.productID, userId:this.props.id});
   }
 

@@ -32,10 +32,8 @@ class PastOrdersContainer extends Component {
         result.data.push({orderId : this.props.pastOrders[i].transactionId, status : this.props.pastOrders[i].status , contents: [], total_cost: 0});
       }
     }
-    console.log("result: " + JSON.stringify(result));
 
     let res = this.fillContents(result);
-    console.log("res: " + JSON.stringify(res));
     this.setState({ pastOrders : res, dataIsReady : true });
 
   }
@@ -52,7 +50,6 @@ class PastOrdersContainer extends Component {
         }
       }
     }
-    // console.log("RESULT: " + JSON.stringify(result));
     return this.calculateTotalCost(result);
   }
 
@@ -65,7 +62,6 @@ class PastOrdersContainer extends Component {
       }
       result.data[i].total_cost = total;
     }
-    console.log("finished calculate total cost");
     return result;
   }
 
@@ -82,7 +78,6 @@ class PastOrdersContainer extends Component {
       )
     }
     else {
-      console.log("PAST ORDER DATA: " + JSON.stringify(this.state.pastOrders));
       return (
         <div>
           <PastOrders orders = {this.state.pastOrders.data}></PastOrders>

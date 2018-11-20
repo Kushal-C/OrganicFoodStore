@@ -28,11 +28,12 @@ router.post('/', function(req, res, next) {
                     }
                     if (result2.length > 0){
                         var nextTransactionId = parseInt(result2[0].tId) + 1;
-                        var createTransactionQuery = "INSERT INTO transaction (transactionId, cartId, userId, status) \
-                                                      VALUES (" + nextTransactionId + ", " 
+                        var createTransactionQuery = "INSERT INTO transaction (transactionId, cartId, userId, status, orderTime) \
+                                                      VALUES (" + nextTransactionId + ", "
                                                                 + result[0].maxC + ", "
                                                                 + uId + ", "
-                                                                + "'in progress')";
+                                                                + "'In Progress'" + ", "
+                                                                + Date.now() + ")";
                         connection.query(createTransactionQuery, function(err, result3){
                             if (err) {
                                 // connection.release();
@@ -60,7 +61,7 @@ router.post('/', function(req, res, next) {
                                 });
                             }
                         });
-                       
+
                     }
                 });
                 // res.send({responseCode: "200"})
