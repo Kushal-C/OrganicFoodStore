@@ -7,7 +7,7 @@ export default class TotalPrice extends Component {
     this.emptyCart = this.emptyCart.bind(this);
   }
 
-  checkWeight() {
+  checkOverWeight() {
     let weight_sum = 0;
     let MAX_WEIGHT = 20;
 
@@ -17,22 +17,26 @@ export default class TotalPrice extends Component {
     return weight_sum < MAX_WEIGHT;
   }
 
+  checkEmptyOrder() {
+    console.log("CART ITEMS: " + JSON.stringify(this.props.cartItems));
+    return this.props.cartItems.length == 0;
+  }
+
   placeOrder() {
-    console.log("CHECK WEIGHT: " + this.checkWeight());
-    if(this.checkWeight()) {
-      if(this.props.cartItems.length > 0) {
+    console.log("CHECK WEIGHT: " + this.checkOverWeight());
+    if(this.checkOverWeight()) {
+      if(this.props.cartItems) {
         this.props.placeOrder(this.generateRequestPayload());
         this.props.emptyCart();
       }
 
     }
     else {
-      console.log("TOO HEAVY!");
     }
   }
 
   emptyCart() {
-    if(this.props.cartItems.items.length > 0) {
+    if(this.props.cartItems) {
       this.props.emptyCart();
     }
   }
@@ -44,7 +48,12 @@ export default class TotalPrice extends Component {
   }
 
   handleMaxWeightRouting() {
-    if(this.checkWeight()) {
+    if(this.checkEmptyOrder()) {
+      return (
+        <div>Cart is empty</div>
+      )
+    }
+    else if(this.checkOverWeight()) {
       return (
         <Link className="btn btn-primary" to="/dashboard/pastorders" onClick={this.placeOrder}>
           Place Order
