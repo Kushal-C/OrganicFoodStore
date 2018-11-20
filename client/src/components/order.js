@@ -7,6 +7,24 @@ import {Link} from "react-router-dom";
 //quanitiy of each item ordered, and cost of each item
 //-Total price
 export default class Order extends Component {
+
+  renderOrder() {
+    if(this.props.contents) {
+      return (
+        this.props.contents.map(function(item, key){
+          return(
+            <div key={key}>{item.name} x{item.quantity} Cost: ${item.cost}</div>
+          )
+        })
+      )
+    }
+    else {
+      return (
+        <div>Could not render order</div>
+      )
+    }
+  }
+
   render() {
     var routingLink = "/dashboard/checkout/view/" + this.props.orderId;
     return (
@@ -16,11 +34,7 @@ export default class Order extends Component {
           <div class="dropdown-divider" />
           <h5>{this.props.status}</h5>
           <div class="dropdown-divider" />
-          {this.props.contents.map(function(item, key){
-            return(
-              <div key={key}>{item.name} x{item.quantity} Cost: ${item.cost}</div>
-            )
-          })}
+          {this.renderOrder()}
           <h5>Total Cost: ${this.props.total_cost}</h5>
           <button className="btn btn-primary"><Link className="text-white" to={routingLink}>View Order</Link></button>
         </div>
