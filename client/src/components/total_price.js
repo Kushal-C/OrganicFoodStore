@@ -7,10 +7,27 @@ export default class TotalPrice extends Component {
     this.emptyCart = this.emptyCart.bind(this);
   }
 
+  checkWeight() {
+    let weight_sum = 0;
+    let MAX_WEIGHT = 20;
+
+    for (let i = 0; i < this.props.cartItems.length; i++) {
+      weight_sum += this.props.cartItems[i].weight * this.props.cartItems[i].quantity;
+    }
+    return weight_sum < MAX_WEIGHT;
+  }
+
   placeOrder() {
-    if(this.props.cartItems.length > 0) {
-      this.props.placeOrder(this.generateRequestPayload());
-      this.props.emptyCart();
+    console.log("CHECK WEIGHT: " + this.checkWeight());
+    if(this.checkWeight()) {
+      if(this.props.cartItems.length > 0) {
+        this.props.placeOrder(this.generateRequestPayload());
+        this.props.emptyCart();
+      }
+
+    }
+    else {
+      console.log("TOO HEAVY!");
     }
   }
 
@@ -26,6 +43,21 @@ export default class TotalPrice extends Component {
     return {userId: this.props.profile[0].userId};
   }
 
+  handleMaxWeightRouting() {
+    if(this.checkWeight()) {
+      return (
+        <Link className="btn btn-primary" to="/dashboard/pastorders" onClick={this.placeOrder}>
+          Place Order
+        </Link>
+      )
+    }
+    else {
+      return (
+        <div>Total weight is greater than 20 Lbs</div>
+      )
+    }
+  }
+
   render() {
     let price = 0;
     let tax = 0;
@@ -38,7 +70,7 @@ export default class TotalPrice extends Component {
       tax = price * .1;
       total_cost = price + tax;
     }
-    
+
     return <div className="card" style={{ padding: "20px" }}>
         <h4 className="head-title">Total Price</h4>
         <div className="dropdown-divider" />
@@ -63,9 +95,7 @@ export default class TotalPrice extends Component {
             </button>
           </div>
           <div className="col-md-6 text-right">
-            <Link className="btn btn-primary" to="/dashboard/pastorders" onClick={this.placeOrder}>
-              Place Order
-            </Link>
+            {this.handleMaxWeightRouting()}
           </div>
         </div>
       </div>;
