@@ -8,14 +8,14 @@ import PastOrdersContainer from "../../containers/past_orders_container";
 import CheckoutContainer from "../../containers/checkout_container";
 
 export default class Dashboard extends Component {
-  
+
   constructor(props) {
     super(props);
     this.state = {
       firstName: "",
       lastName: "",
     };
-    
+
   }
 
   render() {
@@ -42,7 +42,7 @@ export default class Dashboard extends Component {
 
     if (this.props.match.params.category === "cart") {
       componentToRender = <CartContainer />;
-     
+
     }
     else if (this.props.match.params.category === "pastorders") {
       componentToRender = <PastOrdersContainer />;
@@ -54,7 +54,7 @@ export default class Dashboard extends Component {
       componentToRender = items;
     }
 
-    
+
     return (
 
       <div style={{minWidth:'1200px'}}>

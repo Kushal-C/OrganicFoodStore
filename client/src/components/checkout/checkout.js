@@ -71,6 +71,26 @@ export default class Checkout extends Component {
     this.delayedShowMarker();
   };
 
+  renderCheckoutItems() {
+    if(this.props.checkoutContents) {
+      return (
+        this.props.checkoutContents.items.map(function(item) {
+          return(
+              <div className="row">
+              <div className="col-md-6 text-left">{item.productName}</div>
+              <div className="col-md-6 text-right">x{item.quantity}</div>
+            </div>
+          );
+        })
+      )
+    }
+    else {
+      <div>
+        Could not render checkout items
+      </div>
+    }
+  }
+
   render() {
     return (
       <div className="row col-md-12">
@@ -89,16 +109,7 @@ export default class Checkout extends Component {
           <div className="card" style={{ width: "100%", marginLeft:'10px', marginBottom:'10px', padding:'20px'}}>
             <p className="head-title"> Order Details</p>
             <div>
-            {
-              this.props.checkoutContents.items.map(function(item) {
-                return(
-                    <div className="row">
-                    <div className="col-md-6 text-left">{item.productName}</div>
-                    <div className="col-md-6 text-right">x{item.quantity}</div>
-                  </div>
-                );
-              })
-            }
+            {this.renderCheckoutItems()}
             </div>
             <div className="dropdown-divider" />
             <p>
