@@ -134,3 +134,10 @@ export function adminGetItemsReq(item) {
     payload: request
   };
 }
+
+export function resetRegisterResponse() {
+  return {
+    type: REGISTRATION_REQUEST,
+    payload: {registrationResponse : null}
+  };
+}

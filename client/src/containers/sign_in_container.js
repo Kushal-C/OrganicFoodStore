@@ -3,7 +3,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import SignIn from "../components/sign_in/sign_in";
-import { login, register } from "../actions/index";
+import { login, register, resetRegisterResponse } from "../actions/index";
 
 class SignInContainer extends Component {
   constructor(props){
@@ -14,10 +14,13 @@ class SignInContainer extends Component {
     this.props.history.push('/admin');
   }
   render() {
-    console.log("JSON.stringify " + JSON.stringify(this.props.registrationResponse));
-    if(this.props.registrationResponse && this.props.registrationResponse.responseCode != "200") {
+    let response = this.props.registrationResponse;
+    console.log("RESONESPON: " + JSON.stringify(response));
+    resetRegisterResponse();
+    if(response && response.responseCode != "200") {
       alert("Failed to Register. The current email may already exist.")
     }
+
     return (
       <SignIn
         loginState={this.props.loginState}
