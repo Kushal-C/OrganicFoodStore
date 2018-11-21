@@ -12,8 +12,8 @@ router.post("/", (req, res) => {
 
         // Check if email exists
         connection.query("SELECT * FROM `user` WHERE email='" + req.body.email + "';", (error, result, fields) => {
-
-            if(result){ // Email exists in the database
+            
+            if(result.length > 0){ // Email exists in the database
                 
                 // Release connection
                 connection.release();
