@@ -14,6 +14,10 @@ class SignInContainer extends Component {
     this.props.history.push('/admin');
   }
   render() {
+    console.log("JSON.stringify " + JSON.stringify(this.props.registrationResponse));
+    if(this.props.registrationResponse && this.props.registrationResponse.responseCode != "200") {
+      alert("Failed to Register. The current email may already exist.")
+    }
     return (
       <SignIn
         loginState={this.props.loginState}
@@ -27,14 +31,16 @@ class SignInContainer extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log("STATE: " + JSON.stringify(state))
   return {
     loginState: state.login,
-    registrationState: state.register
+    registrationState: state.register,
+    registrationResponse : state.registrationResponse
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ login: login, register: register }, dispatch);
+  return bindActionCreators({ login: login, register: register}, dispatch);
 }
 
 export default connect(
