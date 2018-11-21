@@ -20,8 +20,7 @@ router.post("/", (req, res) => {
                 // Handle error after the release.
                 if (error) throw error;
 
-                // Send 409 Conflict JSON
-                res.send({ responseCode: "409" }); 
+                res.send({ responseCode: "409" }); // Send 409 Conflict JSON
             }
 
             else{ // Email does not exist, create a new account
@@ -46,6 +45,7 @@ router.post("/", (req, res) => {
                     // Handle error after the release.
                     if (error) throw error;
                     console.log("1 record inserted");
+                    res.send({ responseCode: "200" });
                 });
 
             }
