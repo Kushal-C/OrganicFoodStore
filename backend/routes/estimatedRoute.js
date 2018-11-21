@@ -35,8 +35,6 @@ async function getNearestStore(store_1, store_2, user_address, callback) {
     });
 
     try {
-        console.log("res 1: " + JSON.stringify(result_1));
-        console.log("res 2: " + JSON.stringify(result_2));
         res_1_dist = result_1.data.rows[0].elements[0].distance.value;
         res_2_dist = result_2.data.rows[0].elements[0].distance.value;
         console.log("RES 1 Dist: " + res_1_dist);
