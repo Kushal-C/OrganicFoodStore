@@ -32,8 +32,6 @@ export default class Order extends Component {
         <div className="card-body" style={{width:'auto'}}>
           <h4 className="card-title">Order - {this.props.orderId}</h4>
           <div class="dropdown-divider" />
-          <h5>{this.props.status}</h5>
-          <div class="dropdown-divider" />
           {this.renderOrder()}
           <h5>Total Cost: ${this.props.total_cost}</h5>
           <button className="btn btn-primary"><Link className="text-white" to={routingLink}>View Order</Link></button>

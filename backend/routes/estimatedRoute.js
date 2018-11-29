@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var cors = require('cors')
+var axios = require('axios');
 
 //require server_constants and call it myConsts, then access each module.export{} const
 const myConsts = require('../config/googleconfig');
@@ -10,7 +11,48 @@ const database = require('../config/dbconfig').mysql_pool;
 
 router.all('*', cors());
 
-router.post("/", (req, res, next) => {
+async function getNearestStore(store_1, store_2, user_address, callback) {
+    const result_1 = await axios.get(
+        'https://maps.googleapis.com/maps/api/distancematrix/json',
+        {
+            params: {
+            units: 'imperial',
+            origins: `${store_1}`,
+            destinations: `${user_address}`,
+            key: "AIzaSyAsbJmghb9NrphRYCTsdqP7NxwwlTVSiIM",
+        },
+    });
+
+    const result_2 = await axios.get(
+        'https://maps.googleapis.com/maps/api/distancematrix/json',
+        {
+            params: {
+            units: 'imperial',
+            origins: `${store_2}`,
+            destinations: `${user_address}`,
+            key: "AIzaSyAsbJmghb9NrphRYCTsdqP7NxwwlTVSiIM",
+        },
+    });
+
+    try {
+        res_1_dist = result_1.data.rows[0].elements[0].distance.value;
+        res_2_dist = result_2.data.rows[0].elements[0].distance.value;
+        console.log("RES 1 Dist: " + res_1_dist);
+        console.log("RES 2 Dist: " + res_2_dist);
+        if(res_1_dist < res_2_dist) {
+            callback({store: store_1, time: result_1.data.rows[0].elements[0].duration.value});
+        }
+        else {
+            callback({store: store_2, time: result_2.data.rows[0].elements[0].duration.value});
+        }
+    }
+    catch(error){
+        console.log("Error fetching distance " + error);
+        callback({store: store_1, time: result_1.data.rows[0].elements[0].duration.value});
+    }
+}
+
+router.post("/", async (req, res, next) => {
     var ua = ""
     var r = [];
     var items = {}
@@ -123,29 +165,39 @@ router.post("/", (req, res, next) => {
                                             var price = parseFloat(result2[0].price.toFixed(2));
                                             var tax = parseFloat((price * .0725).toFixed(2));
                                             var totalcost = price+tax;
-                                            let remaining_time = 0;
-                                            let newStatus = "";
-                                            let DELIVERY_TIME_MILLISECONDS = 300000;
-                                            let tmp = Date.now() - resultStatus[0].orderTime;
-                                            console.log("tmp: " + tmp);
-                                            if(parseInt(tmp / 60000) < parseInt(DELIVERY_TIME_MILLISECONDS / 60000)) {
-                                                remaining_time = DELIVERY_TIME_MILLISECONDS - tmp;
-                                                newStatus = "In Progress";
-                                            }
-                                            else {
-                                                remaining_time = 0;
-                                                newStatus = "Completed";
-                                            }
-                                            res.send({  origin: ua,
-                                                destination: "1984 Los Padres Blvd Santa Clara, CA 95050",
-                                                arrival_time: remaining_time,
-                                                order_status: newStatus,
-                                                items: items,
-                                                total_weight: weight,
-                                                price: price,
-                                                tax: tax,
-                                                total_cost: totalcost
-                                            });
+
+                                            getNearestStore(
+                                                "1984 Los Padres Blvd Santa Clara, CA 95050",
+                                                "402 N El Camino Real, San Mateo, CA 94401",
+                                                ua, function(data) {
+                                                    let remaining_time = 0;
+                                                    let newStatus = "";
+                                                    let delivery_time_seconds = data.time;
+                                                    console.log("TIME: " + delivery_time_seconds / 60);
+                                                    let tmp = Date.now() - resultStatus[0].orderTime;
+                                                    console.log("TEMP: " + parseInt(tmp / 60000));
+                                                    if(parseInt(tmp / 60000) < parseInt(delivery_time_seconds / 60)) {
+                                                        remaining_time = parseInt(delivery_time_seconds / 60) - parseInt(tmp / 60000);
+                                                        newStatus = "In Progress";
+                                                    }
+                                                    else {
+                                                        remaining_time = 0;
+                                                        newStatus = "Completed";
+                                                    }
+                                                    console.log("remaining_time: " + remaining_time);
+                                                    res.send({
+                                                        origin: data.store,
+                                                        destination: ua,
+                                                        arrival_time: remaining_time,
+                                                        order_status: newStatus,
+                                                        items: items,
+                                                        total_weight: weight,
+                                                        price: price,
+                                                        tax: tax,
+                                                        total_cost: totalcost
+                                                    });
+                                                }
+                                            );
                                         }
                                         else {
                                             res.send({responseCode: "404", reason: "Nothing in cart"});
