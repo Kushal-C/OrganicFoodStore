@@ -36,26 +36,21 @@ export default class ItemCard extends Component {
                {this.props.weight} {this.props.weight_unit}
              </div>
            </div>
-           <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style={{marginLeft: '17px'}}>Add to Cart</button>
-           <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div className="modal-dialog" role="document">
-              <div className="modal-content">
-                <div className="modal-header " >
-                  <h5 className="modal-title" id="exampleModalLabel">Quantity</h5>
-                  <button type="button" className="close" data-dismiss="modal" aria-label="Close" >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div className="modal-body">
-                    <p>How many items of {this.props.productName} do you want to order?</p>
-                  <input type="text" name="quantity" value ={this.state.quantity} onChange={this.onChange}></input>
-                </div>
-                <div className="modal-footer">
-                  <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.sendAddToCartReq}>Add to Cart</button>
-                </div>
-              </div>
-            </div>
-          </div>
+           <input
+              className={"form-control"}
+              value={this.state.quantity}
+              onChange={this.onChange}
+              type="number"
+              name={this.props.name}
+              required
+            />
+            <button
+            class="btn btn-primary float-right"
+            onClick={() => this.sendAddToCartReq()}
+            style={{marginLeft: '17px'}}
+            >
+            Add To Cart
+            </button>
           </div>
         </div>
       </div>
