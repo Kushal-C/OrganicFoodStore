@@ -19,8 +19,8 @@ import {
 
 const route = "http://localhost:5000";
 
-export function login(info) {
-  let request = axios.post(route + "/api/login", info);
+export async function login(info) {
+  let request = await axios.post(route + "/api/login", info);
   return {
     type: LOGIN_REQUEST,
     payload: request

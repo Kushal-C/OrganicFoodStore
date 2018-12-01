@@ -25,25 +25,14 @@ class DashboardContainer extends Component {
         />
       );
     }
-    return (
-      <Dashboard
-        firstName={"John"}
-        lastName={"Smith"}
-        getItems={this.props.getItems}
-        getProfile={this.props.getUserProfile}
-        match={this.props.match}
-        item_props={[
-          {
-            name: "Loading",
-            description: "Loading",
-            imageLink:
-              "https://i5.walmartimages.ca/images/Large/950/304/6000016950304.jpg",
-            cost: 2,
-            weight: 1,
-            weight_unit: "pound"
-          }]}
-      />
-    );
+    else {
+      setTimeout(() => {
+        this.props.history.push('/');
+      }, 3000)
+      return (
+        <div>Loading</div>
+      );
+    }
   }
 }
 
