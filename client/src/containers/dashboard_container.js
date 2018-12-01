@@ -7,6 +7,13 @@ import Dashboard from "../components/dashboard/dashboard";
 
 class DashboardContainer extends Component {
 
+  constructor (props) {
+    super(props);
+    this.state = {
+      timeout : null
+    }
+  }
+
   componentWillMount(){
     const { category } = this.props.match.params
     this.props.getItems(category);
@@ -14,6 +21,7 @@ class DashboardContainer extends Component {
 
   render() {
     if (this.props.login !== null && this.props.items !== null) {
+      clearTimeout(this.state.timeout);
       return (
         <Dashboard
           firstName={this.props.login[0].firstName}
@@ -25,10 +33,18 @@ class DashboardContainer extends Component {
         />
       );
     }
+    else if(!this.state.timeout) {
+      this.setState(
+        {
+          timeout : setTimeout(() => {
+            this.props.history.push('/');
+          }, 3000)
+        })
+      return (
+        <div>Loading</div>
+      );
+    }
     else {
-      setTimeout(() => {
-        this.props.history.push('/');
-      }, 3000)
       return (
         <div>Loading</div>
       );
