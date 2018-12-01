@@ -15,7 +15,7 @@ router.post('/', passport.authenticate('local-login', {
     console.log("User Authenticated.");
 
     database.getConnection(function(err, connection){
-        if (err) throw err;  
+        if (err) throw err;
         connection.query("SELECT * FROM `user` WHERE email='" + req.user.email + "';", (error, result, fields) => {
             // When done with the connection, release it.
             connection.release();
@@ -25,7 +25,7 @@ router.post('/', passport.authenticate('local-login', {
             //console.log((JSON.stringify(req.user.email)));
             if (result.length > 0) res.send( JSON.stringify(result));
             else res.send({ responseCode: "404" }); // user not found
-        
+
         });
     });
     },
@@ -35,4 +35,4 @@ router.post('/', passport.authenticate('local-login', {
     }
 );
 
-module.exports = router;  
+module.exports = router;
