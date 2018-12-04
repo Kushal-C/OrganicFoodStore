@@ -27,7 +27,17 @@ router.post('/', function(req, res, next) {
                         throw err;
                     }
                     if (result2.length > 0){
-                        var nextTransactionId = parseInt(result2[0].tId) + 1;
+                        console.log("result2: " + JSON.stringify(result2));
+                        var nextTransactionId;
+                        if (result2[0].tId === null){
+                            nextTransactionId = 0;
+                            // console.log("is null");
+                        }
+                        else{
+                            nextTransactionId = parseInt(result2[0].tId) + 1;
+                            // console.log("is not null");
+                        }
+                        // console.log("NextTransactionId: " + nextTransactionId);
                         var createTransactionQuery = "INSERT INTO transaction (transactionId, cartId, userId, status, orderTime) \
                                                       VALUES (" + nextTransactionId + ", "
                                                                 + result[0].maxC + ", "
