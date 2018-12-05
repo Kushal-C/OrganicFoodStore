@@ -13,7 +13,7 @@ export default class Order extends Component {
       return (
         this.props.contents.map(function(item, key){
           return(
-            <div key={key}>{item.name} x{item.quantity} Cost: ${item.cost}</div>
+            <div key={key}>{item.name} x{item.quantity} Cost: ${item.cost.toFixed(2)}</div>
           )
         })
       )

@@ -12,7 +12,7 @@ export default class PastOrders extends Component {
             orderId = {order.orderId}
             status = {order.status}
             contents = {order.contents}
-            total_cost = {order.total_cost}
+            total_cost = {order.total_cost.toFixed(2)}
           ></Order>
         )})
       )
