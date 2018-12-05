@@ -37,8 +37,8 @@ export default class ItemCard extends Component {
             <h4 className="card-title">{this.props.productName}</h4>
             <p className="card-text">{this.props.description}</p>
             <div className="row" style={{borderTop: '1px solid rgb(231, 231, 231)', marginBottom: '10px'}}>
-             <div className="col-sm-12 col-md-6 text-left">${parseFloat(this.props.cost).toFixed(2)}</div>
-             <div className="col-sm-12 col-md-6 text-left">
+              <div style={{marginTop:'4px'}}className="col-sm-12 col-md-6 text-left">${parseFloat(this.props.cost).toFixed(2)}</div>
+              <div style={{ marginTop: '4px' }}className="col-sm-12 col-md-6 text-left">
                {this.props.weight} {this.props.weight_unit}
              </div>
            </div>
@@ -51,7 +51,7 @@ export default class ItemCard extends Component {
               required
             />
             <button
-            class="btn btn-primary float-right"
+            class="btn btn-primary"
             onClick={() => this.sendAddToCartReq()}
             style={{marginLeft: '17px'}}
             >
