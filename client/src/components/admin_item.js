@@ -20,7 +20,13 @@ export default class AdminItem extends Component {
 
     adminAddReq(req);
     let newVal = Number(this.state.currentQuantity) + Number(this.state.newQuantity);
-    this.setState({currentQuantity : newVal});
+    if(newVal > -1){
+      this.setState({ currentQuantity: newVal });
+    }
+    else {
+      this.setState({ currentQuantity: 0 });
+    } 
+    
   }
 
   changeQuantity() {
