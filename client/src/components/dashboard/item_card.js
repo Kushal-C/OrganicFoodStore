@@ -25,6 +25,7 @@ export default class ItemCard extends Component {
     else {
       alert("Can't add 0 or less items to the cart");
     }
+    this.setState({quantity: 1});
   }
 
   render() {
@@ -36,7 +37,7 @@ export default class ItemCard extends Component {
             <h4 className="card-title">{this.props.productName}</h4>
             <p className="card-text">{this.props.description}</p>
             <div className="row" style={{borderTop: '1px solid rgb(231, 231, 231)', marginBottom: '10px'}}>
-             <div className="col-sm-12 col-md-6 text-left">${this.props.cost}</div>
+             <div className="col-sm-12 col-md-6 text-left">${parseFloat(this.props.cost).toFixed(2)}</div>
              <div className="col-sm-12 col-md-6 text-left">
                {this.props.weight} {this.props.weight_unit}
              </div>
