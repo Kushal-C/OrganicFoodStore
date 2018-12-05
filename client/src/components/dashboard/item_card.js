@@ -19,7 +19,12 @@ export default class ItemCard extends Component {
   }
 
   sendAddToCartReq() {
-    this.props.addToCart({name: this.props.productName, quantity: this.state.quantity, cost:this.props.cost, weight:this.props.weight, weight_unit:this.props.weight_unit, productID:this.props.productID, userId:this.props.id});
+    if(this.state.quantity > 0){
+      this.props.addToCart({ name: this.props.productName, quantity: this.state.quantity, cost: this.props.cost, weight: this.props.weight, weight_unit: this.props.weight_unit, productID: this.props.productID, userId: this.props.id });
+    }
+    else {
+      alert("Can't add 0 or less items to the cart");
+    }
   }
 
   render() {
