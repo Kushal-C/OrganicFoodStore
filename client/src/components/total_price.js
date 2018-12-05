@@ -70,26 +70,26 @@ export default class TotalPrice extends Component {
 
     if(this.props.cartItems.items !== null){
       for (let i = 0; i < this.props.cartItems.length; i++) {
-        price += parseInt(this.props.cartItems[i].cost) * this.props.cartItems[i].quantity;
+        price += parseFloat(this.props.cartItems[i].cost) * this.props.cartItems[i].quantity;
       }
       tax = price * .1;
       total_cost = price + tax;
+
     }
 
     return <div className="card" style={{ padding: "20px" }}>
         <h4 className="head-title">Total Price</h4>
-        <div className="dropdown-divider" />
         <div className="row">
-          <div className="col text-left">${price} </div>
+          <div className="col text-left">${price.toFixed(2)} </div>
           <div className="col text-right">Price</div>
         </div>
         <div className="row">
-          <div className="col text-left">${tax} </div>
+          <div className="col text-left">${tax.toFixed(2)} </div>
           <div className="col text-right">Tax</div>
         </div>
         <div className="dropdown-divider" />
         <div className="row">
-          <div className="col text-left">${total_cost} </div>
+          <div className="col text-left">${total_cost.toFixed(2)} </div>
           <div className="col text-right">Totals</div>
         </div>
         <div className="dropdown-divider" />
