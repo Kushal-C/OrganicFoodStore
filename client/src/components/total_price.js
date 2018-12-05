@@ -14,7 +14,7 @@ export default class TotalPrice extends Component {
     for (let i = 0; i < this.props.cartItems.length; i++) {
       weight_sum += this.props.cartItems[i].weight * this.props.cartItems[i].quantity;
     }
-    return weight_sum < MAX_WEIGHT;
+    return weight_sum <= MAX_WEIGHT;
   }
 
   checkEmptyOrder() {

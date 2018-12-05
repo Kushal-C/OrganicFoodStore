@@ -21,7 +21,7 @@ export default class CartItem extends Component {
             <div className="col-md-5 text-right" />
 
             <div className="text-center mb-3">
-              weight = {item.weight} {item.weight_unit}
+              weight = {parseInt(item.weight) * item.quantity} {item.weight_unit}
             </div>
           </div>
         );
