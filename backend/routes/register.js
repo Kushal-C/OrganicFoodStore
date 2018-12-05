@@ -34,9 +34,9 @@ router.post("/", (req, res) => {
                                     req.body.address + "', '" +
                                     req.body.city  + "', '" +
                                     req.body.state  + "', '" +
-                                    req.body.zipcode  + "', '" +
-                                    req.body.cardNumber + "', '" +
-                                    req.body.expiryDate  + "', '" +
+                                    req.body.zipCode  + "', '" +
+                                    req.body.creditCardNumber + "', '" +
+                                    req.body.expirationDate  + "', '" +
                                     req.body.cvc + "')";
 
                 connection.query(sql, (error, result) => {
