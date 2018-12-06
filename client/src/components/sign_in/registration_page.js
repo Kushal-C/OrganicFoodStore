@@ -48,7 +48,10 @@ class RegistrationPage extends Component {
   
   register(){
     if (this.state.firstName !== "" && this.state.lastName !== "" && this.state.email !== "" && this.state.phoneNumber !== "" && this.state.password !== "" && this.state.confirmPassword !== "" && this.state.address !== "" && this.state.city !== "" && this.state.state !== "" && this.state.zipCode !== "" && this.state.creditCardNumber !== "" && this.state.expirationDate !== "" && this.state.cvc !== "") {
-      this.props.register(this.state);
+      if(this.state.creditCardNumber.length === 16){
+        this.props.register(this.state);
+      }
+      alert("Make sure credit card number is valid");
     } else {
       alert("One or more fields is empty, please fill out all fields to proceed");
     }

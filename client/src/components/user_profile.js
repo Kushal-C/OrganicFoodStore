@@ -43,11 +43,11 @@ class UserProfile extends Component {
     else if (this.state.password.length === 0 || this.state.confirmPassword.length === 0){
       alert('Please properly enter your password in both fields');
     }
-    if (this.state.firstName !== "" && this.state.lastName !== "" && this.state.email !== "" && this.state.phoneNumber !== "" && this.state.password !== "" && this.state.confirmPassword !== "" && this.state.address !== "" && this.state.city !== "" && this.state.state !== "" && this.state.zipCode !== "" && this.state.creditCardNumber !== "" && this.state.expirationDate !== "" && this.state.cvc !== "") {
+    if (this.state.firstName !== "" && this.state.lastName !== "" && this.state.email !== "" && this.state.phoneNumber !== "" && this.state.password !== "" && this.state.confirmPassword !== "" && this.state.address !== "" && this.state.city !== "" && this.state.state !== "" && this.state.zipCode !== "" && this.state.creditCardNumber !== "" && this.state.expirationDate !== "" && this.state.cvc !== "" && this.state.creditCardNumber.length === 16){
       this.props.updateProfile(this.state);
     }
     else {
-      alert("Update profile failed, make sure you fill out all fields");
+      alert("Update profile failed, make sure you fill out all fields with valid information");
     }
   }
 
