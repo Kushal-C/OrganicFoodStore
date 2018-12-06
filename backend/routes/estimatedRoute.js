@@ -40,15 +40,15 @@ async function getNearestStore(store_1, store_2, user_address, callback) {
         console.log("RES 1 Dist: " + res_1_dist);
         console.log("RES 2 Dist: " + res_2_dist);
         if(res_1_dist < res_2_dist) {
-            callback({store: store_1, time: result_1.data.rows[0].elements[0].duration.value});
+            callback({store: store_1, time: result_1.data.rows[0].elements[0].duration.value, ua : user_address});
         }
         else {
-            callback({store: store_2, time: result_2.data.rows[0].elements[0].duration.value});
+            callback({store: store_2, time: result_2.data.rows[0].elements[0].duration.value, ua : user_address});
         }
     }
     catch(error){
         console.log("Error fetching distance " + error);
-        callback({store: store_1, time: result_1.data.rows[0].elements[0].duration.value});
+        callback({store: store_1, time: 50000, ua : "1 Washington Square San Jose California"});
     }
 }
 
@@ -185,9 +185,10 @@ router.post("/", async (req, res, next) => {
                                                         newStatus = "Completed";
                                                     }
                                                     console.log("remaining_time: " + remaining_time);
+                                                    console.log("UA: " + ua);
                                                     res.send({
                                                         origin: data.store,
-                                                        destination: ua,
+                                                        destination: data.ua,
                                                         arrival_time: remaining_time,
                                                         order_status: newStatus,
                                                         items: items,
