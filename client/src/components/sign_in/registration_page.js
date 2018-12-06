@@ -51,7 +51,9 @@ class RegistrationPage extends Component {
       if(this.state.creditCardNumber.length === 16){
         this.props.register(this.state);
       }
-      alert("Make sure credit card number is valid");
+      else {
+        alert("Make sure credit card number is valid");
+      }
     } else {
       alert("One or more fields is empty, please fill out all fields to proceed");
     }
