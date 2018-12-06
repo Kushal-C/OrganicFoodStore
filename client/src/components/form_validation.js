@@ -64,6 +64,11 @@ export default class FormValidation extends Component {
         if (!this.props.value.includes(this.props.required_characters[i])) {
           containsChars = false;
         }
+        if(this.props.required_characters[i] === '.'){
+          if (this.props.value[this.props.value.length - 3] !== '.'){
+            containsChars = false;
+          }
+        }
       }
       return containsChars;
     }

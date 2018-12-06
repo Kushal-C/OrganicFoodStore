@@ -14,7 +14,9 @@ class SideBarContainer extends Component {
 
     updateDashboard(){
         const { category } = this.props.match.params
-        this.props.getItems(category);
+        if(category !== 'pastorders' || category !== 'cart'){
+            this.props.getItems(category);
+        }
     }
 
     render(){

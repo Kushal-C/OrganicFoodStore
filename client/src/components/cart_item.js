@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 
 export default class CartItem extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     let items = <div></div>;
     if(this.props.items != null){
@@ -21,7 +17,7 @@ export default class CartItem extends Component {
             <div className="col-md-5 text-right" />
 
             <div className="text-center mb-3">
-              weight = {parseInt(item.weight) * item.quantity} {item.weight_unit}
+              weight = {parseInt(item.weight, 10) * item.quantity} {item.weight_unit}
             </div>
           </div>
         );

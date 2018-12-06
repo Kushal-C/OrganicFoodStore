@@ -18,16 +18,16 @@ export default class TotalPrice extends Component {
   }
 
   checkEmptyOrder() {
-    return this.props.cartItems.length == 0;
+    return this.props.cartItems.length === 0;
   }
 
   placeOrder() {
     if(this.checkOverWeight()) {
       if(this.props.cartItems) {
         this.props.placeOrder(this.generateRequestPayload());
+        alert("Order just placed");
         this.props.emptyCart();
       }
-
     }
     else {
     }

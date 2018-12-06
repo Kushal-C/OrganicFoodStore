@@ -17,7 +17,7 @@ class SignInContainer extends Component {
     let response = this.props.registrationResponse;
     console.log("RESONESPON: " + JSON.stringify(response));
     resetRegisterResponse();
-    if(response && response.responseCode != "200") {
+    if(response && response.responseCode !== "200") {
       alert("Failed to Register. The current email may already exist.")
     }
 

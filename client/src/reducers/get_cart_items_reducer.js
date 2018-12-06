@@ -1,5 +1,9 @@
 
-import { GET_CART_ITEMS_REQUEST, EMPTY_CART_REQUEST, ADD_TO_CART_REQUEST} from "../actions/action_constants";
+import {
+  GET_CART_ITEMS_REQUEST,
+  EMPTY_CART_REQUEST,
+  ADD_TO_CART_REQUEST
+} from "../actions/action_constants";
 
 export default function(state = [], action) {
   switch (action.type) {

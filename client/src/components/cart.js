@@ -4,11 +4,6 @@ import CartItem from './cart_item';
 import TotalPriceContainer from '../containers/total_price_container';
 
 class Cart extends Component{
-
-  constructor(props){
-    super(props);
-  }
-
   render() {
     return(
       <div>

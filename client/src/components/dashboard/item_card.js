@@ -51,7 +51,7 @@ export default class ItemCard extends Component {
               required
             />
             <button
-            class="btn btn-primary"
+            className="btn btn-primary"
             onClick={() => this.sendAddToCartReq()}
             style={{marginLeft: '17px'}}
             >

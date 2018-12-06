@@ -6,7 +6,7 @@ export default class AdminItem extends Component {
     super(props);
     this.state = {
       newQuantity : 0,
-      currentQuantity : parseInt(this.props.quantity)
+      currentQuantity : parseInt(this.props.quantity,10)
     }
 
     this.onChange = this.onChange.bind(this);
@@ -30,8 +30,8 @@ export default class AdminItem extends Component {
   }
 
   changeQuantity() {
-    if(Number(parseInt(this.state.newQuantity) < 0)) {
-      if((Number(parseInt(this.state.currentQuantity)) + Number(parseInt(this.state.newQuantity))) >= 0) {
+    if(parseInt(this.state.newQuantity,10) < 0) {
+      if( parseInt(this.state.currentQuantity,10) + parseInt(this.state.newQuantity,10) >= 0) {
         this.update();
       }
     }

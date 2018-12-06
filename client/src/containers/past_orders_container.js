@@ -12,6 +12,8 @@ class PastOrdersContainer extends Component {
       dataIsReady : false,
       pastOrders : {}
     }
+
+    this.props.getPastOrders({ userId: this.props.login[0].userId });
   }
 
   componentWillMount(){
@@ -92,6 +94,7 @@ function mapStateToProps(state) {
     pastOrders: state.pastOrders,
     login: state.login,
     profile: state.profile,
+    placeOrder: state.placeOrder
   };
 }
 

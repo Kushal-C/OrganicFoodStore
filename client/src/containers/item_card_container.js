@@ -6,9 +6,6 @@ import { addToCart } from '../actions/index';
 import ItemCard from "../components/dashboard/item_card";
 
 class ItemCardContainer extends Component {
-  constructor(props){
-    super(props);
-  }
   render() {
     if(this.props.login === null){
       return (

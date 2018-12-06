@@ -7,6 +7,7 @@ import GetCartItemsReducer from './get_cart_items_reducer';
 import GetPastOrdersReducer from './get_past_orders_reducer';
 import GetAdminItemsReducer from './get_admin_items_reducer';
 import GetRegistrationResponseReducer from './get_registration_response_reducer';
+import PlaceOrderReducer from './place_order_reducer';
 
 const rootReducer = combineReducers({
   login: LoginReducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   cartItems :  GetCartItemsReducer,
   pastOrders : GetPastOrdersReducer,
   adminItems : GetAdminItemsReducer,
-  registrationResponse: GetRegistrationResponseReducer
+  registrationResponse: GetRegistrationResponseReducer,
+  placeOrder: PlaceOrderReducer
 });
 
 export default rootReducer;

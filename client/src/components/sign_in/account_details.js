@@ -62,7 +62,7 @@ export default class AccountDetails extends Component {
                 type="number"
                 id="Phone Number"
                 error_msg="Invalid Phone Number"
-                min_input_length={10}
+                min_input_length={9}
               />
         </div>
       </div>
@@ -76,7 +76,7 @@ export default class AccountDetails extends Component {
           type="password"
           name="password"
           id="password"
-          min_input_length={8}
+          min_input_length={7}
           error_msg="Invalid password"
         />
         <label htmlFor="confirmPassword" className="col-form-label">
@@ -88,7 +88,7 @@ export default class AccountDetails extends Component {
           type="password"
           name="confirmPassword"
           id="confirmPassword"
-          min_input_length={8}
+          min_input_length={7}
           error_msg="Passwords don't match"
         />
       </div>

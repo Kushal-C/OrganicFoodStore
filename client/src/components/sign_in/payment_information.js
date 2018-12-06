@@ -43,7 +43,7 @@ export default class PaymentInformation extends Component {
                             type="number"
                             id="zipCode"
                             error_msg="Invalid Zip Code"
-                            min_input_length={5}
+                            min_input_length={4}
                         />
                     </div>
                 </div>
@@ -55,7 +55,7 @@ export default class PaymentInformation extends Component {
                     type="number"
                     name="creditCardNumber"
                     id="creditCardNumber"
-                    min_input_length={16}
+                    min_input_length={15}
                     error_msg="Invalid Credit Card Number"
                 />
                 <div className="row">
@@ -79,7 +79,7 @@ export default class PaymentInformation extends Component {
                             type="number"
                             id="cvc"
                             name="cvc"
-                            min_input_length={3}
+                            min_input_length={2}
                             error_msg="Invalid CVC"
                         />
                     </div>

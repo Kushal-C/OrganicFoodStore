@@ -85,9 +85,9 @@ export default class Checkout extends Component {
       )
     }
     else {
-      <div>
+      return(<div>
         Could not render checkout items
-      </div>
+      </div>);
     }
   }
 
